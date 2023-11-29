@@ -7,7 +7,7 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     
-    const createUser = async (e) => {
+    const handleCreateUser = async (e) => {
         e.preventDefault();
 
         try {
@@ -19,21 +19,35 @@ const Register = () => {
                     user_password: password 
                 }),
             })
-            console.log(res)
-        } catch (err) {
-            console.log(err)
-        }
-        console.log(JSON.stringify({user_email: email, user_password: password}));
 
-        setEmail('');
-        setPassword('');
+            const errorMessage = document.querySelector('.email-error');
+            
+            if (res.status !== 201) {
+                const error = await res.json();
+
+                if (error.message.includes('email exists!')) {
+                    errorMessage.innerText = 'Email exists! Try a new one.'
+                }
+
+                console.log(error)
+            } else {
+                errorMessage.innerText = '';
+
+                setEmail('');
+                setPassword('');
+            }
+
+            console.log(JSON.stringify({user_email: email, user_password: password}));
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     return ( 
         <main>
             <div>
                 <h2>Sign Up</h2>
-                <form onSubmit={createUser}>
+                <form onSubmit={handleCreateUser}>
                     <label>
                         Email
                         <input 
@@ -42,6 +56,9 @@ const Register = () => {
                         value={email}
                         onChange = {(e) => setEmail(e.target.value)}
                         required  />
+                        <div>
+                            <p className="email-error"></p>
+                        </div>
                     </label>
                     <label>
                         Password
