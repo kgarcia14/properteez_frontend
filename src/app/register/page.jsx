@@ -18,21 +18,25 @@ const Register = () => {
                     user_email: email, 
                     user_password: password 
                 }),
-            })
+            }); 
+            
+            const response = await res.json();
+            console.log(response);
+            
+            if (response.results) {
+                location.assign('/dashboard')
+            }
 
             const errorMessage = document.querySelector('.email-error');
             
             if (res.status !== 201) {
-                const error = await res.json();
 
-                if (error.message.includes('email exists!')) {
+                if (response.message.includes('email exists!')) {
                     errorMessage.innerText = 'Email exists! Try a new one.'
                 }
 
-                console.log(error)
             } else {
                 errorMessage.innerText = '';
-
                 setEmail('');
                 setPassword('');
             }
@@ -69,7 +73,7 @@ const Register = () => {
                         onChange = {(e) => setPassword(e.target.value)}
                         required />
                     </label>
-                    <button>Create Account</button>
+                    <button>Register</button>
                 </form>
             </div>
         </main>
