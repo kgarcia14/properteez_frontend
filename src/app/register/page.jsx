@@ -1,5 +1,6 @@
 'use client'
 
+import { Chela_One } from "next/font/google";
 import { useState } from "react";
 
 
@@ -11,21 +12,26 @@ const Register = () => {
         e.preventDefault();
 
         try {
-            const res = await fetch('http://localhost:4444/register', {
+            const res = await fetch('http://127.0.0.1:4444/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
                 body: JSON.stringify({ 
                     user_email: email, 
                     user_password: password 
                 }),
             }); 
+
+            const setCookieHeader = res.headers.get('Set-Cookie');
+            console.log(setCookieHeader);
             
             const response = await res.json();
             console.log(response);
+            console.log(res.headers);
             
-            if (response.results) {
-                location.assign('/dashboard')
-            }
+            // if (response.results) {
+            //     location.assign('/dashboard')
+            // }
 
             const errorMessage = document.querySelector('.email-error');
             
