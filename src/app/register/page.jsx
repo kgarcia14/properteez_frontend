@@ -11,7 +11,7 @@ const Register = () => {
         e.preventDefault();
 
         try {
-            const res = await fetch('http://properteez.onrender.com/register', {
+            const res = await fetch('https://properteez.onrender.com/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',
