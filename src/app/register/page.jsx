@@ -7,33 +7,54 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     
-    const createUser = async (e) => {
+    const handleCreateUser = async (e) => {
         e.preventDefault();
 
         try {
-            const res = await fetch('http://localhost:4444/register', {
+            const res = await fetch('https://properteez.onrender.com', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
                 body: JSON.stringify({ 
                     user_email: email, 
                     user_password: password 
                 }),
-            })
-            console.log(res)
-        } catch (err) {
-            console.log(err)
-        }
-        console.log(JSON.stringify({user_email: email, user_password: password}));
+            }); 
 
-        setEmail('');
-        setPassword('');
+            console.log(res.headers)
+            
+            const response = await res.json();
+            console.log(response);
+            
+            // if (response.results) {
+            //     location.assign('/dashboard')
+            // }
+
+            const errorMessage = document.querySelector('.email-error');
+            
+            if (res.status !== 201) {
+
+                if (response.message.includes('email exists!')) {
+                    errorMessage.innerText = 'Email exists! Try a new one.'
+                }
+
+            } else {
+                errorMessage.innerText = '';
+                setEmail('');
+                setPassword('');
+            }
+
+            console.log(JSON.stringify({user_email: email, user_password: password}));
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     return ( 
         <main>
             <div>
                 <h2>Sign Up</h2>
-                <form onSubmit={createUser}>
+                <form onSubmit={handleCreateUser}>
                     <label>
                         Email
                         <input 
@@ -42,6 +63,9 @@ const Register = () => {
                         value={email}
                         onChange = {(e) => setEmail(e.target.value)}
                         required  />
+                        <div>
+                            <p className="email-error"></p>
+                        </div>
                     </label>
                     <label>
                         Password
@@ -52,7 +76,7 @@ const Register = () => {
                         onChange = {(e) => setPassword(e.target.value)}
                         required />
                     </label>
-                    <button>Create Account</button>
+                    <button>Register</button>
                 </form>
             </div>
         </main>
