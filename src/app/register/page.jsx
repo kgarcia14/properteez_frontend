@@ -1,6 +1,5 @@
 'use client'
 
-import { Chela_One } from "next/font/google";
 import { useState } from "react";
 
 
@@ -12,7 +11,7 @@ const Register = () => {
         e.preventDefault();
 
         try {
-            const res = await fetch('http://127.0.0.1:4444/register', {
+            const res = await fetch('https://properteez.onrender.com', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',
@@ -22,12 +21,10 @@ const Register = () => {
                 }),
             }); 
 
-            const setCookieHeader = res.headers.get('Set-Cookie');
-            console.log(setCookieHeader);
+            console.log(res.headers)
             
             const response = await res.json();
             console.log(response);
-            console.log(res.headers);
             
             // if (response.results) {
             //     location.assign('/dashboard')
