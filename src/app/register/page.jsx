@@ -14,6 +14,7 @@ const Register = () => {
             const res = await fetch('https://properteez.kgbackend.com/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
+                mode: "cors",
                 credentials: 'include',
                 body: JSON.stringify({ 
                     user_email: email, 
