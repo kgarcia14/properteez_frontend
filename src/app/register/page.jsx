@@ -11,7 +11,7 @@ const Register = () => {
         e.preventDefault();
 
         try {
-            const res = await fetch('https://properteez.onrender.com/register', {
+            const res = await fetch('http://localhost:3333/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',
@@ -76,7 +76,7 @@ const Register = () => {
                         onChange = {(e) => setPassword(e.target.value)}
                         required />
                     </label>
-                    <button>Register</button>
+                    <button>Sign Up</button>
                 </form>
             </div>
         </main>
