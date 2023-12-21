@@ -13,16 +13,14 @@ const Register = () => {
         try {
             const res = await fetch('https://properteez.kgbackend.com/register', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                mode: "cors",
+                mode: 'cors',
                 credentials: 'include',
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
                     user_email: email, 
                     user_password: password 
                 }),
-            }); 
-
-            console.log(res.headers)
+            });
             
             const response = await res.json();
             console.log(response);
