@@ -11,7 +11,7 @@ const Register = () => {
         e.preventDefault();
 
         try {
-            const res = await fetch('https://properteez.kgbackend.com/register', {
+            const res = await fetch('https://properteezapi.kurtisgarcia.dev/register', {
                 method: 'POST',
                 mode: 'cors',
                 credentials: 'include',
