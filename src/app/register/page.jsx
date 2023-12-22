@@ -11,7 +11,7 @@ const Register = () => {
         e.preventDefault();
 
         try {
-            const res = await fetch('https://properteezapi.kurtisgarcia.dev/register', {
+            const res = await fetch(process.env.NODE_ENV === 'development' ? 'http://localhost:4444/register' : 'https://properteezapi.kurtisgarcia.dev/register', {
                 method: 'POST',
                 credentials: 'include',
                 headers: { 'Content-Type': 'application/json' },
