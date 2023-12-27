@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 
-const Register = () => {
+const Signup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     
@@ -24,9 +24,9 @@ const Register = () => {
             const response = await res.json();
             console.log(response);
             
-            // if (response.results) {
-            //     location.assign('/dashboard')
-            // }
+            if (response.results) {
+                location.assign('/dashboard')
+            }
 
             const errorMessage = document.querySelector('.email-error');
             
@@ -81,4 +81,4 @@ const Register = () => {
      );
 }
  
-export default Register;
+export default Signup;
