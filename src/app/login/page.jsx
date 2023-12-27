@@ -1,7 +1,70 @@
+'use client'
+
+import { useState } from "react";
+
 const Login = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleLoginUser = async (e) => {
+        e.preventDefault();
+
+        try {
+            const res = await fetch(process.env.NODE_ENV === 'development' ? 'http://localhost:4444/login' : 'https://properteezapi.kurtisgarcia.dev/login', {
+                method: 'POST',
+                credentials: 'include',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    user_email: email, 
+                    user_password: password 
+                }),
+            });
+            
+            const response = await res.json();
+            console.log(response);
+            
+            if (response.user) {
+                location.assign('/dashboard')
+            }
+            
+            setEmail('');
+            setPassword('');
+
+            console.log(JSON.stringify({user_email: email, user_password: password}));
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     return ( 
         <main>
-            <div>Login Page</div>
+            <div>
+                <h2>Log In</h2>
+                <form onSubmit={handleLoginUser}>
+                    <label>
+                        Email
+                        <input 
+                        type="email" 
+                        name="email" 
+                        value={email}
+                        onChange = {(e) => setEmail(e.target.value)}
+                        required  />
+                        <div>
+                            <p className="email-error"></p>
+                        </div>
+                    </label>
+                    <label>
+                        Password
+                        <input 
+                        type="password" 
+                        name="password" 
+                        value={password}
+                        onChange = {(e) => setPassword(e.target.value)}
+                        required />
+                    </label>
+                    <button>Log In</button>
+                </form>
+            </div>
         </main>
      );
 }
