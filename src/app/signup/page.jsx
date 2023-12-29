@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from "react";
+import Link from 'next/link'
 
 
 const Signup = () => {
@@ -52,6 +53,7 @@ const Signup = () => {
         <main>
             <div>
                 <h2>Sign Up</h2>
+                <h3><Link href="/login">Log in</Link></h3>
                 <form onSubmit={handleCreateUser}>
                     <label>
                         Email
