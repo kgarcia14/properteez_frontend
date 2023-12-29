@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from "react";
+import Link from 'next/link'
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -40,6 +41,7 @@ const Login = () => {
         <main>
             <div>
                 <h2>Log In</h2>
+                <h3><Link href="/signup">Sign up</Link></h3>
                 <form onSubmit={handleLoginUser}>
                     <label>
                         Email
