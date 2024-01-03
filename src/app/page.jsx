@@ -1,18 +1,74 @@
-import Image from 'next/image'
-import styles from './page.module.css'
-import Link from 'next/link'
-import Cookies from 'js-cookies'
+'use client'
 
-export default function Home() {
-  if (Cookies.get('id')) {
-    location.assign('/dashboard')
-  }
-  
-  return (
-    <main>
-      <div>App Page</div>
-      <h3><Link href="/signup">Signup</Link></h3>
-      <h3><Link href="/login">Log in</Link></h3>
-    </main>
-  )
+import { useState } from "react";
+import Link from 'next/link'
+
+const Login = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleLoginUser = async (e) => {
+        e.preventDefault();
+
+        try {
+            const res = await fetch(process.env.NODE_ENV === 'development' ? 'http://localhost:4444/login' : 'https://properteezapi.kurtisgarcia.dev/login', {
+                method: 'POST',
+                credentials: 'include',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    user_email: email, 
+                    user_password: password 
+                }),
+            });
+            
+            const response = await res.json();
+            console.log(response);
+            
+            if (response.user) {
+                location.assign('/dashboard')
+            }
+            
+            setEmail('');
+            setPassword('');
+
+            console.log(JSON.stringify({user_email: email, user_password: password}));
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    return ( 
+        <main>
+            <div>
+                <h2>Log In</h2>
+                <h3><Link href="/signup">Sign up</Link></h3>
+                <form onSubmit={handleLoginUser}>
+                    <label>
+                        Email
+                        <input 
+                        type="email" 
+                        name="email" 
+                        value={email}
+                        onChange = {(e) => setEmail(e.target.value)}
+                        required  />
+                        <div>
+                            <p className="email-error"></p>
+                        </div>
+                    </label>
+                    <label>
+                        Password
+                        <input 
+                        type="password" 
+                        name="password" 
+                        value={password}
+                        onChange = {(e) => setPassword(e.target.value)}
+                        required />
+                    </label>
+                    <button>Log In</button>
+                </form>
+            </div>
+        </main>
+     );
 }
+ 
+export default Login;
