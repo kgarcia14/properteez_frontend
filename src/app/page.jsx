@@ -7,7 +7,7 @@ import Image from 'next/image';
 import logo from '../../public/properteez_logo.png';
 
 
-export default function Home() {
+const App = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -84,3 +84,5 @@ export default function Home() {
         </main>
      );
 }
+ 
+export default App;
