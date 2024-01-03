@@ -7,7 +7,7 @@ import Image from 'next/image';
 import logo from '../../public/properteez_logo.png';
 
 
-const App = () => {
+const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -78,11 +78,11 @@ const App = () => {
                         </label>
                         <button className='login-signup-button'>Log In</button>
                     </form>
-                    <p className='login-signup-button-subheader'>Don't have an account? <Link className='login-signup-link' href='/signup'>Sign Up</Link></p>
+                    {/* <p className='login-signup-button-subheader'>Don't have an account? <Link className='login-signup-link' href='/signup'>Sign Up</Link></p>   */}
                 </div>
             </div>
         </main>
      );
 }
  
-export default App;
+export default Login;
