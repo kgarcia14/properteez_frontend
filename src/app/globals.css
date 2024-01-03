@@ -1,1 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    color: #333;
+    line-height: 20px;
+}
+
+/* Login and signup page styles */
+.login-signup-logo {
+    margin-bottom: 75px;
+}
+
+.login-signup-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-signup-wrapper {
+    width: 90%;
+    max-width: 400px;
+}
+
+.login-signup-header {
+    margin-bottom: 20px;
+}
+
+.login-signup-subheader {
+    font-size: .8rem;
+    color: #7a7a7a;
+    margin-bottom: 40px;
+}
+
+.login-signup-form {
+    
+}
+
+.login-signup-form label {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+}
+
+.login-signup-form input {
+    height: 35px;
+    font-size: 1rem;
+    margin-top: 10px;
+    padding-left: 15px;
+    outline-color: #6C67F1;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+}
+
+.login-signup-form input:focus {
+
+}
+
+.login-signup-button {
+    width: 100%;
+    height: 35px;
+    margin-top: 20px;
+    background-color: #6C67F1;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+.login-signup-button-subheader {
+    font-size: .8rem;
+    margin-top: 20px;
+}
+
+.login-signup-link {
+    text-decoration: none;
+    color: #6C67F1;
+}
