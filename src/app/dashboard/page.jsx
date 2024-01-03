@@ -14,7 +14,7 @@ const Dashboard = () => {
     useEffect(() => {
         const checkForCookies = () => {
             if (!Cookies.get('id')) {
-                location.assign('/login')
+                location.assign('/')
             } else {
                 setUserId(Cookies.get('id'));
                 setEmail(Cookies.get('email'));
@@ -49,7 +49,7 @@ const Dashboard = () => {
 
                         Cookies.remove('email')
                         Cookies.remove('id')
-                        location.assign('/login')
+                        location.assign('/')
                     } else {
                         const refreshResults = await refreshTokenRes.json();
                         console.log(refreshResults);

@@ -53,7 +53,7 @@ const Signup = () => {
         <main>
             <div>
                 <h2>Sign Up</h2>
-                <h3><Link href="/login">Log in</Link></h3>
+                <h3><Link href="/">Log in</Link></h3>
                 <form onSubmit={handleCreateUser}>
                     <label>
                         Email

@@ -23,7 +23,7 @@ const AddProperty = () => {
     useEffect(() => {
         const checkForCookies = () => {
             if (!Cookies.get('id')) {
-                location.assign('/login')
+                location.assign('/')
             } else {
                 setUserId(Cookies.get('id'));
                 setLoading(false);
