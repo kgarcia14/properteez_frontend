@@ -1,11 +1,18 @@
 'use client'
 
-import { useState } from "react";
-import Link from 'next/link'
+import { useEffect, useState } from "react";
+import Cookies from 'js-cookie';
+import Link from 'next/link';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    useEffect(() => {
+        if (Cookies.get('id')) {
+            location.assign('/dashboard')
+          }
+    }, [])
 
     const handleLoginUser = async (e) => {
         e.preventDefault();
