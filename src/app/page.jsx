@@ -1,8 +1,13 @@
 import Image from 'next/image'
 import styles from './page.module.css'
 import Link from 'next/link'
+import Cookies from 'js-cookies'
 
 export default function Home() {
+  if (Cookies.get('id')) {
+    location.assign('/dashboard')
+  }
+  
   return (
     <main>
       <div>App Page</div>
