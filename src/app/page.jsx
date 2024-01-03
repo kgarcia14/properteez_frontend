@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -49,36 +49,36 @@ const Login = () => {
 
     return ( 
         <main>
-            <div className="login-signup-container">
-                <div className="login-signup-wrapper">
-                    <Image className="login-signup-logo" src={logo} alt='properteez logo' width={100} />
-                    <h2 className="login-signup-header">Log In</h2>
-                    <p className="login-signup-subheader">Enter your email and password to access your dashboard.</p>
-                    <form className="login-signup-form" onSubmit={handleLoginUser} >
+            <div className='login-signup-container'>
+                <div className='login-signup-wrapper'>
+                    <Image className='login-signup-logo' src={logo} alt='properteez logo' width={100} />
+                    <h2 className='login-signup-header'>Log In</h2>
+                    <p className='login-signup-subheader'>Enter your email and password to access your dashboard.</p>
+                    <form className='login-signup-form' onSubmit={handleLoginUser} >
                         <label>
                             Email
                             <input 
-                            type="email" 
-                            name="email" 
+                            type='email' 
+                            name='email' 
                             value={email}
                             onChange = {(e) => setEmail(e.target.value)}
                             required  />
                             <div>
-                                <p className="email-error"></p>
+                                <p className='email-error'></p>
                             </div>
                         </label>
                         <label>
                             Password
                             <input 
-                            type="password" 
-                            name="password" 
+                            type='password' 
+                            name='password' 
                             value={password}
                             onChange = {(e) => setPassword(e.target.value)}
                             required />
                         </label>
-                        <button className="login-signup-button">Log In</button>
+                        <button className='login-signup-button'>Log In</button>
                     </form>
-                    <p className="login-signup-button-subheader">Don't have an account? <Link className="login-signup-link" href="/signup">Sign Up</Link></p>  
+                    <p className='login-signup-button-subheader'>Don't have an account? <Link className='login-signup-link' href='/signup'>Sign Up</Link></p>  
                 </div>
             </div>
         </main>
