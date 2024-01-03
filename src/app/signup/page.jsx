@@ -79,7 +79,7 @@ const Signup = () => {
                         </label>
                         <button className='login-signup-button'>Sign Up</button>
                     </form>
-                    <p className='login-signup-button-subheader'>Already have an account? <Link className='login-signup-link' href='/'>Log In</Link></p>
+                    <p className='login-signup-button-subheader'>Already have an account? <Link className='login-signup-link' href='/'>Log In</Link></p> 
                 </div>
             </div>
         </main>
