@@ -1,5 +1,6 @@
 'use client'
 
+import styles from '../../../styles/dashboard.module.css'
 import Cookies from 'js-cookie';
 import { useState, useEffect } from "react";
 import Link from 'next/link';
@@ -79,22 +80,28 @@ const Dashboard = () => {
     }
 
     return ( 
-        <main>
-            <Navbar />
-            <div>Dashboard</div>
-            <p>email: {email}</p>
-            <p>user id: {userId}</p>
-            <ul>
-                {properties.map(property => (
-                    <li key={property.id}>
-                        <p>{property.street}</p>
-                        <p>{property.city}</p>
-                        <p>{property.state}</p>
-                        <p>{property.zip}</p>
-                        <img src={property.property_image} alt='' width='150px' />
-                    </li>
-                ))}
-            </ul>
+        <main className={styles.dashboardContainer}>
+            <div className={styles.dashboardWrapper}>
+                <Navbar />
+                <div>
+                    <div className={styles.content}>
+                        <p className={styles.p}>Dashboard</p>
+                        <p>email: {email}</p>
+                        <p>user id: {userId}</p>
+                        <ul>
+                            {properties.map(property => (
+                                <li key={property.id}>
+                                    <p>{property.street}</p>
+                                    <p>{property.city}</p>
+                                    <p>{property.state}</p>
+                                    <p>{property.zip}</p>
+                                    <img src={property.property_image} alt='' width='150px' />
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </main>
      );
 }

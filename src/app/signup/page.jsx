@@ -2,8 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import logo from '../../../public/properteez_logo.png';
+import Logo from '../components/Logo';
 
 
 const Signup = () => {
@@ -55,7 +54,7 @@ const Signup = () => {
         <main>
             <div className='login-signup-container'>
                 <div className='login-signup-wrapper'>
-                    <Image className='login-signup-logo' src={logo} alt='properteez logo' width={100} />
+                    <Logo />
                     <h2 className='login-signup-header'>Sign Up</h2>
                     <p className='login-signup-subheader'>Enter your email and password to sign up.</p>
                     <form className='login-signup-form' onSubmit={handleCreateUser} >
@@ -65,6 +64,7 @@ const Signup = () => {
                             type='email' 
                             name='email' 
                             value={email}
+                            placeholder='Enter your email'
                             onChange = {(e) => setEmail(e.target.value)}
                             required  />
                         </label>
@@ -74,6 +74,7 @@ const Signup = () => {
                             type='password' 
                             name='password' 
                             value={password}
+                            placeholder='Enter your password'
                             onChange = {(e) => setPassword(e.target.value)}
                             required />
                         </label>

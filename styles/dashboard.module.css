@@ -1,0 +1,8 @@
+.dashboardContainer {
+    width: 100%;
+}
+
+.dashboardWrapper {
+    width: 100%;
+    display: flex;
+}
