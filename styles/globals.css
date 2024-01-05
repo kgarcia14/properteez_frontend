@@ -56,10 +56,12 @@ body {
     outline-color: #6C67F1;
     border: 1px solid #dddddd;
     border-radius: 5px;
+    color: #333;
 }
 
-.login-signup-form input:focus {
-
+.login-signup-form input::placeholder {
+    color: #ddd;
+    font-size: .8rem;
 }
 
 .login-signup-button {
@@ -67,6 +69,7 @@ body {
     height: 35px;
     margin-top: 20px;
     background-color: #6C67F1;
+    font-size: 1rem;
     color: #fff;
     border: none;
     border-radius: 5px;

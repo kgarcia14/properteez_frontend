@@ -3,8 +3,7 @@
 import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import Link from 'next/link';
-import Image from 'next/image';
-import logo from '../../public/properteez_logo.png';
+import Logo from './components/Logo';
 
 
 const Login = () => {
@@ -51,7 +50,7 @@ const Login = () => {
         <main>
             <div className='login-signup-container'>
                 <div className='login-signup-wrapper'>
-                    <Image className='login-signup-logo' src={logo} alt='properteez logo' width={100} />
+                    <Logo />
                     <h2 className='login-signup-header'>Log In</h2>
                     <p className='login-signup-subheader'>Enter your email and password to access your dashboard.</p>
                     <form className='login-signup-form' onSubmit={handleLoginUser} >
@@ -61,6 +60,7 @@ const Login = () => {
                             type='email' 
                             name='email' 
                             value={email}
+                            placeholder='Enter your email'
                             onChange = {(e) => setEmail(e.target.value)}
                             required  />
                             <div>
@@ -73,6 +73,7 @@ const Login = () => {
                             type='password' 
                             name='password' 
                             value={password}
+                            placeholder='Enter your password'
                             onChange = {(e) => setPassword(e.target.value)}
                             required />
                         </label>
