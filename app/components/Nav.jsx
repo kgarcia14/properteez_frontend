@@ -1,4 +1,5 @@
 'use client'
+
 import styles from '../../styles/Nav.module.css'
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle,NavbarMenu, NavbarMenuItem} from "@nextui-org/navbar";
 import {Link} from "@nextui-org/link";
@@ -8,58 +9,59 @@ import { useState } from "react";
 
 const Nav = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [logoutBtn, setLogoutBtn] = useState(true);
+    const [confirmLogoutBtn, setConfirmLogoutBtn] = useState(false);
 
-    const menuItems = [
-        "addProperty"
-    ];
+    
+    const handleLogout = () => {
+        setLogoutBtn(false)
+        setConfirmLogoutBtn(true)
+    }
+
+    const cancelLogout = () => {
+        setLogoutBtn(true)
+        setConfirmLogoutBtn(false)
+    }
+
+    const handleConfirmLogout = async (e) => {
+        e.preventDefault();
+
+        try {
+            const res = await fetch(process.env.NODE_ENV === 'development' ? `http://localhost:4444/logout` : `https://properteezapi.kurtisgarcia.dev/logout`, {
+                method: 'DELETE',
+                credentials: 'include',
+            });
+            console.log(res);
+
+            location.assign('/');
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     return (
         <Navbar onMenuOpenChange={setIsMenuOpen}>
             <NavbarContent>
-                <NavbarMenuToggle
-                aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-                className="sm:hidden"
-                />
                 <NavbarBrand>
                     <Logo className={styles.logo} />
                 </NavbarBrand>
+                <NavbarMenuToggle
+                aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                className="sm:hidden" onClick={cancelLogout}/>
             </NavbarContent>
 
             <NavbarContent className="hidden sm:flex gap-4" justify="center">
-                <NavbarItem>
-                <Link color="foreground" href="/addProperty">
-                    Add Property
-                </Link>
-                <Link color="foreground" href="#">
-                    Features
-                </Link>
-                </NavbarItem>
-                <NavbarItem isActive>
-                <Link href="#" aria-current="page">
-                    Customers
-                </Link>
-                </NavbarItem>
-                <NavbarItem>
-                <Link color="foreground" href="#">
-                    Integrations
-                </Link>
-                </NavbarItem>
+                <Button className={logoutBtn ? styles.logoutBtn : styles.hidden} onClick={handleLogout}>Log out</Button>
+                <Button className={confirmLogoutBtn ? styles.confirmLogoutBtn : styles.hidden} onClick={handleConfirmLogout}>Confirm Logout</Button>
             </NavbarContent>
-            <NavbarMenu>
-                {menuItems.map((item, index) => (
-                <NavbarMenuItem key={`${item}-${index}`}>
-                    <Link
-                    color={
-                        index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
-                    }
-                    className="w-full"
-                    href={'/' + item}
-                    size="lg"
-                    >
-                    {item}
-                    </Link>
-                </NavbarMenuItem>
-                ))}
+
+            <NavbarMenu className={styles.navbarMenu}>
+                    <Link className={styles.addPropertyBtn} href="/addProperty">+ Add Property</Link>
+                    <Link className={styles.mobileNavLink} href="/dashboard">Dashboard</Link>
+                    <Link className={styles.mobileNavLink} href="/properties">Properties</Link>
+                    <Link className={styles.mobileNavLink} href="/tasks">Tasks</Link>
+                    <Button className={logoutBtn ? styles.logoutBtn : styles.hidden} onClick={handleLogout}>Log out</Button>
+                    <Button className={confirmLogoutBtn ? styles.confirmLogoutBtn : styles.hidden} onClick={handleConfirmLogout}>Confirm Logout</Button>
             </NavbarMenu>
         </Navbar>
     )
