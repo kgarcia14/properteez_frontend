@@ -1,7 +1,9 @@
 'use client'
 
+import styles from '../../styles/addProperty.module.css'
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import Nav from '../components/Nav';
 
 const AddProperty = () => {
     const [loading, setLoading] = useState(true);
@@ -77,56 +79,71 @@ const AddProperty = () => {
     }
 
     return (
-        <main>
-            <h2>Add Property</h2>
-            <form onSubmit={handleAddProperty}>
-                <label>
+        <main className={styles.main}>
+            <div>
+                <Nav />
+            </div>
+            <form className={styles.form} onSubmit={handleAddProperty}>
+                <h2>Property Info</h2>
+                <label className={styles.label}>
                     Steet
-                    <input 
+                    <input className={styles.input} 
                     type="text"
                     name="street"
                     value= {street}
                     onChange= {(e) => setStreet(e.target.value)}
                     required />
                 </label>
-                <label>
+                <label className={styles.label}>
                     City
-                    <input 
+                    <input className={styles.input} 
                     type="text"
                     name="city"
                     value= {city}
                     onChange= {(e) => setCity(e.target.value)}
                     required />
                 </label>
-                <label>
+                <label className={styles.label}>
                     State
-                    <input 
+                    <input className={styles.input}
                     type="text"
                     name="state"
                     value= {state}
                     onChange= {(e) => setState(e.target.value)}
                     required />
                 </label>
-                <label>
+                <label className={styles.label}>
                     Zip
-                    <input 
+                    <input className={styles.input} 
                     type="text"
                     name="zip"
                     value= {zip}
                     onChange= {(e) => setZip(e.target.value)}
                     required />
                 </label>
-                <label>
+                <label className={styles.label}>
                     Mortage Amount
-                    <input 
+                    <input className={styles.input} 
                     type="text"
                     name="mortgageAmount"
                     value= {mortgageAmount}
                     onChange= {(e) => setMortgageAmount(e.target.value)} />
                 </label>
-                <label>
+                <label className={styles.fileLabel}>
+                    Upload Image
+                    <input className={styles.fileInput} 
+                    type="file"
+                    name="propertyImage"
+                    onChange= {(e) => setPropertyImage(e.target.files[0])} 
+                    hidden/>
+                </label>
+                <span className={styles.span}>No file selected</span>
+                
+                <h2>Renter Info</h2>
+                <label className={styles.label}>
                     Vacancy
-                    <select 
+                    <select
+                    className={styles.select} 
                     type="text"
                     name="vacancy"
                     value= {vacancy}
@@ -136,49 +153,50 @@ const AddProperty = () => {
                         <option value="vacant">Vacant</option>
                     </select>
                 </label>
-                <label>
+                <label className={styles.label}>
                     Renter Name
-                    <input 
+                    <input className={styles.input} 
                     type="text"
                     name="renterName"
                     value= {renterName}
                     onChange= {(e) => setRenterName(e.target.value)} />
                 </label>
-                <label>
+                <label className={styles.label}>
                     Renter Number
-                    <input 
+                    <input className={styles.input} 
                     type="text"
                     name="renterNumber"
                     value= {renterNumber}
                     onChange= {(e) => setRenterNumber(e.target.value)} />
                 </label>
-                <label>
+                <label className={styles.label}>
                     Renter Email
-                    <input 
+                    <input className={styles.input} 
                     type="text"
                     name="renterEmail"
                     value= {renterEmail}
                     onChange= {(e) => setRenterEmail(e.target.value)} />
                 </label>
-                <label>
+                <label className={styles.label}>
                     Lease Term
-                    <input 
+                    <input className={styles.input} 
                     type="text"
                     name="leaseTerm"
                     value= {leaseTerm}
                     onChange= {(e) => setLeaseTerm(e.target.value)} />
                 </label>
-                <label>
+                <label className={styles.label}>
                     Rent Amount
-                    <input 
+                    <input className={styles.input} 
                     type="text"
                     name="rentAmount"
                     value= {rentAmount}
                     onChange= {(e) => setRentAmount(e.target.value)} />
                 </label>
-                <label>
+                <label className={styles.label}>
                     Rent Status
-                    <select 
+                    <select
+                    className={styles.select} 
                     type="text"
                     name="rentStatus"
                     value= {rentStatus}
@@ -188,14 +206,7 @@ const AddProperty = () => {
                         <option value="pastDue">Past Due</option>
                     </select>
                 </label>
-                <label>
-                    Property Image
-                    <input 
-                    type="file"
-                    name="propertyImage"
-                    onChange= {(e) => setPropertyImage(e.target.files[0])} />
-                </label>
-                <button>Submit Property</button>
+                <button className={styles.button}>Submit Property</button>
             </form>
         </main>
     )
