@@ -33,6 +33,8 @@ const Nav = () => {
             });
             console.log(res);
 
+            Cookies.remove('email')
+            Cookies.remove('id')
             location.assign('/');
         } catch (err) {
             console.log(err);
