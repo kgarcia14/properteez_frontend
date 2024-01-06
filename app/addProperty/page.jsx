@@ -137,7 +137,8 @@ const AddProperty = () => {
                     onChange= {(e) => setPropertyImage(e.target.files[0])} 
                     hidden/>
                 </label>
-                <span className={styles.span}>No file selected</span>
+                <span className={propertyImage === '' ? styles.span : styles.hidden}>No file selected</span>
+                <span className={propertyImage !== '' ? styles.span : styles.hidden}>{propertyImage.name}</span>
                 
                 <h2>Renter Info</h2>
                 <label className={styles.label}>
