@@ -1,5 +1,6 @@
 'use client'
 
+import Cookies from 'js-cookie';
 import styles from '../../styles/Nav.module.css'
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle,NavbarMenu, NavbarMenuItem} from "@nextui-org/navbar";
 import {Link} from "@nextui-org/link";
@@ -33,8 +34,8 @@ const Nav = () => {
             });
             console.log(res);
 
-            Cookies.remove('email')
-            Cookies.remove('id')
+            // Cookies.remove('email')
+            // Cookies.remove('id')
             location.assign('/');
         } catch (err) {
             console.log(err);
