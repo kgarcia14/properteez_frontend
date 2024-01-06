@@ -10,16 +10,7 @@ const Nav = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const menuItems = [
-        "Profile",
-        "Dashboard",
-        "Activity",
-        "Analytics",
-        "System",
-        "Deployments",
-        "My Settings",
-        "Team Settings",
-        "Help & Feedback",
-        "Log Out",
+        "addProperty"
     ];
 
     return (
@@ -36,6 +27,9 @@ const Nav = () => {
 
             <NavbarContent className="hidden sm:flex gap-4" justify="center">
                 <NavbarItem>
+                <Link color="foreground" href="/addProperty">
+                    Add Property
+                </Link>
                 <Link color="foreground" href="#">
                     Features
                 </Link>
@@ -59,7 +53,7 @@ const Nav = () => {
                         index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
                     }
                     className="w-full"
-                    href="#"
+                    href={'/' + item}
                     size="lg"
                     >
                     {item}
