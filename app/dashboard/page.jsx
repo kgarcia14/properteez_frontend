@@ -1,10 +1,9 @@
 'use client'
 
-import styles from '../../../styles/dashboard.module.css'
+import styles from '../../styles/dashboard.module.css'
 import Cookies from 'js-cookie';
 import { useState, useEffect } from "react";
-import Link from 'next/link';
-import Navbar from '../components/Navbar';
+import Nav from '../components/Nav';
 
 const Dashboard = () => {
     const [userId, setUserId] = useState('');
@@ -82,7 +81,7 @@ const Dashboard = () => {
     return ( 
         <main className={styles.dashboardContainer}>
             <div className={styles.dashboardWrapper}>
-                <Navbar />
+                <Nav />
                 <div>
                     <div className={styles.content}>
                         <p className={styles.p}>Dashboard</p>

@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
     margin: 0;
     padding: 0;
@@ -7,11 +11,6 @@
 body {
     color: #333;
     line-height: 20px;
-}
-
-/* Login and signup page styles */
-.login-signup-logo {
-    margin-bottom: 75px;
 }
 
 .login-signup-container {
@@ -29,7 +28,8 @@ body {
 }
 
 .login-signup-header {
-    margin-bottom: 20px;
+    margin:75px 0 20px 0;
+    font-size: 1.5rem;
 }
 
 .login-signup-subheader {

@@ -52,7 +52,7 @@ const Login = () => {
                 <div className='login-signup-wrapper'>
                     <Logo />
                     <h2 className='login-signup-header'>Log In</h2>
-                    <p className='login-signup-subheader'>Enter your email and password to access your dashboard.</p>
+                    <p className='login-signup-subheader'>Enter your email and password to access your account.</p>
                     <form className='login-signup-form' onSubmit={handleLoginUser} >
                         <label>
                             Email
