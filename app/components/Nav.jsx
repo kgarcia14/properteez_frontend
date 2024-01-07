@@ -28,14 +28,14 @@ const Nav = () => {
         e.preventDefault();
 
         try {
-            const res = await fetch(process.env.NODE_ENV === 'development' ? `http://localhost:4444/logout` : `https://properteezapi.kurtisgarcia.dev/logout`, {
+            const res = await fetch(process.env.NODE_ENV === 'development' ? 'http://localhost:4444/logout' : 'https://properteezapi.kurtisgarcia.dev/logout', {
                 method: 'DELETE',
                 credentials: 'include',
             });
             console.log(res);
 
-            // Cookies.remove('email')
-            // Cookies.remove('id')
+            Cookies.remove('email');
+            Cookies.remove('id');
             // location.assign('/');
         } catch (err) {
             console.log(err);
