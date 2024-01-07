@@ -66,7 +66,9 @@ const Signup = () => {
                             value={email}
                             placeholder='Enter your email'
                             onChange = {(e) => setEmail(e.target.value)}
-                            required  />
+                            required  
+                            />
+                            <span className="email-error"></span>
                         </label>
                         <label>
                             Password

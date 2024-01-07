@@ -29,18 +29,33 @@ const Login = () => {
                     user_password: password 
                 }),
             });
+            console.log(res)
             
             const response = await res.json();
             console.log(response);
             
             if (response.user) {
-                location.assign('/dashboard')
+                location.assign('/dashboard');
+                setEmail('');
+                setPassword('');
+            }
+
+            const emailErrorMessage = document.querySelector('.email-error-message');
+            const passwordErrorMessage = document.querySelector('.password-error-message');
+
+            if (res.status === 404) {
+                emailErrorMessage.innerText = 'User does not exist!'
+                passwordErrorMessage.innerText = ''
+                setEmail('');
+                setPassword('');
+            }
+
+            if (res.status === 408) {
+                passwordErrorMessage.innerText = 'Password is incorrect!'
+                emailErrorMessage.innerText = ''
+                setPassword('');
             }
             
-            setEmail('');
-            setPassword('');
-
-            console.log(JSON.stringify({user_email: email, user_password: password}));
         } catch (err) {
             console.log(err);
         }
@@ -62,10 +77,9 @@ const Login = () => {
                             value={email}
                             placeholder='Enter your email'
                             onChange = {(e) => setEmail(e.target.value)}
-                            required  />
-                            <div>
-                                <p className='email-error'></p>
-                            </div>
+                            required  
+                            />
+                            <span className="email-error-message"></span>
                         </label>
                         <label>
                             Password
@@ -75,7 +89,9 @@ const Login = () => {
                             value={password}
                             placeholder='Enter your password'
                             onChange = {(e) => setPassword(e.target.value)}
-                            required />
+                            required 
+                            />
+                            <span className="password-error-message"></span>
                         </label>
                         <button className='login-signup-button'>Log In</button>
                     </form>
