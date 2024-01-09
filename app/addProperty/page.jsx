@@ -65,6 +65,7 @@ const AddProperty = () => {
                 body: formData,
             });
             console.log(res)
+            console.log(propertyImage.name)
             
             if (res.ok) {
                 location.assign('/dashboard')
