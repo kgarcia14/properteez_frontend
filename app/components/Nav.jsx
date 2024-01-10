@@ -52,21 +52,21 @@ const Nav = () => {
             </NavbarContent>
 
             <NavbarContent className="hidden sm:flex gap-4" justify="center">
-            <Link className={styles.addPropertyBtn} href="/addProperty">+ Add Property</Link>
-                    <Link className={styles.mobileNavLink} href="/dashboard">Dashboard</Link>
-                    <Link className={styles.mobileNavLink} href="/properties">Properties</Link>
-                    <Link className={styles.mobileNavLink} href="/tasks">Tasks</Link>
+                <Link className={styles.addPropertyBtn} href="/addProperty">+ Add Property</Link>
+                <Link className={styles.mobileNavLink} href="/dashboard">Dashboard</Link>
+                <Link className={styles.mobileNavLink} href="/properties">Properties</Link>
+                <Link className={styles.mobileNavLink} href="/tasks">Tasks</Link>
                 <Button className={logoutBtn ? styles.logoutBtn : styles.hidden} onClick={handleLogout}>Log out</Button>
                 <Button className={confirmLogoutBtn ? styles.confirmLogoutBtn : styles.hidden} onClick={handleConfirmLogout}>Confirm Logout</Button>
             </NavbarContent>
 
             <NavbarMenu className={styles.navbarMenu}>
-                    <Link className={styles.addPropertyBtn} href="/addProperty">+ Add Property</Link>
-                    <Link className={styles.mobileNavLink} href="/dashboard">Dashboard</Link>
-                    <Link className={styles.mobileNavLink} href="/properties">Properties</Link>
-                    <Link className={styles.mobileNavLink} href="/tasks">Tasks</Link>
-                    <Button className={logoutBtn ? styles.logoutBtn : styles.hidden} onClick={handleLogout}>Log out</Button>
-                    <Button className={confirmLogoutBtn ? styles.confirmLogoutBtn : styles.hidden} onClick={handleConfirmLogout}>Confirm Logout</Button>
+                <Link className={styles.addPropertyBtn} href="/addProperty">+ Add Property</Link>
+                <Link className={styles.mobileNavLink} href="/dashboard">Dashboard</Link>
+                <Link className={styles.mobileNavLink} href="/properties">Properties</Link>
+                <Link className={styles.mobileNavLink} href="/tasks">Tasks</Link>
+                <Button className={logoutBtn ? styles.logoutBtn : styles.hidden} onClick={handleLogout}>Log out</Button>
+                <Button className={confirmLogoutBtn ? styles.confirmLogoutBtn : styles.hidden} onClick={handleConfirmLogout}>Confirm Logout</Button>
             </NavbarMenu>
         </Navbar>
     )
