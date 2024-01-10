@@ -12,6 +12,7 @@ const AddProperty = () => {
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [zip, setZip] = useState('');
+    const [homeType, setHomeType] = useState('');
     const [mortgageAmount, setMortgageAmount] = useState('');
     const [vacancy, setVacancy] = useState('');
     const [renterName, setRenterName] = useState('');
@@ -47,6 +48,7 @@ const AddProperty = () => {
             formData.append('city', city);
             formData.append('state', state);
             formData.append('zip', zip);
+            formData.append('home_type', homeType);
             formData.append('mortgage_amount', mortgageAmount);
             formData.append('vacancy', vacancy);
             formData.append('renter_name', renterName);
@@ -84,6 +86,7 @@ const AddProperty = () => {
             <div>
                 <Nav />
             </div>
+            <h2>Add Property</h2>
             <form className={styles.form} onSubmit={handleAddProperty}>
                 <h2>Property Info</h2>
                 <label className={styles.label}>
@@ -123,6 +126,20 @@ const AddProperty = () => {
                     required />
                 </label>
                 <label className={styles.label}>
+                    Type of Home
+                    <select
+                    className={styles.select} 
+                    type="text"
+                    name="homeType"
+                    value= {homeType}
+                    onChange= {(e) => setHomeType(e.target.value)}>
+                        <option value="">Select Type</option>
+                        <option value="Single Family">Single Family</option>
+                        <option value="Townhome">Townhome</option>
+                        <option value="Multi-Family">Multi-Family</option>
+                    </select>
+                </label>
+                <label className={styles.label}>
                     Mortage Amount
                     <input className={styles.input} 
                     type="text"
@@ -151,8 +168,8 @@ const AddProperty = () => {
                     value= {vacancy}
                     onChange= {(e) => setVacancy(e.target.value)}>
                         <option value="">Select Vacancy</option>
-                        <option value="occupied">Occupied</option>
-                        <option value="vacant">Vacant</option>
+                        <option value="Occupied">Occupied</option>
+                        <option value="Vacant">Vacant</option>
                     </select>
                 </label>
                 <label className={styles.label}>
@@ -204,8 +221,8 @@ const AddProperty = () => {
                     value= {rentStatus}
                     onChange= {(e) => setRentStatus(e.target.value)}>
                         <option value="">Select Rent Status</option>
-                        <option value="current">Current</option>
-                        <option value="pastDue">Past Due</option>
+                        <option value="Current">Current</option>
+                        <option value="Past Due">Past Due</option>
                     </select>
                 </label>
                 <button className={styles.button}>Submit Property</button>
