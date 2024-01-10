@@ -17,6 +17,10 @@
     margin-bottom: 5px;
 }
 
+.plusIcon {
+    margin-right: 3px;
+}
+
 .mobileNavLink {
     color: #6C67F1;
     font-size: 1rem;

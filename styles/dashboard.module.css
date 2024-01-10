@@ -2,15 +2,49 @@
     width: 100%;
 }
 
-.header {
+.overview {
     font-size: 1.5rem;
     margin: 20px 0 40px 0;
+}
+
+.overview-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .contentContainer {
     width: 100%;
     display: flex;
     justify-content: center;
+}
+
+.overviewCard {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F3F3FF;
+    color: #6C67F1;
+    font-weight: 300;
+    border-radius: 20px;
+    margin: 10px 0;
+}
+
+.overviewCardIcon {
+    font-size: 1.5rem;
+}
+
+.overviewCardTitle {
+    margin: 5px 0;
+}
+
+.overviewCardP {
+    font-size: .8rem;
+}
+
+.overviewCardContent {
+
 }
 
 .content {
@@ -49,5 +83,10 @@
 }
 
 .address {
-    
+    font-size: .8rem;
+}
+
+.homeType {
+    color: #aaa;
+    font-size: .8rem;
 }

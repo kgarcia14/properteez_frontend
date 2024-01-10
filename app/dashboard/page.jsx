@@ -4,7 +4,7 @@ import styles from '../../styles/dashboard.module.css'
 import Cookies from 'js-cookie';
 import { useState, useEffect } from "react";
 import Nav from '../components/Nav';
-import Image from 'next/image';
+import { BsHouses, BsCurrencyDollar } from "react-icons/bs";
 
 
 const Dashboard = () => {
@@ -80,13 +80,51 @@ const Dashboard = () => {
         return <div>Checking Authentication...</div>
     }
 
+    // Calculate total mortgage and total rent
+    let totalMortgageAmount = 0; 
+    let totalRentAmount = 0
+    let profitSum = 0
+    properties.forEach(property => {
+        if (property.mortgage_amount !== '') {
+            totalMortgageAmount += parseInt(property.mortgage_amount);
+        }
+        if (property.rent_amount !== '') {
+            totalRentAmount += parseInt(property.rent_amount);
+        }
+    })
+    profitSum += totalRentAmount - totalMortgageAmount;
+
     return ( 
         <main className={styles.container}>
             <div className={styles.wrapper}>
                 <Nav />
                 <div className={styles.contentContainer}>
                     <div className={styles.content}>
-                        <h2 className={styles.header}>Overview</h2>
+                        <h2 className={styles.overView}>Overview</h2>
+                        <div className={styles.overviewContainer}>
+                            <div className={styles.overviewCard}>
+                                <div className={styles.overviewCardContent}>
+                                    <BsHouses className={styles.overviewCardIcon} />
+                                    <h3 className={styles.overviewCardTitle}>Total Properties</h3>
+                                    <p className={styles.overviewCardP}>{properties.length} Units</p>
+                                </div>
+                            </div>
+                            <div className={styles.overviewCard}>
+                                <div className={styles.overviewCardContent}>
+                                    <BsCurrencyDollar className={styles.overviewCardIcon} />
+                                    <h3 className={styles.overviewCardTitle}>Monthly Profit</h3>
+                                    <p className={styles.overviewCardP}>{profitSum < 0 ? `- $ ${Math.abs(parseInt(profitSum, 10))}` : `$ ${profitSum}`}</p>
+                                </div>
+                            </div>
+                            <div className={styles.overviewCard}>
+                                <div className={styles.overviewCardContent}>
+                                    <BsHouses className={styles.overviewCardIcon} />
+                                    <h3 className={styles.overviewCardTitle}>Total Properties</h3>
+                                    <p className={styles.overviewCardP}>{properties.length} Units</p>
+                                </div>
+                            </div>
+                        </div>
+
                         <ul className={styles.ul}>
                             {properties.map(property => (
                                 <li className={styles.li} key={property.id}>
@@ -95,11 +133,10 @@ const Dashboard = () => {
                                             <img className={styles.image} src={property.property_image} alt='' width='100%' />
                                         </div>
                                         <div className={styles.propertyContent}>
-                                            <p className={styles.address}>{property.street}</p>
-                                            <p>{property.city}</p>
-                                            <p>{property.state}</p>
-                                            <p>{property.zip}</p>
-                                            <p>{property.home_type}</p>
+                                            <p className={styles.address}>
+                                                {property.street}, {property.city}, {property.state} {property.zip}
+                                            </p>
+                                            <p className={styles.homeType}>{property.home_type}</p>
                                         </div>
                                     </div>
                                 </li>

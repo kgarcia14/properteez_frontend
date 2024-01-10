@@ -5,6 +5,7 @@ import styles from '../../styles/Nav.module.css'
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle,NavbarMenu, NavbarMenuItem} from "@nextui-org/navbar";
 import {Link} from "@nextui-org/link";
 import {Button} from "@nextui-org/button";
+import { FaPlus } from "react-icons/fa6";
 import Logo from './Logo';
 import { useState } from "react";
 
@@ -52,7 +53,7 @@ const Nav = () => {
             </NavbarContent>
 
             <NavbarContent className="hidden sm:flex gap-4" justify="center">
-                <Link className={styles.addPropertyBtn} href="/addProperty">+ Add Property</Link>
+                <Link className={styles.addPropertyBtn} href="/addProperty"><FaPlus className={styles.plusIcon} />Add Property</Link>
                 <Link className={styles.mobileNavLink} href="/dashboard">Dashboard</Link>
                 <Link className={styles.mobileNavLink} href="/properties">Properties</Link>
                 <Link className={styles.mobileNavLink} href="/tasks">Tasks</Link>
@@ -61,7 +62,7 @@ const Nav = () => {
             </NavbarContent>
 
             <NavbarMenu className={styles.navbarMenu}>
-                <Link className={styles.addPropertyBtn} href="/addProperty">+ Add Property</Link>
+                <Link className={styles.addPropertyBtn} href="/addProperty"><FaPlus className={styles.plusIcon} />Add Property</Link>
                 <Link className={styles.mobileNavLink} href="/dashboard">Dashboard</Link>
                 <Link className={styles.mobileNavLink} href="/properties">Properties</Link>
                 <Link className={styles.mobileNavLink} href="/tasks">Tasks</Link>
