@@ -99,6 +99,7 @@ const Dashboard = () => {
                                             <p>{property.city}</p>
                                             <p>{property.state}</p>
                                             <p>{property.zip}</p>
+                                            <p>{property.home_type}</p>
                                         </div>
                                     </div>
                                 </li>
