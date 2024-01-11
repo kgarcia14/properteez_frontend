@@ -140,7 +140,10 @@ const Dashboard = () => {
                                         </div>
                                         <div className={styles.propertyContent}>
                                             <p className={styles.address}>
-                                                {property.street}, {property.city}, {property.state} {property.zip}
+                                                {property.street}
+                                            </p>
+                                            <p className={styles.address}>
+                                                {property.city}, {property.state} {property.zip}
                                             </p>
                                             <p className={styles.homeType}>{property.home_type}</p>
                                         </div>
