@@ -13,13 +13,6 @@ body {
     line-height: 20px;
 }
 
-/* styles for navbar width  */
-.px-6 {
-    padding: 0;
-    width: 90%;
-}
-/* styles for navbar width */
-
 .login-signup-container {
     width: 100%;
     height: 100vh;
