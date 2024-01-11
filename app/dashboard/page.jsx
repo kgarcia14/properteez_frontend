@@ -94,6 +94,16 @@ const Dashboard = () => {
     })
     profitSum += totalRentAmount - totalMortgageAmount;
 
+    // Calculate amount of overdue renters
+    let pastDueRenters = [];
+    let totalPastDueRenters = 0;
+    properties.forEach(property => {
+        if (property.rent_status === 'Past Due') {
+            pastDueRenters.push(property)
+        }
+    })
+    totalPastDueRenters = pastDueRenters.length;
+
     return ( 
         <main className={styles.container}>
             <div className={styles.wrapper}>
@@ -125,7 +135,7 @@ const Dashboard = () => {
                                     <img className={styles.overviewIcon} src="/rent_icon.svg" alt=""/>
                                     <div>
                                         <h3 className={styles.overviewCardTitle}>Rent Collection</h3>
-                                        <p className={styles.overviewCardP}>{properties.length} Overdue</p>
+                                        <p className={styles.overviewCardP}>{totalPastDueRenters} Overdue</p>
                                     </div>
                                 </div>
                             </div>
@@ -139,13 +149,22 @@ const Dashboard = () => {
                                             <img className={styles.image} src={property.property_image} alt='' width='100%' />
                                         </div>
                                         <div className={styles.propertyContent}>
-                                            <p className={styles.address}>
-                                                {property.street}
-                                            </p>
-                                            <p className={styles.address}>
-                                                {property.city}, {property.state} {property.zip}
-                                            </p>
-                                            <p className={styles.homeType}>{property.home_type}</p>
+                                            <div className={styles.addressWrapper}>
+                                                <p className={styles.address}>
+                                                    {property.street}
+                                                </p>
+                                                <p className={styles.address}>
+                                                    {property.city}, {property.state} {property.zip}
+                                                </p>
+                                                <p className={styles.homeType}>{property.home_type}</p>
+                                            </div>
+                                            <div>
+                                                <p className={property.rent_status === 'Past Due' ? `${styles.pastDueRentStatus}`
+                                                    : property.rent_status === 'Current' ? `${styles.currentRentStatus}` 
+                                                    : `${styles.neutralRentStatus}`}>
+                                                    {property.rent_status !== '' ? property.rent_status : 'Vacant'}
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </li>
