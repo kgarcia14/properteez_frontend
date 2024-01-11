@@ -36,11 +36,19 @@
     margin-top: 5px;
 }
 
+.logoutIcon {
+    height: 20px;
+}
+
 .confirmLogoutBtn {
     border-radius: 5px;
     background-color: #ff0000;
     color: #fff;
     font-size: 1rem;
     margin-top: 5px;
+}
+
+.confirmLogoutIcon path {
+    stroke: #fff;
 }
 
