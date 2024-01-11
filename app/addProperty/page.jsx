@@ -132,7 +132,8 @@ const AddProperty = () => {
                     type="text"
                     name="homeType"
                     value= {homeType}
-                    onChange= {(e) => setHomeType(e.target.value)}>
+                    onChange= {(e) => setHomeType(e.target.value)}
+                    required>
                         <option value="">Select Type</option>
                         <option value="Single Family">Single Family</option>
                         <option value="Townhome">Townhome</option>
