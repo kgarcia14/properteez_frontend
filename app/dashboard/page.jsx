@@ -135,7 +135,7 @@ const Dashboard = () => {
                                     <img className={styles.overviewIcon} src="/rent_icon.svg" alt=""/>
                                     <div>
                                         <h3 className={styles.overviewCardTitle}>Rent Collection</h3>
-                                        <p className={styles.overviewCardP}>{totalPastDueRenters} Overdue</p>
+                                        <p className={styles.overviewCardP}>{totalPastDueRenters} Past Due</p>
                                     </div>
                                 </div>
                             </div>
