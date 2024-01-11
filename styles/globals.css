@@ -84,3 +84,8 @@ body {
     text-decoration: none;
     color: #6C67F1;
 }
+
+.px-6 {
+    padding: 0;
+    width: 95%;
+}

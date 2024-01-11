@@ -1,10 +1,10 @@
 .content {
-    width: 100%;
+    width: 95%;
 }
 
 .overview {
-    font-size: 1.5rem;
-    margin: 20px 0 40px 0;
+    font-size: 1.3rem;
+    margin: 15px 0 15px 0;
 }
 
 .overview-container {
@@ -28,7 +28,7 @@
     color: #6C67F1;
     font-weight: 300;
     border-radius: 15px;
-    margin: 10px 0;
+    margin: 10px 0 0 0;
 }
 
 .overviewCardIcon {
@@ -39,10 +39,6 @@
 .overviewIcon {
     height: 24px;
     margin-right: 8px;
-}
-
-.overviewCardTitle {
-    
 }
 
 .overviewCardP {
@@ -56,8 +52,9 @@
     justify-content: flex-start;
 }
 
-.content {
-    width: 90%;
+.properties {
+    font-size: 1.3rem;
+    margin: 25px 0 15px 0;
 }
 
 .propertyContainer {
@@ -66,14 +63,14 @@
     box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.25);
     -webkit-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.25);
     -moz-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.25);
+    margin-bottom: 25px;
 }
 
 .ul {
-
+    
 }
 
 .li {
-    margin: 40px 0;
 }
 
 .imageContainer {

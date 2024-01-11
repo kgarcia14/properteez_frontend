@@ -110,7 +110,7 @@ const Dashboard = () => {
                 <Nav />
                 <div className={styles.contentContainer}>
                     <div className={styles.content}>
-                        <h2 className={styles.overView}>Overview</h2>
+                        <h2 className={styles.overview}>Overview</h2>
                         <div className={styles.overviewContainer}>
                             <div className={styles.overviewCard}>
                                 <div className={styles.overviewCardContent}>
@@ -142,6 +142,7 @@ const Dashboard = () => {
                         </div>
 
                         <ul className={styles.ul}>
+                        <h2 className={styles.properties}>Properties</h2>
                             {properties.map(property => (
                                 <li className={styles.li} key={property.id}>
                                     <div className={styles.propertyContainer}>

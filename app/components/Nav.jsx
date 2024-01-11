@@ -42,7 +42,7 @@ const Nav = () => {
     }
 
     return (
-        <Navbar onMenuOpenChange={setIsMenuOpen}>
+        <Navbar className={styles.navbar} onMenuOpenChange={setIsMenuOpen}>
             <NavbarContent>
                 <NavbarBrand>
                     <Logo className={styles.logo} />
