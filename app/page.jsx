@@ -7,8 +7,8 @@ import Logo from './components/Logo';
 
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('demo123@properteez.dev');
+    const [password, setPassword] = useState('demo123');
 
     useEffect(() => {
         if (Cookies.get('id')) {
