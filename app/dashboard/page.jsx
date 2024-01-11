@@ -105,22 +105,28 @@ const Dashboard = () => {
                             <div className={styles.overviewCard}>
                                 <div className={styles.overviewCardContent}>
                                     <BsHouses className={styles.overviewCardIcon} />
-                                    <h3 className={styles.overviewCardTitle}>Total Properties</h3>
-                                    <p className={styles.overviewCardP}>{properties.length} Units</p>
+                                    <div>
+                                        <h3 className={styles.overviewCardTitle}>Total Properties</h3>
+                                        <p className={styles.overviewCardP}>{properties.length} Units</p>
+                                    </div>
                                 </div>
                             </div>
                             <div className={styles.overviewCard}>
                                 <div className={styles.overviewCardContent}>
                                     <BsCurrencyDollar className={styles.overviewCardIcon} />
-                                    <h3 className={styles.overviewCardTitle}>Monthly Profit</h3>
-                                    <p className={styles.overviewCardP}>{profitSum < 0 ? `- $ ${Math.abs(parseInt(profitSum, 10))}` : `$ ${profitSum}`}</p>
+                                    <div>
+                                        <h3 className={styles.overviewCardTitle}>Monthly Profit</h3>
+                                        <p className={styles.overviewCardP}>{profitSum < 0 ? `- $ ${Math.abs(parseInt(profitSum, 10))}` : `$ ${profitSum}`}</p>
+                                    </div>
                                 </div>
                             </div>
                             <div className={styles.overviewCard}>
                                 <div className={styles.overviewCardContent}>
-                                    <BsHouses className={styles.overviewCardIcon} />
-                                    <h3 className={styles.overviewCardTitle}>Total Properties</h3>
-                                    <p className={styles.overviewCardP}>{properties.length} Units</p>
+                                    <img className={styles.overviewIcon} src="/rent_icon.svg" alt=""/>
+                                    <div>
+                                        <h3 className={styles.overviewCardTitle}>Rent Collection</h3>
+                                        <p className={styles.overviewCardP}>{properties.length} Overdue</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -57,7 +57,7 @@ const Nav = () => {
                 <Link className={styles.mobileNavLink} href="/dashboard">Dashboard</Link>
                 <Link className={styles.mobileNavLink} href="/properties">Properties</Link>
                 <Link className={styles.mobileNavLink} href="/tasks">Tasks</Link>
-                <Button className={logoutBtn ? styles.logoutBtn : styles.hidden} onClick={handleLogout}>Log out</Button>
+                <Button className={logoutBtn ? styles.logoutBtn : styles.hidden} onClick={handleLogout}><img className={styles.logoutIcon} src="/logout_icon.svg" alt="" />Log out</Button>
                 <Button className={confirmLogoutBtn ? styles.confirmLogoutBtn : styles.hidden} onClick={handleConfirmLogout}>Confirm Logout</Button>
             </NavbarContent>
 
@@ -66,7 +66,7 @@ const Nav = () => {
                 <Link className={styles.mobileNavLink} href="/dashboard">Dashboard</Link>
                 <Link className={styles.mobileNavLink} href="/properties">Properties</Link>
                 <Link className={styles.mobileNavLink} href="/tasks">Tasks</Link>
-                <Button className={logoutBtn ? styles.logoutBtn : styles.hidden} onClick={handleLogout}>Log out</Button>
+                <Button className={logoutBtn ? styles.logoutBtn : styles.hidden} onClick={handleLogout}><img className={styles.logoutIcon} src="/logout_icon.svg" alt="" />Log out</Button>
                 <Button className={confirmLogoutBtn ? styles.confirmLogoutBtn : styles.hidden} onClick={handleConfirmLogout}>Confirm Logout</Button>
             </NavbarMenu>
         </Navbar>

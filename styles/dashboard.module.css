@@ -20,7 +20,7 @@
 }
 
 .overviewCard {
-    height: 200px;
+    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,10 +33,16 @@
 
 .overviewCardIcon {
     font-size: 1.5rem;
+    margin-right: 8px;
+}
+
+.overviewIcon {
+    width: 24px;
+    margin-right: 8px;
 }
 
 .overviewCardTitle {
-    margin: 5px 0;
+    
 }
 
 .overviewCardP {
@@ -44,7 +50,10 @@
 }
 
 .overviewCardContent {
-
+    width: 50%;
+    display: flex;
+    align-items: top;
+    justify-content: flex-start;
 }
 
 .content {
