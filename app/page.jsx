@@ -7,7 +7,7 @@ import Logo from './components/Logo';
 
 
 const Login = () => {
-    const [email, setEmail] = useState('demo123@properteez.com');
+    const [email, setEmail] = useState('demo123@properteez.dev');
     const [password, setPassword] = useState('demo123');
 
     useEffect(() => {
