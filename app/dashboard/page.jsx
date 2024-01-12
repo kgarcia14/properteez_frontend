@@ -1,11 +1,13 @@
 'use client'
 
+import viewProperty from '../utilities/viewProperty'
 import styles from '../../styles/dashboard.module.css'
 import Cookies from 'js-cookie';
 import { useState, useEffect } from "react";
 import Nav from '../components/Nav';
 import { BsHouses, BsCurrencyDollar } from "react-icons/bs";
 import Loading from '../components/Loading';
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
 
 
 const Dashboard = () => {
@@ -13,6 +15,8 @@ const Dashboard = () => {
     const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(true);
     const [properties, setProperties] = useState([]);
+
+    const {isOpen, onOpen, onOpenChange} = useDisclosure();
     
     useEffect(() => {
         const checkForCookies = () => {
@@ -101,10 +105,15 @@ const Dashboard = () => {
     let totalPastDueRenters = 0;
     properties.forEach(property => {
         if (property.rent_status === 'Past Due') {
-            pastDueRenters.push(property)
+            pastDueRenters.push(property.key)
         }
     })
     totalPastDueRenters = pastDueRenters.length;
+
+    const handlePropertyClick = (property) => {
+        onOpen();  // Call onOpen function
+        viewProperty(property);  // Call viewProperty function with the property argument
+    };
 
     return ( 
         <main className={styles.container}>
@@ -146,7 +155,7 @@ const Dashboard = () => {
                         <ul className={styles.ul}>
                         <h2 className={styles.properties}>Properties</h2>
                             {properties.map(property => (
-                                <li className={styles.li} key={property.id}>
+                                <li key={property.id} onClick={() => handlePropertyClick(property)}>
                                     <div className={styles.propertyContainer}>
                                         <div className={styles.imageContainer}>
                                             <img className={styles.image} src={property.property_image} alt='' width='100%' />
@@ -170,6 +179,32 @@ const Dashboard = () => {
                                             </div>
                                         </div>
                                     </div>
+                                    <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+                                    <ModalContent>
+                                        {(onClose) => (
+                                        <>
+                                            <ModalHeader className="flex flex-col gap-1">{property.street}</ModalHeader>
+                                            <ModalBody>
+                                            <p className={styles.address}>
+                                                    {property.street}
+                                                </p>
+                                                <p className={styles.address}>
+                                                    {property.city}, {property.state} {property.zip}
+                                                </p>
+                                            <p className={styles.homeType}>{property.home_type}</p>
+                                            </ModalBody>
+                                            <ModalFooter>
+                                            <Button color="danger" variant="light" onPress={onClose}>
+                                                Close
+                                            </Button>
+                                            <Button color="primary" onPress={onClose}>
+                                                Action
+                                            </Button>
+                                            </ModalFooter>
+                                        </>
+                                        )}
+                                    </ModalContent>
+                                    </Modal>
                                 </li>
                             ))}
                         </ul>
