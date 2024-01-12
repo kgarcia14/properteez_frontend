@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import { useState, useEffect } from "react";
 import Nav from '../components/Nav';
 import { BsHouses, BsCurrencyDollar } from "react-icons/bs";
+import Loading from '../components/Loading';
 
 
 const Dashboard = () => {
@@ -20,7 +21,6 @@ const Dashboard = () => {
             } else {
                 setUserId(Cookies.get('id'));
                 setEmail(Cookies.get('email'));
-                setLoading(false);
             }
         }
 
@@ -63,12 +63,14 @@ const Dashboard = () => {
                         const results = await retryRes.json();
                         console.log(results);
                         setProperties(results.data.properties);
+                        setLoading(false);
                     }
                 } else {
                     const results = await res.json();
                     console.log(results)
 
                     setProperties(results.data.properties);
+                    setLoading(false);
                 }
             }
         }
@@ -77,7 +79,7 @@ const Dashboard = () => {
     }, [userId]);
 
     if (loading) {
-        return <div>Checking Authentication...</div>
+        return <Loading />
     }
 
     // Calculate total mortgage and total rent
