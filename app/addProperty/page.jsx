@@ -4,6 +4,7 @@ import styles from '../../styles/addProperty.module.css'
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import Nav from '../components/Nav';
+import Loading from '../components/Loading';
 
 const AddProperty = () => {
     const [loading, setLoading] = useState(true);
@@ -38,6 +39,7 @@ const AddProperty = () => {
 
     const handleAddProperty = async (e) => {
         e.preventDefault();
+        setLoading(true)
 
         try {
             const formData = new FormData();
@@ -68,7 +70,7 @@ const AddProperty = () => {
             });
             console.log(res)
             console.log(propertyImage.name)
-            
+
             if (res.ok) {
                 location.assign('/dashboard')
             }
@@ -78,7 +80,8 @@ const AddProperty = () => {
     }
 
     if (loading) {
-        return <div>Checking Authentication...</div>
+        const loadingString = 'Adding Property...'
+        return <Loading loadingString={loadingString} />
     }
 
     return (
