@@ -9,7 +9,7 @@ export default function PropertyModal({ isOpen, onClose, property }) {
   const [loading, setLoading] = useState(false);
 
   if (loading) {
-    const loadingString = 'Loading Content...'
+    const loadingString = 'Deleting Property...'
     return <Loading loadingString={loadingString} />
 }
 
