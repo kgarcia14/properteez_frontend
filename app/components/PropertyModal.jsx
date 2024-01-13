@@ -8,7 +8,7 @@ export default function PropertyModal({ isOpen, onClose, property }) {
   const [confirmDeleteButton, setConfirmDeleteButton] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  if (loading) {
+if (loading) {
     const loadingString = 'Deleting Property...'
     return <Loading loadingString={loadingString} />
 }
