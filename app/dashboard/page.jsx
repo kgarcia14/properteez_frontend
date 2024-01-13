@@ -1,13 +1,13 @@
 'use client'
 
-import viewProperty from '../utilities/viewProperty'
 import styles from '../../styles/dashboard.module.css'
 import Cookies from 'js-cookie';
 import { useState, useEffect } from "react";
 import Nav from '../components/Nav';
 import { BsHouses, BsCurrencyDollar } from "react-icons/bs";
 import Loading from '../components/Loading';
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
+import {useDisclosure} from "@nextui-org/react";
+import PropertyModal from '../components/PropertyModal';
 
 
 const Dashboard = () => {
@@ -15,8 +15,8 @@ const Dashboard = () => {
     const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(true);
     const [properties, setProperties] = useState([]);
-
-    const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const { isOpen, onOpen, onOpenChange } = useDisclosure();
+    const [selectedProperty, setSelectedProperty] = useState(null);
     
     useEffect(() => {
         const checkForCookies = () => {
@@ -112,7 +112,8 @@ const Dashboard = () => {
 
     const handlePropertyClick = (property) => {
         onOpen();  // Call onOpen function
-        viewProperty(property);  // Call viewProperty function with the property argument
+        setSelectedProperty(property);
+        console.log(property);
     };
 
     return ( 
@@ -155,9 +156,9 @@ const Dashboard = () => {
                         <ul className={styles.ul}>
                         <h2 className={styles.properties}>Properties</h2>
                             {properties.map(property => (
-                                <li key={property.id} onClick={() => handlePropertyClick(property)}>
+                                <li key={property.id}>
                                     <div className={styles.propertyContainer}>
-                                        <div className={styles.imageContainer}>
+                                        <div className={styles.imageContainer} onClick={() => handlePropertyClick(property)}>
                                             <img className={styles.image} src={property.property_image} alt='' width='100%' />
                                         </div>
                                         <div className={styles.propertyContent}>
@@ -179,35 +180,11 @@ const Dashboard = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
-                                    <ModalContent>
-                                        {(onClose) => (
-                                        <>
-                                            <ModalHeader className="flex flex-col gap-1">{property.street}</ModalHeader>
-                                            <ModalBody>
-                                            <p className={styles.address}>
-                                                    {property.street}
-                                                </p>
-                                                <p className={styles.address}>
-                                                    {property.city}, {property.state} {property.zip}
-                                                </p>
-                                            <p className={styles.homeType}>{property.home_type}</p>
-                                            </ModalBody>
-                                            <ModalFooter>
-                                            <Button color="danger" variant="light" onPress={onClose}>
-                                                Close
-                                            </Button>
-                                            <Button color="primary" onPress={onClose}>
-                                                Action
-                                            </Button>
-                                            </ModalFooter>
-                                        </>
-                                        )}
-                                    </ModalContent>
-                                    </Modal>
                                 </li>
                             ))}
                         </ul>
+                        {/* Passing down props to display property details in separate modal component */}
+                        <PropertyModal isOpen={isOpen} onClose={onOpenChange} property={selectedProperty} />
                     </div>
                 </div>
             </div>
