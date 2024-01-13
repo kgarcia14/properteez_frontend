@@ -4,11 +4,13 @@ import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import Link from 'next/link';
 import Logo from './components/Logo';
+import Loading from './components/Loading';
 
 
 const Login = () => {
     const [email, setEmail] = useState('demo123@properteez.dev');
     const [password, setPassword] = useState('demo123');
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (Cookies.get('id')) {
@@ -16,8 +18,14 @@ const Login = () => {
           }
     }, [])
 
+    if (loading) {
+        const loadingString = process.env.NODE_ENV === 'development' ? 'Authenticating...' : 'Authenticating, please sit tight...'
+        return <Loading loadingString={loadingString} />
+    }
+
     const handleLoginUser = async (e) => {
         e.preventDefault();
+        setLoading(true);
 
         try {
             const res = await fetch(process.env.NODE_ENV === 'development' ? 'http://localhost:4444/login' : 'https://properteezapi.kurtisgarcia.dev/login', {

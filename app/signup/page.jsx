@@ -3,14 +3,22 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Logo from '../components/Logo';
+import Loading from '../components/Loading';
 
 
 const Signup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    if (loading) {
+        const loadingString = process.env.NODE_ENV === 'development' ? 'Registering User...' : 'Registering user, please sit tight...'
+        return <Loading loadingString={loadingString} />
+    }
     
     const handleCreateUser = async (e) => {
         e.preventDefault();
+        setLoading(true);
 
         try {
             const res = await fetch(process.env.NODE_ENV === 'development' ? 'http://localhost:4444/register' : 'https://properteezapi.kurtisgarcia.dev/register', {

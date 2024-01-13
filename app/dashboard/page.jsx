@@ -41,7 +41,7 @@ const Dashboard = () => {
                 if (res.status === 403) {
                     const refreshTokenRes = await fetch(process.env.NODE_ENV === 'development' ? 'http://localhost:4444/refreshToken' : 'https://properteezapi.kurtisgarcia.dev/refreshToken', {
                         method: 'POST',
-                        credentials: 'include'
+                        credentials: 'include',
                     });
                     console.log(refreshTokenRes);
 
