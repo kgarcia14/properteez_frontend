@@ -1,11 +1,11 @@
 import styles from '../../styles/Loading.module.css'
 import {Spinner} from "@nextui-org/react";
 
-const Loading = () => {
+const Loading = ({ loadingString }) => {
     return (
         <>
             <div className={styles.loadingContainer}>
-                <Spinner label="Loading content..." color="secondary" />
+                <Spinner label={loadingString} color="secondary" />
             </div>
         </>
     )

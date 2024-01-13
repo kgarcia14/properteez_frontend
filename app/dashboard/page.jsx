@@ -83,7 +83,8 @@ const Dashboard = () => {
     }, [userId]);
 
     if (loading) {
-        return <Loading />
+        const loadingString = 'Loading Content...'
+        return <Loading loadingString={loadingString} />
     }
 
     // Calculate total mortgage and total rent
