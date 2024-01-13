@@ -1,17 +1,10 @@
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button } from "@nextui-org/react";
 import { useState } from "react";
 import styles from '../../styles/PropertyModal.module.css'
-import Loading from "./Loading";
 
 export default function PropertyModal({ isOpen, onClose, property }) {
   const [deleteButton, setDeleteButton] = useState(true);
   const [confirmDeleteButton, setConfirmDeleteButton] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-if (loading) {
-    const loadingString = 'Deleting Property...'
-    return <Loading loadingString={loadingString} />
-}
 
   const handleDelete = () => {
     setDeleteButton(false);
@@ -24,7 +17,6 @@ if (loading) {
   }
 
   const confirmDelete = async () => {
-    setLoading(true);
     try {
       const res = await fetch(process.env.NODE_ENV === 'development' ? `http://localhost:3333/properties/${property.id}` : `https://properteezapi.kurtisgarcia.dev/properties/${property.id}`, 
       {
