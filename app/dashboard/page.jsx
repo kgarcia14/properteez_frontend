@@ -156,9 +156,9 @@ const Dashboard = () => {
                         <ul className={styles.ul}>
                         <h2 className={styles.properties}>Properties</h2>
                             {properties.map(property => (
-                                <li key={property.id}>
+                                <li key={property.id} onClick={() => handlePropertyClick(property)}>
                                     <div className={styles.propertyContainer}>
-                                        <div className={styles.imageContainer} onClick={() => handlePropertyClick(property)}>
+                                        <div className={styles.imageContainer}>
                                             <img className={styles.image} src={property.property_image} alt='' width='100%' />
                                         </div>
                                         <div className={styles.propertyContent}>

@@ -1,0 +1,31 @@
+.hidden {
+    display: none;
+}
+
+.editButton {
+    height: 35px;
+    background-color: #fff;
+    color: #6C67F1;
+    border: 1px solid #6C67F1;
+    border-radius: 5px;
+    font-size: .8rem;
+    
+}
+
+.editButton:hover {
+    cursor: pointer;
+    background-color: #6C67F1;
+    color: #fff;
+}
+
+.deleteButton {
+    height: 35px;
+    border-radius: 5px;
+}
+
+.confirmDeleteButton {
+    height: 35px;
+    border-radius: 5px;
+    background-color: #ff0000;
+    color: #fff;
+}
