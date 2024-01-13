@@ -5,7 +5,7 @@ const Loading = () => {
     return (
         <>
             <div className={styles.loadingContainer}>
-                <Spinner label="Authenticating..." color="secondary" />
+                <Spinner label="Loading content..." color="secondary" />
             </div>
         </>
     )
