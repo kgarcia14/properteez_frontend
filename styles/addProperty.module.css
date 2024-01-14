@@ -3,10 +3,25 @@
 }
 
 .main {
-    width: 100%;
+
 }
+
+.formContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.formWrapper {
+    width: 90%;
+}
+
 .form {
     max-width: 400px;
+}
+
+.heading {
+    font-size: 1.2rem;
+    margin-top: 25px;
 }
 
 .label {
