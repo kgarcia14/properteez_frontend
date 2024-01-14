@@ -34,7 +34,7 @@ const PropertyModal = ({ isOpen, onClose, property }) => {
   }
 
   return (
-    <Modal isOpen={isOpen} onOpenChange={() => {onClose(); cancelDelete();}}>
+    <Modal className={styles.modalContent} isOpen={isOpen} onOpenChange={() => {onClose(); cancelDelete();}}>
       <ModalContent>
           {(onClose) => (
           <>

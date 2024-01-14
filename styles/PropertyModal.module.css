@@ -2,7 +2,9 @@
     display: none;
 }
 
-.modalContainer {}
+.modalContent {
+    margin: 0;
+}
 
 
 .modalHeader {
