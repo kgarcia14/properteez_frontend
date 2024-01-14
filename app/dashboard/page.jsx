@@ -114,7 +114,6 @@ const Dashboard = () => {
     const handlePropertyClick = (property) => {
         onOpen();  // Call onOpen function
         setSelectedProperty(property);
-        console.log(property);
     };
 
     return ( 
@@ -165,9 +164,7 @@ const Dashboard = () => {
                                         <div className={styles.propertyContent}>
                                             <div className={styles.addressWrapper}>
                                                 <p className={styles.address}>
-                                                    {property.street}
-                                                </p>
-                                                <p className={styles.address}>
+                                                    {property.street}<br/>
                                                     {property.city}, {property.state} {property.zip}
                                                 </p>
                                                 <p className={styles.homeType}>{property.home_type}</p>

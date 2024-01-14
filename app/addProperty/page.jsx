@@ -14,17 +14,28 @@ const AddProperty = () => {
     const [state, setState] = useState('');
     const [zip, setZip] = useState('');
     const [homeType, setHomeType] = useState('');
-    const [mortgageAmount, setMortgageAmount] = useState('');
+    const [mortgageAmount, setMortgageAmount] = useState(0);
     const [vacancy, setVacancy] = useState('');
     const [renterName, setRenterName] = useState('');
     const [renterNumber, setRenterNumber] = useState('');
     const [renterEmail, setRenterEmail] = useState('');
-    const [leaseTerm, setLeaseTerm] = useState('');
-    const [rentAmount, setRentAmount] = useState('');
+    const [leaseStart, setLeaseStart] = useState('');
+    const [leaseEnd, setLeaseEnd] = useState('');
+    const [rentAmount, setRentAmount] = useState(0);
     const [rentStatus, setRentStatus] = useState('');
     const [propertyImage, setPropertyImage] = useState('');
 
     const states = ['AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY'];
+
+    //format date input
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0'); // months are zero-indexed
+        const year = date.getFullYear();
+    
+        return `${month}/${day}/${year}`;
+      };
 
     useEffect(() => {
         const checkForCookies = () => {
@@ -58,7 +69,8 @@ const AddProperty = () => {
             formData.append('renter_name', renterName);
             formData.append('renter_number', renterNumber);
             formData.append('renter_email', renterEmail);
-            formData.append('lease_term', leaseTerm);
+            formData.append('lease_start', formatDate(leaseStart));
+            formData.append('lease_end', formatDate(leaseEnd));
             formData.append('rent_amount', rentAmount);
             formData.append('rent_status', rentStatus);
 
@@ -157,7 +169,8 @@ const AddProperty = () => {
                     type="number"
                     name="mortgageAmount"
                     value= {mortgageAmount}
-                    onChange= {(e) => setMortgageAmount(e.target.value)} />
+                    onChange= {(e) => setMortgageAmount(e.target.value)}
+                    required />
                 </label>
                 <label className={styles.fileLabel}>
                     Upload Image
@@ -178,7 +191,8 @@ const AddProperty = () => {
                     type="text"
                     name="vacancy"
                     value= {vacancy}
-                    onChange= {(e) => setVacancy(e.target.value)}>
+                    onChange= {(e) => setVacancy(e.target.value)}
+                    required >
                         <option value="">Select Vacancy</option>
                         <option value="Occupied">Occupied</option>
                         <option value="Vacant">Vacant</option>
@@ -212,25 +226,26 @@ const AddProperty = () => {
                     Lease Start Date
                     <input className={styles.input} 
                     type="date"
-                    name="leaseTerm"
-                    value= {leaseTerm}
-                    onChange= {(e) => setLeaseTerm(e.target.value)} />
+                    name="leaseStart"
+                    value= {leaseStart}
+                    onChange= {(e) => setLeaseStart(e.target.value)} />
                 </label>
-                {/* <label className={styles.label}>
+                <label className={styles.label}>
                     Lease End Date
                     <input className={styles.input} 
                     type="date"
-                    name="leaseTerm"
-                    value= {leaseTerm}
-                    onChange= {(e) => setLeaseTerm(e.target.value)} />
-                </label> */}
+                    name="leaseEnd"
+                    value= {leaseEnd}
+                    onChange= {(e) => setLeaseEnd(e.target.value)} />
+                </label>
                 <label className={styles.label}>
                     Rent Amount
                     <input className={styles.input} 
                     type="text"
                     name="rentAmount"
                     value= {rentAmount}
-                    onChange= {(e) => setRentAmount(e.target.value)} />
+                    onChange= {(e) => setRentAmount(e.target.value)} 
+                    required />
                 </label>
                 <label className={styles.label}>
                     Rent Status
