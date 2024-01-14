@@ -3,7 +3,7 @@
 }
 
 .modalContent {
-    margin: 0;
+    
 }
 
 
@@ -76,7 +76,7 @@
 }
 
 .address {
-    font-size: .8rem;
+    /* font-size: .8rem; */
 }
 
 .homeType, .rentAmount, .mortgageAmount, .profitAmount {
