@@ -19,7 +19,7 @@ const Login = () => {
     }, [])
 
     if (loading) {
-        const loadingString = process.env.NODE_ENV === 'development' ? 'Authenticating...' : 'Authenticating, please sit tight...'
+        const loadingString = 'Authenticating, please sit tight...'
         return <Loading loadingString={loadingString} />
     }
 
