@@ -33,11 +33,10 @@
 .editButton {
     margin-right: 10px;
     padding: 5px 30px;
-    background-color: #fff;
     color: #6C67F1;
     border: 1px solid #6C67F1;
     border-radius: 5px;
-    font-size: .8rem;
+    font-size: 1rem;
 }
 
 .editButton:hover {
@@ -76,7 +75,7 @@
 }
 
 .address {
-    /* font-size: .8rem; */
+    font-size: .8rem;
 }
 
 .homeType, .rentAmount, .mortgageAmount, .profitAmount {

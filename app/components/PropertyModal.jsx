@@ -88,9 +88,7 @@ const PropertyModal = ({ isOpen, onClose, property }) => {
                             Profit
                           </p>
                           <p className={styles.profitAmount}>
-                            ${property.rent_amount !== '' && property.mortgage_amount !== '' ? parseInt(property.rent_amount) - parseInt(property.mortgage_amount) 
-                              : property.rent_amount === '' && property.mortgage_amount !== '' ? 0 - parseInt(property.mortgage_amount)
-                              : '-'}
+                            {property.rent_amount - property.mortgage_amount < 0 ? `-$${Math.abs(parseInt(property.rent_amount - property.mortgage_amount, 10))}` : `$${property.rent_amount - property.mortgage_amount}`}
                           </p>
                         </div>
                       </div>
