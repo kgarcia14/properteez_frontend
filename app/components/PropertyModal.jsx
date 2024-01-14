@@ -68,19 +68,19 @@ const PropertyModal = ({ isOpen, onClose, property }) => {
                       </div>
                       <div className={styles.rentMortgageProfitWrapper}>
                         <div>
-                          <p className={styles.rent}>
-                            Rent
-                          </p>
-                          <p className={styles.rentAmount}>
-                            ${property.rent_amount}
-                          </p>
-                        </div>
-                        <div>
                           <p className={styles.mortgage}>
                             Mortgage
                           </p>
                           <p className={styles.mortgageAmount}>
                             ${property.mortgage_amount}
+                          </p>
+                        </div>
+                        <div>
+                          <p className={styles.rent}>
+                            Rent
+                          </p>
+                          <p className={styles.rentAmount}>
+                            ${property.rent_amount}
                           </p>
                         </div>
                         <div>
