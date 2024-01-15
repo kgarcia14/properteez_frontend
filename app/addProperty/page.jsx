@@ -118,9 +118,7 @@ const AddProperty = () => {
 
     return (
         <main className={styles.main}>
-            <div>
-                <Nav />
-            </div>
+            <Nav />
             <div className={styles.formContainer}>
                 <div className={styles.formWrapper}>
                     <form className={styles.form} onSubmit={handleAddProperty}>
