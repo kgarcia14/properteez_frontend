@@ -14,14 +14,14 @@ const AddProperty = () => {
     const [state, setState] = useState('');
     const [zip, setZip] = useState('');
     const [homeType, setHomeType] = useState('');
-    const [mortgageAmount, setMortgageAmount] = useState(0);
+    const [mortgageAmount, setMortgageAmount] = useState('');
     const [vacancy, setVacancy] = useState('');
     const [renterName, setRenterName] = useState('');
     const [renterNumber, setRenterNumber] = useState('');
     const [renterEmail, setRenterEmail] = useState('');
     const [leaseStart, setLeaseStart] = useState('');
     const [leaseEnd, setLeaseEnd] = useState('');
-    const [rentAmount, setRentAmount] = useState(0);
+    const [rentAmount, setRentAmount] = useState('');
     const [rentStatus, setRentStatus] = useState('');
     const [propertyImage, setPropertyImage] = useState('');
 
@@ -36,6 +36,8 @@ const AddProperty = () => {
     
         return `${month}/${day}/${year}`;
       };
+
+    let loadingString;
 
     useEffect(() => {
         const checkForCookies = () => {
@@ -64,18 +66,29 @@ const AddProperty = () => {
             formData.append('state', state);
             formData.append('zip', zip);
             formData.append('home_type', homeType);
-            formData.append('mortgage_amount', mortgageAmount);
+            formData.append('mortgage_amount', mortgageAmount === '' ? 0 : mortgageAmount);
             formData.append('vacancy', vacancy);
-            formData.append('renter_name', renterName);
-            formData.append('renter_number', renterNumber);
-            formData.append('renter_email', renterEmail);
-            formData.append('lease_start', formatDate(leaseStart));
-            formData.append('lease_end', formatDate(leaseEnd));
-            formData.append('rent_amount', rentAmount);
-            formData.append('rent_status', rentStatus);
-
             // Append the image file to the FormData object
             formData.append('property_image', propertyImage);
+
+            if (vacancy === "Occupied") {
+                formData.append('renter_name', renterName);
+                formData.append('renter_number', renterNumber);
+                formData.append('renter_email', renterEmail);
+                formData.append('lease_start', leaseStart === '' ? '' : formatDate(leaseStart));
+                formData.append('lease_end', leaseEnd === '' ? '' : formatDate(leaseEnd));
+                formData.append('rent_amount', rentAmount === '' ? 0 : rentAmount);
+                formData.append('rent_status', rentStatus);
+            } else {
+                formData.append('renter_name', '');
+                formData.append('renter_number', '');
+                formData.append('renter_email', '');
+                formData.append('lease_start', '');
+                formData.append('lease_end', '');
+                formData.append('rent_amount', 0);
+                formData.append('rent_status', '');
+            }
+
 
             const res = await fetch(process.env.NODE_ENV === 'development' ? 'http://localhost:4444/properties/' : 'https://properteezapi.kurtisgarcia.dev/properties/', {
                 method: 'POST',
@@ -94,7 +107,7 @@ const AddProperty = () => {
     }
 
     if (loading) {
-        const loadingString = 'Adding Property...'
+        loadingString = 'Loading...'
         return <Loading loadingString={loadingString} />
     }
 
@@ -106,7 +119,7 @@ const AddProperty = () => {
             <div className={styles.formContainer}>
                 <div className={styles.formWrapper}>
                     <form className={styles.form} onSubmit={handleAddProperty}>
-                        <h2 className={styles.heading}>Property Info</h2>
+                        <h2 className={styles.heading}>Property Details</h2>
                         <label className={styles.label}>
                             Steet
                             <input className={styles.input} 
@@ -134,7 +147,7 @@ const AddProperty = () => {
                             value= {state}
                             onChange= {(e) => setState(e.target.value)}
                             required>
-                                <option value="">Select State</option>
+                                <option value=""></option>
                                 {states.map(state => (
                                     <option key={state} value={state}>{state}</option>
                                 ))}
@@ -158,7 +171,7 @@ const AddProperty = () => {
                             value= {homeType}
                             onChange= {(e) => setHomeType(e.target.value)}
                             required>
-                                <option value="">Select Type</option>
+                                <option value=""></option>
                                 <option value="Single Family">Single Family</option>
                                 <option value="Townhome">Townhome</option>
                                 <option value="Multi-Family">Multi-Family</option>
@@ -170,8 +183,21 @@ const AddProperty = () => {
                             type="number"
                             name="mortgageAmount"
                             value= {mortgageAmount}
-                            onChange= {(e) => setMortgageAmount(e.target.value)}
-                            required />
+                            onChange= {(e) => setMortgageAmount(e.target.value)} />
+                        </label>
+                        <label className={styles.label}>
+                            Vacancy
+                            <select
+                            className={styles.select} 
+                            type="text"
+                            name="vacancy"
+                            value= {vacancy}
+                            onChange= {(e) => setVacancy(e.target.value)}
+                            required >
+                                <option value=""></option>
+                                <option value="Occupied">Occupied</option>
+                                <option value="Vacant">Vacant</option>
+                            </select>
                         </label>
                         <label className={styles.fileLabel}>
                             Upload Image
@@ -184,83 +210,74 @@ const AddProperty = () => {
                         <span className={propertyImage === '' ? styles.span : styles.hidden}>No file selected</span>
                         <span className={propertyImage !== '' ? styles.span : styles.hidden}>{propertyImage.name}</span>
                         
-                        <h2 className={styles.heading}>Renter Info</h2>
-                        <label className={styles.label}>
-                            Vacancy
-                            <select
-                            className={styles.select} 
-                            type="text"
-                            name="vacancy"
-                            value= {vacancy}
-                            onChange= {(e) => setVacancy(e.target.value)}
-                            required >
-                                <option value="">Select Vacancy</option>
-                                <option value="Occupied">Occupied</option>
-                                <option value="Vacant">Vacant</option>
-                            </select>
-                        </label>
-                        <label className={styles.label}>
-                            Renter Name
-                            <input className={styles.input} 
-                            type="text"
-                            name="renterName"
-                            value= {renterName}
-                            onChange= {(e) => setRenterName(e.target.value)} />
-                        </label>
-                        <label className={styles.label}>
-                            Renter Number
-                            <input className={styles.input} 
-                            type="text"
-                            name="renterNumber"
-                            value= {renterNumber}
-                            onChange= {(e) => setRenterNumber(e.target.value)} />
-                        </label>
-                        <label className={styles.label}>
-                            Renter Email
-                            <input className={styles.input} 
-                            type="text"
-                            name="renterEmail"
-                            value= {renterEmail}
-                            onChange= {(e) => setRenterEmail(e.target.value)} />
-                        </label>
-                        <label className={styles.label}>
-                            Lease Start Date
-                            <input className={styles.input} 
-                            type="date"
-                            name="leaseStart"
-                            value= {leaseStart}
-                            onChange= {(e) => setLeaseStart(e.target.value)} />
-                        </label>
-                        <label className={styles.label}>
-                            Lease End Date
-                            <input className={styles.input} 
-                            type="date"
-                            name="leaseEnd"
-                            value= {leaseEnd}
-                            onChange= {(e) => setLeaseEnd(e.target.value)} />
-                        </label>
-                        <label className={styles.label}>
-                            Rent Amount
-                            <input className={styles.input} 
-                            type="text"
-                            name="rentAmount"
-                            value= {rentAmount}
-                            onChange= {(e) => setRentAmount(e.target.value)} 
-                            required />
-                        </label>
-                        <label className={styles.label}>
-                            Rent Status
-                            <select
-                            className={styles.select} 
-                            type="text"
-                            name="rentStatus"
-                            value= {rentStatus}
-                            onChange= {(e) => setRentStatus(e.target.value)}>
-                                <option value="">Select Rent Status</option>
-                                <option value="Current">Current</option>
-                                <option value="Past Due">Past Due</option>
-                            </select>
-                        </label>
+                        {vacancy === 'Occupied' ? 
+                        <>
+                            <h2 className={styles.heading}>Renter Details</h2>
+                            <label className={styles.label}>
+                                Renter Name
+                                <input className={styles.input} 
+                                type="text"
+                                name="renterName"
+                                value= {renterName}
+                                onChange= {(e) => setRenterName(e.target.value)} />
+                            </label>
+                            <label className={styles.label}>
+                                Renter Number
+                                <input className={styles.input} 
+                                type="number"
+                                name="renterNumber"
+                                value= {renterNumber}
+                                onChange= {(e) => setRenterNumber(e.target.value)} />
+                            </label>
+                            <label className={styles.label}>
+                                Renter Email
+                                <input className={styles.input} 
+                                type="email"
+                                name="renterEmail"
+                                value= {renterEmail}
+                                onChange= {(e) => setRenterEmail(e.target.value)} />
+                            </label>
+                            <label className={styles.label}>
+                                Lease Start Date
+                                <input className={styles.input} 
+                                type="date"
+                                name="leaseStart"
+                                value= {leaseStart}
+                                onChange= {(e) => setLeaseStart(e.target.value)} />
+                            </label>
+                            <label className={styles.label}>
+                                Lease End Date
+                                <input className={styles.input} 
+                                type="date"
+                                name="leaseEnd"
+                                value= {leaseEnd}
+                                onChange= {(e) => setLeaseEnd(e.target.value)} />
+                            </label>
+                            <label className={styles.label}>
+                                Rent Amount
+                                <input className={styles.input} 
+                                type="number"
+                                name="rentAmount"
+                                value= {rentAmount}
+                                onChange= {(e) => setRentAmount(e.target.value)} />
+                            </label>
+                            <label className={styles.label}>
+                                Rent Status
+                                <select
+                                className={styles.select} 
+                                type="text"
+                                name="rentStatus"
+                                value= {rentStatus}
+                                onChange= {(e) => setRentStatus(e.target.value)}>
+                                    <option value=""></option>
+                                    <option value="Current">Current</option>
+                                    <option value="Past Due">Past Due</option>
+                                </select>
+                            </label>
+                        </>
+                            :
+                            ''
+                        }
                         <button className={styles.button}>Submit Property</button>
                     </form>
                 </div>
