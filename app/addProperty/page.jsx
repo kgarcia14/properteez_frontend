@@ -28,14 +28,11 @@ const AddProperty = () => {
     const states = ['AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY'];
 
     //format date input
-    const formatDate = (dateString) => {
-        const date = new Date(dateString);
-        const day = date.getDate().toString().padStart(2, '0');
-        const month = (date.getMonth() + 1).toString().padStart(2, '0'); // months are zero-indexed
-        const year = date.getFullYear();
-    
-        return `${month}/${day}/${year}`;
-      };
+    const formatDate = (date) => {
+        const [year, month, day] = date.split('-');
+        const formattedDate = `${month}/${day}/${year}`;
+        return formattedDate;
+    }
 
     let loadingString;
 
@@ -62,6 +59,9 @@ const AddProperty = () => {
 
             try {
                 const formData = new FormData();
+
+                console.log(leaseStart, formatDate(leaseStart))
+                console.log(leaseEnd, formatDate(leaseEnd))
     
                 // Append form fields to the FormData object
                 formData.append('user_id', userId);
