@@ -54,55 +54,60 @@ const AddProperty = () => {
 
     const handleAddProperty = async (e) => {
         e.preventDefault();
-        setLoading(true)
 
-        try {
-            const formData = new FormData();
+        if (!Cookies.get('id')) {
+            location.assign('/')
+        } else {
+            setLoading(true)
 
-            // Append form fields to the FormData object
-            formData.append('user_id', userId);
-            formData.append('street', street);
-            formData.append('city', city);
-            formData.append('state', state);
-            formData.append('zip', zip);
-            formData.append('home_type', homeType);
-            formData.append('mortgage_amount', mortgageAmount === '' ? 0 : mortgageAmount);
-            formData.append('vacancy', vacancy);
-            // Append the image file to the FormData object
-            formData.append('property_image', propertyImage);
-
-            if (vacancy === "Occupied") {
-                formData.append('renter_name', renterName);
-                formData.append('renter_number', renterNumber);
-                formData.append('renter_email', renterEmail);
-                formData.append('lease_start', leaseStart === '' ? '' : formatDate(leaseStart));
-                formData.append('lease_end', leaseEnd === '' ? '' : formatDate(leaseEnd));
-                formData.append('rent_amount', rentAmount === '' ? 0 : rentAmount);
-                formData.append('rent_status', rentStatus);
-            } else {
-                formData.append('renter_name', '');
-                formData.append('renter_number', '');
-                formData.append('renter_email', '');
-                formData.append('lease_start', '');
-                formData.append('lease_end', '');
-                formData.append('rent_amount', 0);
-                formData.append('rent_status', '');
+            try {
+                const formData = new FormData();
+    
+                // Append form fields to the FormData object
+                formData.append('user_id', userId);
+                formData.append('street', street);
+                formData.append('city', city);
+                formData.append('state', state);
+                formData.append('zip', zip);
+                formData.append('home_type', homeType);
+                formData.append('mortgage_amount', mortgageAmount === '' ? 0 : mortgageAmount);
+                formData.append('vacancy', vacancy);
+                // Append the image file to the FormData object
+                formData.append('property_image', propertyImage);
+    
+                if (vacancy === "Occupied") {
+                    formData.append('renter_name', renterName);
+                    formData.append('renter_number', renterNumber);
+                    formData.append('renter_email', renterEmail);
+                    formData.append('lease_start', leaseStart === '' ? '' : formatDate(leaseStart));
+                    formData.append('lease_end', leaseEnd === '' ? '' : formatDate(leaseEnd));
+                    formData.append('rent_amount', rentAmount === '' ? 0 : rentAmount);
+                    formData.append('rent_status', rentStatus);
+                } else {
+                    formData.append('renter_name', '');
+                    formData.append('renter_number', '');
+                    formData.append('renter_email', '');
+                    formData.append('lease_start', '');
+                    formData.append('lease_end', '');
+                    formData.append('rent_amount', 0);
+                    formData.append('rent_status', '');
+                }
+    
+    
+                const res = await fetch(process.env.NODE_ENV === 'development' ? 'http://localhost:4444/properties/' : 'https://properteezapi.kurtisgarcia.dev/properties/', {
+                    method: 'POST',
+                    credentials: 'include',
+                    body: formData,
+                });
+                console.log(res)
+                console.log(propertyImage.name)
+    
+                if (res.ok) {
+                    location.assign('/dashboard')
+                }
+            } catch (err) {
+                console.log(err);
             }
-
-
-            const res = await fetch(process.env.NODE_ENV === 'development' ? 'http://localhost:4444/properties/' : 'https://properteezapi.kurtisgarcia.dev/properties/', {
-                method: 'POST',
-                credentials: 'include',
-                body: formData,
-            });
-            console.log(res)
-            console.log(propertyImage.name)
-
-            if (res.ok) {
-                location.assign('/dashboard')
-            }
-        } catch (err) {
-            console.log(err);
         }
     }
 
@@ -192,11 +197,10 @@ const AddProperty = () => {
                             type="text"
                             name="vacancy"
                             value= {vacancy}
-                            onChange= {(e) => setVacancy(e.target.value)}
-                            required >
+                            onChange= {(e) => setVacancy(e.target.value)} >
                                 <option value=""></option>
-                                <option value="Occupied">Occupied</option>
                                 <option value="Vacant">Vacant</option>
+                                <option value="Occupied">Occupied</option>
                             </select>
                         </label>
                         <label className={styles.fileLabel}>
