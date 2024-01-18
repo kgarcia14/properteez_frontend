@@ -13,10 +13,19 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        if (Cookies.get('id')) {
-            location.assign('/dashboard')
-          }
-    }, [])
+        const validateUser = async () => {
+            const res = await fetch(process.env.NODE_ENV === 'development' ? `http://localhost:3333/validateUser` : `https://properteezapi.kurtisgarcia.dev/validateUser`, {
+                credentials: 'include',
+            });
+            console.log(res)
+
+            if (res.status === 200) {
+                window.location.assign('/dashboard')
+            }
+        }
+
+        validateUser();
+    }, []);
 
     if (loading) {
         const loadingString = 'Authenticating, please sit tight...'
@@ -42,7 +51,7 @@ const Login = () => {
             const response = await res.json();
             console.log(response);
             
-            if (response.user) {
+            if (res.status === 201) {
                 location.assign('/dashboard');
                 setEmail('');
                 setPassword('');

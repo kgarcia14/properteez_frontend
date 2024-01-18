@@ -11,7 +11,7 @@ import PropertyModal from '../components/PropertyModal';
 
 
 const Dashboard = () => {
-    const [userId, setUserId] = useState('');
+    const [userExists, setUserExists] = useState(false);
     const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(true);
     const [properties, setProperties] = useState([]);
@@ -19,22 +19,27 @@ const Dashboard = () => {
     const [selectedProperty, setSelectedProperty] = useState(null);
     
     useEffect(() => {
-        const checkForCookies = () => {
-            if (!Cookies.get('id')) {
-                location.assign('/')
+        const validateUser = async () => {
+            const res = await fetch(process.env.NODE_ENV === 'development' ? `http://localhost:3333/validateUser` : `https://properteezapi.kurtisgarcia.dev/validateUser`, {
+                credentials: 'include',
+            });
+
+            console.log(res)
+
+            if (res.status === 200 || res.status === 403) {
+                setUserExists(true);
             } else {
-                setUserId(Cookies.get('id'));
-                setEmail(Cookies.get('email'));
+                location.assign('/');
             }
         }
 
-        checkForCookies();
+        validateUser();
     }, []);
 
     useEffect(() => {
         const getAllProperties = async () => {
-            if (userId) {
-                const res = await fetch(process.env.NODE_ENV === 'development' ? `http://localhost:3333/properties/${userId}` : `https://properteezapi.kurtisgarcia.dev/properties/${userId}`, {
+            if (userExists) {
+                const res = await fetch(process.env.NODE_ENV === 'development' ? `http://localhost:3333/properties` : `https://properteezapi.kurtisgarcia.dev/properties`, {
                     credentials: 'include',
                 });
 
@@ -60,7 +65,7 @@ const Dashboard = () => {
                         const refreshResults = await refreshTokenRes.json();
                         console.log(refreshResults);
 
-                        const retryRes = await fetch(process.env.NODE_ENV === 'development' ? `http://localhost:3333/properties/${userId}` : `https://properteezapi.kurtisgarcia.dev/properties/${userId}`, {
+                        const retryRes = await fetch(process.env.NODE_ENV === 'development' ? 'http://localhost:3333/properties' : 'https://properteezapi.kurtisgarcia.dev/properties', {
                         credentials: 'include',
                         });
                         console.log(retryRes);
@@ -80,7 +85,7 @@ const Dashboard = () => {
         }
         
         getAllProperties();
-    }, [userId]);
+    }, [userExists]);
 
     if (loading) {
         const loadingString = 'Loading Content...'
