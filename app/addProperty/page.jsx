@@ -8,8 +8,7 @@ import Loading from '../components/Loading';
 
 const AddProperty = () => {
     const [loading, setLoading] = useState(true);
-    const [userExists, setUserExists] = useState(false)
-    const [userId, setUserId] = useState('');
+    const [userExists, setUserExists] = useState(false);
     const [street, setStreet] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
@@ -40,12 +39,14 @@ const AddProperty = () => {
             const res = await fetch(process.env.NODE_ENV === 'development' ? `http://localhost:3333/validateUser` : `https://properteezapi.kurtisgarcia.dev/validateUser`, {
                 credentials: 'include',
             });
-            
+
             console.log(res)
 
-            if (res.status === 200 || res.status === 403) {
+            if (res.status === 200) {
                 setUserExists(true);
                 setLoading(false)
+            } else if (res.status === 403) {
+                location.assign('/dashboard');
             } else {
                 location.assign('/');
             }
@@ -56,20 +57,17 @@ const AddProperty = () => {
 
     const handleAddProperty = async (e) => {
         e.preventDefault();
+        setLoading(true);
 
-        if (!Cookies.get('id')) {
-            location.assign('/')
-        } else {
-            setLoading(true)
+        const res = await fetch(process.env.NODE_ENV === 'development' ? `http://localhost:3333/validateUser` : `https://properteezapi.kurtisgarcia.dev/validateUser`, {
+            credentials: 'include',
+        });
 
+        if (res.status === 200) {
             try {
                 const formData = new FormData();
-
-                console.log(leaseStart, formatDate(leaseStart))
-                console.log(leaseEnd, formatDate(leaseEnd))
     
                 // Append form fields to the FormData object
-                formData.append('user_id', userId);
                 formData.append('street', street);
                 formData.append('city', city);
                 formData.append('state', state);
@@ -107,12 +105,52 @@ const AddProperty = () => {
                 console.log(res)
                 console.log(propertyImage.name)
     
-                if (res.ok) {
+                if (res.status === 201) {
                     location.assign('/dashboard')
+                }
+
+                if (res.status === 403) {
+                    const refreshTokenRes = await fetch(process.env.NODE_ENV === 'development' ? 'http://localhost:4444/refreshToken' : 'https://properteezapi.kurtisgarcia.dev/refreshToken', {
+                        method: 'POST',
+                        credentials: 'include',
+                    });
+                    console.log(refreshTokenRes);
+
+                    if (refreshTokenRes.status === 400) {
+                        const logoutRes = await fetch(process.env.NODE_ENV === 'development' ? 'http://localhost:4444/logout' : 'https://properteezapi.kurtisgarcia.dev/logout', {
+                            method: 'DELETE',
+                            credentials: 'include'
+                        })
+
+                        console.log(logoutRes)
+
+                        Cookies.remove('email')
+                        location.assign('/')
+                    } else {
+                        const refreshResults = await refreshTokenRes.json();
+                        console.log(refreshResults);
+
+                        const retryRes = await fetch(process.env.NODE_ENV === 'development' ? 'http://localhost:4444/properties/' : 'https://properteezapi.kurtisgarcia.dev/properties/', {
+                            method: 'POST',
+                            credentials: 'include',
+                            body: formData,
+                        });
+                        console.log(retryRes);
+                        const results = await retryRes.json();
+                        console.log(results);
+
+                        if (refreshTokenRes.status === 201) {
+                            location.assign('/dashboard')
+                        }
+                    }
                 }
             } catch (err) {
                 console.log(err);
             }
+        } else if (res.status === 403) {
+            location.assign('/dashboard');
+        } else {
+            location.assign('/');
         }
     }
 
