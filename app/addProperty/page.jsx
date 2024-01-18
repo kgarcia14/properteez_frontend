@@ -8,6 +8,7 @@ import Loading from '../components/Loading';
 
 const AddProperty = () => {
     const [loading, setLoading] = useState(true);
+    const [userExists, setUserExists] = useState(false)
     const [userId, setUserId] = useState('');
     const [street, setStreet] = useState('');
     const [city, setCity] = useState('');
@@ -34,19 +35,23 @@ const AddProperty = () => {
         return formattedDate;
     }
 
-    let loadingString;
-
     useEffect(() => {
-        const checkForCookies = () => {
-            if (!Cookies.get('id')) {
-                location.assign('/')
+        const validateUser = async () => {
+            const res = await fetch(process.env.NODE_ENV === 'development' ? `http://localhost:3333/validateUser` : `https://properteezapi.kurtisgarcia.dev/validateUser`, {
+                credentials: 'include',
+            });
+            
+            console.log(res)
+
+            if (res.status === 200 || res.status === 403) {
+                setUserExists(true);
+                setLoading(false)
             } else {
-                setUserId(Cookies.get('id'));
-                setLoading(false);
+                location.assign('/');
             }
         }
 
-        checkForCookies();
+        validateUser();
     }, []);
 
     const handleAddProperty = async (e) => {
@@ -112,7 +117,7 @@ const AddProperty = () => {
     }
 
     if (loading) {
-        loadingString = 'Loading...'
+        const loadingString = 'Loading...'
         return <Loading loadingString={loadingString} />
     }
 

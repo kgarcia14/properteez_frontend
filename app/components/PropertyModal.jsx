@@ -45,9 +45,11 @@ const PropertyModal = ({ isOpen, onClose, property }) => {
                       <ModalHeader className={styles.modalHeader}>{property.street}</ModalHeader>
                     </div>
                     <div className={styles.editDeleteContainer}>
-                      <button className={styles.editButton} onClick={onClose}>
+                      <a href={`/editProperty/${property.id}`}>
+                        <button className={styles.editButton} onClick={onClose}>
                           Edit
-                      </button>
+                        </button>
+                      </a>
                       <button className={deleteButton ? styles.deleteButton : styles.hidden} color="danger" variant="light" onClick={handleDelete}>
                           Delete
                       </button>
