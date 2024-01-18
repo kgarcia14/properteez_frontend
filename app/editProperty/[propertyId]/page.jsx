@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 import Nav from '../../components/Nav';
 import Loading from '../../components/Loading';
 
-const editProperty = ({params}) => {
+const EditProperty = ({params}) => {
     const [loading, setLoading] = useState(true)
     const [property, setProperty] = useState('');
     const [userId, setUserId] = useState('');
@@ -83,4 +83,4 @@ const editProperty = ({params}) => {
     )
 }
 
-export default editProperty;
+export default EditProperty;
