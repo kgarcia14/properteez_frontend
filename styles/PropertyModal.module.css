@@ -31,12 +31,9 @@
 }
 
 .editButton {
-    margin-right: 10px;
-    padding: 5px 30px;
+    font-size: 1.3rem;
     color: #6C67F1;
-    border: 1px solid #6C67F1;
-    border-radius: 5px;
-    font-size: 1rem;
+    margin-right: 15px;
 }
 
 .editButton:hover {
@@ -46,7 +43,7 @@
 }
 
 .deleteButton {
-    border-radius: 5px;
+    font-size: 1.3rem;
     color: #ff0000;
     padding: 0;
     justify-content: flex-end;
