@@ -6,17 +6,28 @@ import { CiEdit } from "react-icons/ci";
 import { FaRegTrashCan } from "react-icons/fa6";
 
 const PropertyModal = ({ isOpen, onClose, property }) => {
+  const [confirmEditWrapper, setConfirmEditWrapper] = useState(false);
+  const [editButton, setEditButton] = useState(true);
+  const [confirmDeleteWrapper, setConfirmDeleteWrapper] = useState(false);
   const [deleteButton, setDeleteButton] = useState(true);
-  const [confirmDeleteButton, setConfirmDeleteButton] = useState(false);
 
-  const handleDelete = () => {
+  const handleEdit = () => {
+    setEditButton(false);
     setDeleteButton(false);
-    setConfirmDeleteButton(true);
+    setConfirmEditWrapper(true);
   }
 
-  const cancelDelete = () => {
+  const handleDelete = () => {
+    setEditButton(false);
+    setDeleteButton(false);
+    setConfirmDeleteWrapper(true);
+  }
+
+  const cancelEditDelete = () => {
+    setEditButton(true);
     setDeleteButton(true);
-    setConfirmDeleteButton(false);
+    setConfirmEditWrapper(false);
+    setConfirmDeleteWrapper(false);
   }
 
   const confirmDelete = async () => {
@@ -37,7 +48,7 @@ const PropertyModal = ({ isOpen, onClose, property }) => {
   }
 
   return (
-    <Modal className={styles.modalContent} isOpen={isOpen} onOpenChange={() => {onClose(); cancelDelete();}}>
+    <Modal className={styles.modalContent} isOpen={isOpen} onOpenChange={() => {onClose(); cancelEditDelete();}}>
       <ModalContent>
           {(onClose) => (
           <>
@@ -48,19 +59,23 @@ const PropertyModal = ({ isOpen, onClose, property }) => {
                       <ModalHeader className={styles.modalHeader}>{property.street}</ModalHeader>
                     </div>
                     <div className={styles.editDeleteContainer}>
-                      <a href={`/editProperty/${property.id}`}>
-                      <FaRegEdit className={styles.editButton} onClick={onClose} />
-                        {/* <button className={styles.editButton} onClick={onClose}>
-                          Edit
-                        </button> */}
-                      </a>
+                      {/* <a href={`/editProperty/${property.id}`}>
+                      <FaRegEdit className={editButton ? styles.editButton : styles.hidden} onClick={onClose} />
+                      </a> */}
+                      <FaRegEdit className={editButton ? styles.editButton : styles.hidden} onClick={handleEdit} />
+                      <div className={confirmEditWrapper ? styles.confirmEditWrapper : styles.hidden}>
+                        <p className={styles.confirmText}>Are you sure?</p>
+                        <a className={styles.confirmEditButton} href={`/editProperty/${property.id}`}>
+                          Edit Property
+                        </a>
+                      </div>
                       <FaRegTrashCan className={deleteButton ? styles.deleteButton : styles.hidden} onClick={handleDelete} />
-                      {/* <button className={deleteButton ? styles.deleteButton : styles.hidden} color="danger" variant="light" onClick={handleDelete}>
-                          Delete
-                      </button> */}
-                      <button className={confirmDeleteButton ? styles.confirmDeleteButton : styles.hidden} color="danger" variant="light" onClick={() => {confirmDelete(); onClose()}}>
-                          Confirm Delete
-                      </button>
+                      <div className={confirmDeleteWrapper ? styles.confirmDeleteWrapper : styles.hidden}>
+                        <p className={styles.confirmText}>Are you sure?</p>
+                        <button className={styles.confirmDeleteButton} color="danger" variant="light" onClick={() => {confirmDelete(); onClose()}}>
+                            Confirm Delete
+                        </button>
+                      </div>
                     </div>
                     <div className={styles.modalImageContainer}>
                       <img className={styles.modalImage} src={property.property_image} alt="" />
@@ -111,17 +126,6 @@ const PropertyModal = ({ isOpen, onClose, property }) => {
                   </div>
                 </div>
               </ModalBody>
-              {/* <ModalFooter>
-              <Button className={styles.editButton} onPress={onClose}>
-                  Edit
-              </Button>
-              <Button className={deleteButton ? styles.deleteButton : styles.hidden} color="danger" variant="light" onClick={handleDelete}>
-                  Delete
-              </Button>
-              <Button className={confirmDeleteButton ? styles.confirmDeleteButton : styles.hidden} color="danger" variant="light" onPress={onClose} onClick={confirmDelete}>
-                  Confirm Delete
-              </Button>
-              </ModalFooter> */}
           </>
           )}
       </ModalContent>
