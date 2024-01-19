@@ -19,6 +19,10 @@ const Dashboard = () => {
     const [selectedProperty, setSelectedProperty] = useState(null);
     
     useEffect(() => {
+        if (!Cookies.get()) {
+            location.assign('/');
+        }
+        
         const validateUser = async () => {
             const res = await fetch(process.env.NODE_ENV === 'development' ? `http://localhost:3333/validateUser` : `https://properteezapi.kurtisgarcia.dev/validateUser`, {
                 credentials: 'include',

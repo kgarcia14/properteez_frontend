@@ -17,10 +17,6 @@ const PropertyModal = ({ isOpen, onClose, property }) => {
     setDeleteButton(false);
     setConfirmEditWrapper(true);
   }
-
-  const confirmEdit = () => {
-    setLoading(true);
-  }
   
   const handleDelete = () => {
     setEditButton(false);
