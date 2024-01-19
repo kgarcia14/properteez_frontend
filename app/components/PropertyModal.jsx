@@ -1,6 +1,9 @@
 import { Modal, ModalContent, ModalHeader, ModalBody} from "@nextui-org/react";
 import { useState, useEffect } from "react";
 import styles from '../../styles/PropertyModal.module.css'
+import { FaRegEdit } from "react-icons/fa";
+import { CiEdit } from "react-icons/ci";
+import { FaRegTrashCan } from "react-icons/fa6";
 
 const PropertyModal = ({ isOpen, onClose, property }) => {
   const [deleteButton, setDeleteButton] = useState(true);
@@ -46,13 +49,15 @@ const PropertyModal = ({ isOpen, onClose, property }) => {
                     </div>
                     <div className={styles.editDeleteContainer}>
                       <a href={`/editProperty/${property.id}`}>
-                        <button className={styles.editButton} onClick={onClose}>
+                      <FaRegEdit className={styles.editButton} onClick={onClose} />
+                        {/* <button className={styles.editButton} onClick={onClose}>
                           Edit
-                        </button>
+                        </button> */}
                       </a>
-                      <button className={deleteButton ? styles.deleteButton : styles.hidden} color="danger" variant="light" onClick={handleDelete}>
+                      <FaRegTrashCan className={deleteButton ? styles.deleteButton : styles.hidden} onClick={handleDelete} />
+                      {/* <button className={deleteButton ? styles.deleteButton : styles.hidden} color="danger" variant="light" onClick={handleDelete}>
                           Delete
-                      </button>
+                      </button> */}
                       <button className={confirmDeleteButton ? styles.confirmDeleteButton : styles.hidden} color="danger" variant="light" onClick={() => {confirmDelete(); onClose()}}>
                           Confirm Delete
                       </button>
