@@ -1,11 +1,12 @@
 import { Modal, ModalContent, ModalHeader, ModalBody} from "@nextui-org/react";
 import { useState, useEffect } from "react";
 import styles from '../../styles/PropertyModal.module.css'
+import Loading from './Loading'
 import { FaRegEdit } from "react-icons/fa";
-import { CiEdit } from "react-icons/ci";
 import { FaRegTrashCan } from "react-icons/fa6";
 
 const PropertyModal = ({ isOpen, onClose, property }) => {
+  const [loading, setLoading] = useState(false);
   const [confirmEditWrapper, setConfirmEditWrapper] = useState(false);
   const [editButton, setEditButton] = useState(true);
   const [confirmDeleteWrapper, setConfirmDeleteWrapper] = useState(false);
@@ -17,12 +18,16 @@ const PropertyModal = ({ isOpen, onClose, property }) => {
     setConfirmEditWrapper(true);
   }
 
+  const confirmEdit = () => {
+    setLoading(true);
+  }
+  
   const handleDelete = () => {
     setEditButton(false);
     setDeleteButton(false);
     setConfirmDeleteWrapper(true);
   }
-
+  
   const cancelEditDelete = () => {
     setEditButton(true);
     setDeleteButton(true);
@@ -47,6 +52,11 @@ const PropertyModal = ({ isOpen, onClose, property }) => {
     }
   }
 
+  if (loading) {
+    const loadingString = 'Loading...'
+    return <Loading loadingString={loadingString} />
+  } 
+
   return (
     <Modal className={styles.modalContent} isOpen={isOpen} onOpenChange={() => {onClose(); cancelEditDelete();}}>
       <ModalContent>
@@ -64,8 +74,7 @@ const PropertyModal = ({ isOpen, onClose, property }) => {
                       </a> */}
                       <FaRegEdit className={editButton ? styles.editButton : styles.hidden} onClick={handleEdit} />
                       <div className={confirmEditWrapper ? styles.confirmEditWrapper : styles.hidden}>
-                        <p className={styles.confirmText}>Are you sure?</p>
-                        <a className={styles.confirmEditButton} href={`/editProperty/${property.id}`}>
+                        <a className={styles.confirmEditButton} href={`/editProperty/${property.id}`} onClick={confirmEdit}>
                           Edit Property
                         </a>
                       </div>
