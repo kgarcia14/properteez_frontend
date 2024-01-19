@@ -68,7 +68,7 @@ const PropertyModal = ({ isOpen, onClose, property }) => {
                       {/* <a href={`/editProperty/${property.id}`}>
                       <FaRegEdit className={editButton ? styles.editButton : styles.hidden} onClick={onClose} />
                       </a> */}
-                      <FaRegEdit className={editButton ? styles.editButton : styles.hidden} onClick={handleEdit} />
+                      <FaRegEdit className={editButton ? styles.editButton : styles.hidden} />
                       <div className={confirmEditWrapper ? styles.confirmEditWrapper : styles.hidden}>
                         <a className={styles.confirmEditButton} href={`/editProperty/${property.id}`} onClick={confirmEdit}>
                           Edit Property
