@@ -291,7 +291,7 @@ const EditProperty = ({params}) => {
                                 <input className={styles.fileInput} 
                                 type="file"
                                 name="propertyImage"
-                                onChange= {(e) => setPropertyImage(e.target.files[0])} 
+                                onChange= {(e) => setPropertyImage(e.target.files[0] ? e.target.files[0] : '')} 
                                 hidden/>
                             </label>
                             <span className={propertyImage === '' ? styles.span : styles.hidden}>No file selected</span>
@@ -365,7 +365,7 @@ const EditProperty = ({params}) => {
                                 :
                                 ''
                             }
-                            <button className={styles.button}>Submit Property</button>
+                            <button className={styles.button}>Confirm Edit</button>
                         </form>
                     </div>
                 </div>
