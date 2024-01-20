@@ -27,11 +27,13 @@
 .editDeleteContainer {
     display: flex;
     justify-content: flex-end;
-    padding-bottom: 15px;
+    align-items: center;
+    height: 30px;
+    margin-bottom: 10px;
 }
 
 .editButton {
-    font-size: 21px;
+    font-size: 25px;
     color: #6C67F1;
     margin-right: 20px;
 }
@@ -42,7 +44,7 @@
 }
 
 .deleteButton {
-    font-size: 21px;
+    font-size: 25px;
     color: #ff0000;
     padding: 0;
     justify-content: flex-end;
@@ -61,8 +63,7 @@
 .confirmEditButton {
     display: flex;
     align-items: center;
-    height: 21px;
-    padding: 0 10px;
+    padding: 5px 10px;
     background-color: #6C67F1;
     border-radius: 5px;
     color: #fff;
@@ -79,8 +80,7 @@
 .confirmDeleteButton {
     display: flex;
     align-items: center;
-    height: 21px;
-    padding: 0 10px;
+    padding: 5px 10px;
     background-color: #ff0000;
     border-radius: 5px;
     color: #fff;
