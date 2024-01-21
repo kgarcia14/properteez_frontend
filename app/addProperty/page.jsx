@@ -171,7 +171,7 @@ const AddProperty = () => {
                     <form className={styles.form} onSubmit={handleAddProperty}>
                         <h2 className={styles.heading}>Property Details</h2>
                         <label className={styles.label}>
-                            Steet
+                            Street
                             <input className={styles.input} 
                             type="text"
                             name="street"
