@@ -2,8 +2,9 @@
     display: none;
 }
 
-.navbarWidth {
-    padding: 0;
+.navbar {
+    width: 100%;
+    align-items: flex-start;
 }
 
 .logo {
@@ -54,5 +55,22 @@
 
 .confirmLogoutIcon path {
     stroke: #fff;
+}
+
+@media screen and (min-width: 640px) {
+    .navbar {
+        width: 25%;
+    }
+
+    .navbarWrapper {
+        display: flex;
+        flex-direction: column;
+        margin-top: 90px;
+    }
+
+    .desktopNavbarContent {
+        display: flex;
+        flex-direction: column;
+    }
 }
 

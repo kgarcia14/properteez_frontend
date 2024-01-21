@@ -43,8 +43,8 @@ const Nav = () => {
 
     return (
         <Navbar className={styles.navbar} onMenuOpenChange={setIsMenuOpen}>
-            <NavbarContent>
-                <NavbarBrand>
+            <NavbarContent className={styles.navbarWrapper}>
+                <NavbarBrand className="sm:hidden">
                     <Logo className={styles.logo} />
                 </NavbarBrand>
                 <NavbarMenuToggle
@@ -53,12 +53,15 @@ const Nav = () => {
             </NavbarContent>
 
             <NavbarContent className="hidden sm:flex gap-4" justify="center">
-                <Link className={styles.addPropertyBtn} href="/addProperty"><FaPlus className={styles.plusIcon} />Add Property</Link>
-                <Link className={styles.mobileNavLink} href="/dashboard">Dashboard</Link>
-                <Link className={styles.mobileNavLink} href="/properties">Properties</Link>
-                <Link className={styles.mobileNavLink} href="/tasks">Tasks</Link>
-                <Button className={logoutBtn ? styles.logoutBtn : styles.hidden} onClick={handleLogout}><img className={styles.logoutIcon} src="/logout_icon.svg" alt="" />Log out</Button>
-                <Button className={confirmLogoutBtn ? styles.confirmLogoutBtn : styles.hidden} onClick={handleConfirmLogout}>Confirm Logout</Button>
+                <div className={styles.desktopNavbarContent}>
+                    <Logo className={styles.logo} />
+                    <Link className={styles.addPropertyBtn} href="/addProperty"><FaPlus className={styles.plusIcon} />Add Property</Link>
+                    <Link className={styles.mobileNavLink} href="/dashboard">Dashboard</Link>
+                    <Link className={styles.mobileNavLink} href="/properties">Properties</Link>
+                    <Link className={styles.mobileNavLink} href="/tasks">Tasks</Link>
+                    <Button className={logoutBtn ? styles.logoutBtn : styles.hidden} onClick={handleLogout}><img className={styles.logoutIcon} src="/logout_icon.svg" alt="" />Log out</Button>
+                    <Button className={confirmLogoutBtn ? styles.confirmLogoutBtn : styles.hidden} onClick={handleConfirmLogout}>Confirm Logout</Button>
+                </div>
             </NavbarContent>
 
             <NavbarMenu className={styles.navbarMenu}>
