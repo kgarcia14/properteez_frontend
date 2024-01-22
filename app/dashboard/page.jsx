@@ -14,6 +14,7 @@ const Dashboard = () => {
     const [userExists, setUserExists] = useState(false);
     const [loading, setLoading] = useState(true);
     const [properties, setProperties] = useState([]);
+    const [newestProperties, setNewestProperties] = useState(null);
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const [selectedProperty, setSelectedProperty] = useState(null);
     
@@ -36,7 +37,7 @@ const Dashboard = () => {
                 if (res.status === 200 || res.status === 403) {
                     setUserExists(true);
                 } else {
-                    // location.assign('/');
+                    location.assign('/');
                 }
             }
     
@@ -78,16 +79,38 @@ const Dashboard = () => {
                         });
                         console.log(retryRes);
                         const results = await retryRes.json();
-                        console.log(results);
-                        
-                        setProperties(results.data.properties);
+                        console.log(results)
+                        const properties = results.data.properties;
+
+                        const numberOfPropertiesToRetrieve = 5;
+                        const newestProperties = [];
+
+                        for (let i = properties.length - 1; i >= Math.max(properties.length - numberOfPropertiesToRetrieve, 0); i--) {
+                            newestProperties.push(properties[i]);
+                        }
+                        console.log(newestProperties);
+
+                        setProperties(properties);
+                        setNewestProperties(newestProperties);
+                        console.log(newestProperties)
                         setLoading(false);
                     }
                 } else {
                     const results = await res.json();
                     console.log(results)
+                    const properties = results.data.properties;
 
-                    setProperties(results.data.properties);
+                    const numberOfPropertiesToRetrieve = 5;
+                    const newestProperties = [];
+
+                    for (let i = properties.length - 1; i >= Math.max(properties.length - numberOfPropertiesToRetrieve, 0); i--) {
+                        newestProperties.push(properties[i]);
+                    }
+                    console.log(newestProperties);
+
+                    setProperties(properties);
+                    setNewestProperties(newestProperties);
+                    console.log(newestProperties)
                     setLoading(false);
                 }
             }
@@ -130,14 +153,6 @@ const Dashboard = () => {
     })
     totalPastDueRenters = pastDueRenters.length;
 
-    let newestFiveProperties = [];
-    for (let i = 1; i <= properties.length - 1; i++) {
-        if (i <= 5) {
-            newestFiveProperties.push(properties[i]);
-        }
-    }
-    console.log(newestFiveProperties);
-
     const handlePropertyClick = (property) => {
         onOpen();  // Call onOpen function
         setSelectedProperty(property);
@@ -156,7 +171,7 @@ const Dashboard = () => {
                                     <BsHouses className={styles.overviewCardIcon} />
                                     <div onClick={seeAllProperties}>
                                         <h3 className={styles.overviewCardTitle}>Total Properties</h3>
-                                        <p className={styles.overviewCardP}>{properties.length} Units</p>
+                                        <p className={styles.overviewCardP}>{properties.length} {properties.length === 1 ? 'Unit' : 'Units'}</p>
                                     </div>
                                 </div>
                             </div>
@@ -180,9 +195,9 @@ const Dashboard = () => {
                             </div>
                         </div>
 
-                        <h2 className={styles.properties}>Properties <span className={styles.propertiesAmount}>(5 Newest)</span></h2>
+                        <h2 className={styles.properties}>Properties <span className={styles.propertiesAmount}>(Newest)</span></h2>
                         <ul className={styles.ul}>
-                            {newestFiveProperties.map(property => (
+                            {newestProperties.map(property => (
                                 <li key={property.id} onClick={() => handlePropertyClick(property)}>
                                     <div className={styles.propertyContainer}>
                                         <div className={styles.imageContainer}>

@@ -34,7 +34,7 @@ const Properties = () => {
                 if (res.status === 200 || res.status === 403) {
                     setUserExists(true);
                 } else {
-                    // location.assign('/');
+                    location.assign('/');
                 }
             }
     
