@@ -35,28 +35,33 @@ const AddProperty = () => {
     }
 
     useEffect(() => {
-        if (!Cookies.get()) {
-            location.assign('/');
-        }
-        
-        const validateUser = async () => {
-            const res = await fetch(process.env.NODE_ENV === 'development' ? `http://localhost:3333/validateUser` : `https://properteezapi.kurtisgarcia.dev/validateUser`, {
-                credentials: 'include',
+        if (!Cookies.get('isLoggedIn')) {
+            fetch(process.env.NODE_ENV === 'development' ? 'http://localhost:4444/logout' : 'https://properteezapi.kurtisgarcia.dev/logout', {
+                method: 'DELETE',
+                credentials: 'include'
             });
 
-            console.log(res)
-
-            if (res.status === 200) {
-                setUserExists(true);
-                setLoading(false)
-            } else if (res.status === 403) {
-                location.assign('/dashboard');
-            } else {
-                location.assign('/');
+            location.assign('/');
+        } else {
+            const validateUser = async () => {
+                const res = await fetch(process.env.NODE_ENV === 'development' ? `http://localhost:3333/validateUser` : `https://properteezapi.kurtisgarcia.dev/validateUser`, {
+                    credentials: 'include',
+                });
+    
+                console.log(res)
+    
+                if (res.status === 200) {
+                    setUserExists(true);
+                    setLoading(false)
+                } else if (res.status === 403) {
+                    location.assign('/dashboard');
+                } else {
+                    location.assign('/');
+                }
             }
+    
+            validateUser();
         }
-
-        validateUser();
     }, []);
 
     const handleAddProperty = async (e) => {
