@@ -130,7 +130,26 @@
 }
 
 @media screen and (min-width: 640px) {
-    .wrapper {
+    .container {
         display: flex;
+        justify-content: center;
+    }
+    
+    .wrapper {
+        width: 100%;
+        max-width: 1200px;
+        display: flex;
+    }
+
+    .contentContainer {
+        justify-content: flex-end;
+    }
+
+    .content {
+        width: 98%;
+    }
+
+    .overview {
+        margin: 35px 0 25px 0;
     }
 }
