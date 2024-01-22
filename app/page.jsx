@@ -11,9 +11,12 @@ const Login = () => {
     const [email, setEmail] = useState('demo123@properteez.dev');
     const [password, setPassword] = useState('demo123');
     const [loading, setLoading] = useState(false);
+    const [emailError, setEmailError] = useState('');
+    const [passwordError, setPasswordError] = useState('')
 
-    if (Cookies.get('isLoggedIn')) {
-        useEffect(() => {
+    
+    useEffect(() => {
+        if (Cookies.get('isLoggedIn')) {
             const validateUser = async () => {
                 const res = await fetch(process.env.NODE_ENV === 'development' ? `http://localhost:3333/validateUser` : `https://properteezapi.kurtisgarcia.dev/validateUser`, {
                     credentials: 'include',
@@ -26,18 +29,14 @@ const Login = () => {
             }
     
             validateUser();
-        }, []);
-    }
+        }
+    }, []);
 
-    if (loading) {
-        const loadingString = 'Authenticating, please sit tight...'
-        return <Loading loadingString={loadingString} />
-    }
-
+    
     const handleLoginUser = async (e) => {
         e.preventDefault();
         setLoading(true);
-
+        
         try {
             const res = await fetch(process.env.NODE_ENV === 'development' ? 'http://localhost:4444/login' : 'https://properteezapi.kurtisgarcia.dev/login', {
                 method: 'POST',
@@ -58,26 +57,30 @@ const Login = () => {
                 setEmail('');
                 setPassword('');
             }
-
-            const emailErrorMessage = document.querySelector('.email-error-message');
-            const passwordErrorMessage = document.querySelector('.password-error-message');
-
+            
             if (res.status === 404) {
-                emailErrorMessage.innerText = 'User does not exist!'
-                passwordErrorMessage.innerText = ''
+                setEmailError('User does not exist!');
+                setPasswordError('');
                 setEmail('');
                 setPassword('');
+                setLoading(false);
             }
 
             if (res.status === 408) {
-                passwordErrorMessage.innerText = 'Password is incorrect!'
-                emailErrorMessage.innerText = ''
+                setPasswordError('Password is incorrect!');
+                setEmailError('')
+                setLoading(false);
                 setPassword('');
             }
             
         } catch (err) {
             console.log(err);
         }
+    }
+
+    if (loading) {
+        const loadingString = 'Authenticating, please sit tight...'
+        return <Loading loadingString={loadingString} />
     }
 
     return ( 
@@ -98,7 +101,7 @@ const Login = () => {
                             onChange = {(e) => setEmail(e.target.value)}
                             required  
                             />
-                            <span className="email-error-message"></span>
+                            <span className="email-error-message">{emailError}</span>
                         </label>
                         <label>
                             Password
@@ -110,7 +113,7 @@ const Login = () => {
                             onChange = {(e) => setPassword(e.target.value)}
                             required 
                             />
-                            <span className="password-error-message"></span>
+                            <span className="password-error-message">{passwordError}</span>
                         </label>
                         <button className='login-signup-button'>Log In</button>
                     </form>

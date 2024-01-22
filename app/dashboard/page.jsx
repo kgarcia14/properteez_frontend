@@ -12,9 +12,9 @@ import PropertyModal from '../components/PropertyModal';
 
 const Dashboard = () => {
     const [userExists, setUserExists] = useState(false);
-    const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(true);
     const [properties, setProperties] = useState([]);
+    const [newestProperties, setNewestProperties] = useState(null);
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const [selectedProperty, setSelectedProperty] = useState(null);
     
@@ -37,7 +37,7 @@ const Dashboard = () => {
                 if (res.status === 200 || res.status === 403) {
                     setUserExists(true);
                 } else {
-                    // location.assign('/');
+                    location.assign('/');
                 }
             }
     
@@ -79,15 +79,38 @@ const Dashboard = () => {
                         });
                         console.log(retryRes);
                         const results = await retryRes.json();
-                        console.log(results);
-                        setProperties(results.data.properties);
+                        console.log(results)
+                        const properties = results.data.properties;
+
+                        const numberOfPropertiesToRetrieve = 5;
+                        const newestProperties = [];
+
+                        for (let i = properties.length - 1; i >= Math.max(properties.length - numberOfPropertiesToRetrieve, 0); i--) {
+                            newestProperties.push(properties[i]);
+                        }
+                        console.log(newestProperties);
+
+                        setProperties(properties);
+                        setNewestProperties(newestProperties);
+                        console.log(newestProperties)
                         setLoading(false);
                     }
                 } else {
                     const results = await res.json();
                     console.log(results)
+                    const properties = results.data.properties;
 
-                    setProperties(results.data.properties);
+                    const numberOfPropertiesToRetrieve = 5;
+                    const newestProperties = [];
+
+                    for (let i = properties.length - 1; i >= Math.max(properties.length - numberOfPropertiesToRetrieve, 0); i--) {
+                        newestProperties.push(properties[i]);
+                    }
+                    console.log(newestProperties);
+
+                    setProperties(properties);
+                    setNewestProperties(newestProperties);
+                    console.log(newestProperties)
                     setLoading(false);
                 }
             }
@@ -99,6 +122,11 @@ const Dashboard = () => {
     if (loading) {
         const loadingString = 'Loading Content...'
         return <Loading loadingString={loadingString} />
+    }
+
+    //Navigate to Properties page to see all properties
+    const seeAllProperties = () => {
+        location.assign('/properties');
     }
 
     // Calculate total mortgage and total rent
@@ -141,9 +169,9 @@ const Dashboard = () => {
                             <div className={styles.overviewCard}>
                                 <div className={styles.overviewCardContent}>
                                     <BsHouses className={styles.overviewCardIcon} />
-                                    <div>
+                                    <div onClick={seeAllProperties}>
                                         <h3 className={styles.overviewCardTitle}>Total Properties</h3>
-                                        <p className={styles.overviewCardP}>{properties.length} Units</p>
+                                        <p className={styles.overviewCardP}>{properties.length} {properties.length === 1 ? 'Unit' : 'Units'}</p>
                                     </div>
                                 </div>
                             </div>
@@ -167,9 +195,9 @@ const Dashboard = () => {
                             </div>
                         </div>
 
+                        <h2 className={styles.properties}>Properties <span className={styles.propertiesAmount}>(Newest)</span></h2>
                         <ul className={styles.ul}>
-                        <h2 className={styles.properties}>Properties</h2>
-                            {properties.map(property => (
+                            {newestProperties.map(property => (
                                 <li key={property.id} onClick={() => handlePropertyClick(property)}>
                                     <div className={styles.propertyContainer}>
                                         <div className={styles.imageContainer}>

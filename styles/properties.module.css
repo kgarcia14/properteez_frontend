@@ -1,16 +1,10 @@
+.propertiesAmount {
+    color: #aaa;
+    font-size: .7rem;
+}
+
 .content {
     width: 90%;
-}
-
-.overview {
-    font-size: 1.2rem;
-    margin: 15px 0 15px 0;
-}
-
-.overview-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
 }
 
 .contentContainer {
@@ -19,50 +13,9 @@
     justify-content: center;
 }
 
-.overviewCard {
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #F3F3FF;
-    color: #6C67F1;
-    font-weight: 300;
-    border-radius: 15px;
-    margin: 10px 0 0 0;
-    box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.25);
-    -webkit-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.25);
-    -moz-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.25);
-}
-
-.overviewCardIcon {
-    font-size: 1.5rem;
-    margin-right: 8px;
-}
-
-.overviewIcon {
-    height: 24px;
-    margin-right: 8px;
-}
-
-.overviewCardP {
-    font-size: .8rem;
-}
-
-.overviewCardContent {
-    width: 50%;
-    display: flex;
-    align-items: top;
-    justify-content: flex-start;
-}
-
 .properties {
     font-size: 1.2rem;
     margin: 25px 0 15px 0;
-}
-
-.propertiesAmount {
-    color: #aaa;
-    font-size: .7rem;
 }
 
 .propertyContainer {
@@ -75,9 +28,12 @@
 }
 
 .ul {
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 .li {
+
 }
 
 .imageContainer {
