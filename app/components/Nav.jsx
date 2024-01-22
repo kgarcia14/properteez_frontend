@@ -65,14 +65,18 @@ const Nav = () => {
             <div className={styles.desktopNavbar}>
                 <Logo className={styles.logo} />
                 <div className={styles.navbarMenu}>
-                    <Link className={styles.addPropertyBtn} href="/addProperty"><FaPlus className={styles.plusIcon} />Add Property</Link>
-                    <div className={styles.navLinks}>
-                        <Link className={styles.desktopNavLink} href="/dashboard">Dashboard</Link>
-                        <Link className={styles.desktopNavLink} href="/properties">Properties</Link>
-                        <Link className={styles.desktopNavLink} href="/tasks">Tasks</Link>
+                    <div className={styles.addPropertyBtnLinks}>
+                        <Link className={styles.addPropertyBtn} href="/addProperty"><FaPlus className={styles.plusIcon} />Add Property</Link>
+                        <div className={styles.navLinks}>
+                            <Link className={styles.desktopNavLink} href="/dashboard">Dashboard</Link>
+                            <Link className={styles.desktopNavLink} href="/properties">Properties</Link>
+                            <Link className={styles.desktopNavLink} href="/tasks">Tasks</Link>
+                        </div>
                     </div>
-                    <Button className={logoutBtn ? styles.logoutBtn : styles.hidden} onClick={handleLogout}><img className={styles.logoutIcon} src="/logout_icon.svg" alt="" />Log out</Button>
-                    <Button className={confirmLogoutBtn ? styles.confirmLogoutBtn : styles.hidden} onClick={handleConfirmLogout}>Confirm Logout</Button>
+                    <div className={styles.logoutBtnWrapper}>
+                        <Button className={logoutBtn ? styles.logoutBtn : styles.hidden} onClick={handleLogout}><img className={styles.logoutIcon} src="/logout_icon.svg" alt="" />Log Out</Button>
+                        <Button className={confirmLogoutBtn ? styles.confirmLogoutBtn : styles.hidden} onClick={handleConfirmLogout}>Confirm Logout</Button>
+                    </div>
                 </div>
             </div>
         </>

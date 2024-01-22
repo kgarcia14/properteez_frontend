@@ -332,7 +332,7 @@ const AddProperty = () => {
                             :
                             ''
                         }
-                        <button className={styles.button}>Submit Property</button>
+                        <button className={styles.button}>Add Property</button>
                     </form>
                 </div>
             </div>

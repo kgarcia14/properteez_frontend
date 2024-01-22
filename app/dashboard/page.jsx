@@ -12,7 +12,6 @@ import PropertyModal from '../components/PropertyModal';
 
 const Dashboard = () => {
     const [userExists, setUserExists] = useState(false);
-    const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(true);
     const [properties, setProperties] = useState([]);
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -80,6 +79,7 @@ const Dashboard = () => {
                         console.log(retryRes);
                         const results = await retryRes.json();
                         console.log(results);
+                        
                         setProperties(results.data.properties);
                         setLoading(false);
                     }
@@ -99,6 +99,11 @@ const Dashboard = () => {
     if (loading) {
         const loadingString = 'Loading Content...'
         return <Loading loadingString={loadingString} />
+    }
+
+    //Navigate to Properties page to see all properties
+    const seeAllProperties = () => {
+        location.assign('/properties');
     }
 
     // Calculate total mortgage and total rent
@@ -125,6 +130,14 @@ const Dashboard = () => {
     })
     totalPastDueRenters = pastDueRenters.length;
 
+    let newestFiveProperties = [];
+    for (let i = 1; i <= properties.length - 1; i++) {
+        if (i <= 5) {
+            newestFiveProperties.push(properties[i]);
+        }
+    }
+    console.log(newestFiveProperties);
+
     const handlePropertyClick = (property) => {
         onOpen();  // Call onOpen function
         setSelectedProperty(property);
@@ -141,7 +154,7 @@ const Dashboard = () => {
                             <div className={styles.overviewCard}>
                                 <div className={styles.overviewCardContent}>
                                     <BsHouses className={styles.overviewCardIcon} />
-                                    <div>
+                                    <div onClick={seeAllProperties}>
                                         <h3 className={styles.overviewCardTitle}>Total Properties</h3>
                                         <p className={styles.overviewCardP}>{properties.length} Units</p>
                                     </div>
@@ -167,9 +180,9 @@ const Dashboard = () => {
                             </div>
                         </div>
 
+                        <h2 className={styles.properties}>Properties <span className={styles.propertiesAmount}>(5 Newest)</span></h2>
                         <ul className={styles.ul}>
-                        <h2 className={styles.properties}>Properties</h2>
-                            {properties.map(property => (
+                            {newestFiveProperties.map(property => (
                                 <li key={property.id} onClick={() => handlePropertyClick(property)}>
                                     <div className={styles.propertyContainer}>
                                         <div className={styles.imageContainer}>
