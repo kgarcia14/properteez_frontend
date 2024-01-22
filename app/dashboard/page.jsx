@@ -195,7 +195,7 @@ const Dashboard = () => {
                             </div>
                         </div>
 
-                        <h2 className={styles.properties}>Properties <span className={styles.propertiesAmount}>(Newest)</span></h2>
+                        <h2 className={styles.properties}>Properties <span className={styles.propertiesAmount}>({newestProperties.length} Newest)</span></h2>
                         <ul className={styles.ul}>
                             {newestProperties.map(property => (
                                 <li key={property.id} onClick={() => handlePropertyClick(property)}>
