@@ -14,8 +14,9 @@ const Login = () => {
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('')
 
-    if (Cookies.get('isLoggedIn')) {
-        useEffect(() => {
+    
+    useEffect(() => {
+        if (Cookies.get('isLoggedIn')) {
             const validateUser = async () => {
                 const res = await fetch(process.env.NODE_ENV === 'development' ? `http://localhost:3333/validateUser` : `https://properteezapi.kurtisgarcia.dev/validateUser`, {
                     credentials: 'include',
@@ -28,8 +29,8 @@ const Login = () => {
             }
     
             validateUser();
-        }, []);
-    }
+        }
+    }, []);
 
     
     const handleLoginUser = async (e) => {
