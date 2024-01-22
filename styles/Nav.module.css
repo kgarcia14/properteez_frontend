@@ -2,6 +2,10 @@
     display: none;
 }
 
+.desktopNavbar {
+    display: none;
+}
+
 .navbar {
     width: 100%;
     align-items: flex-start;
@@ -59,18 +63,51 @@
 
 @media screen and (min-width: 640px) {
     .navbar {
+        display: none;
+    }
+
+    .desktopNavbar {
+        display: initial;
         width: 25%;
+        height: 85vh;
+        position: sticky;
+        top: 15px;
+        max-width: 240px;
     }
 
-    .navbarWrapper {
+    .navbarMenu {
+        width: 100%;
+        height: 100%;
         display: flex;
         flex-direction: column;
-        margin-top: 90px;
+        align-items: center;
+        background-color: #6C67F1;
+        border-radius: 15px;
+        margin-top: 20px;
     }
 
-    .desktopNavbarContent {
+    .addPropertyBtn {
+        width: 90%;
+        margin: 15px 0 50px 0;
+        background-color: #fff;
+        color:#6C67F1;
+    }
+
+    .logoutBtn {
+        background-color: #fff;
+        width: 90%;
+        /* margin: 450px 0 15px 0; */
+    }
+
+    .navLinks {
+        width: 90%;
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .desktopNavLink {
+        color: #fff;
     }
 }
 
