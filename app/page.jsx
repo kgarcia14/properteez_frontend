@@ -12,20 +12,22 @@ const Login = () => {
     const [password, setPassword] = useState('demo123');
     const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        const validateUser = async () => {
-            const res = await fetch(process.env.NODE_ENV === 'development' ? `http://localhost:3333/validateUser` : `https://properteezapi.kurtisgarcia.dev/validateUser`, {
-                credentials: 'include',
-            });
-            console.log(res)
-
-            if (res.status === 200) {
-                window.location.assign('/dashboard')
+    if (Cookies.get('isLoggedIn')) {
+        useEffect(() => {
+            const validateUser = async () => {
+                const res = await fetch(process.env.NODE_ENV === 'development' ? `http://localhost:3333/validateUser` : `https://properteezapi.kurtisgarcia.dev/validateUser`, {
+                    credentials: 'include',
+                });
+                console.log(res)
+    
+                if (res.status === 200) {
+                    location.assign('/dashboard');
+                }
             }
-        }
-
-        validateUser();
-    }, []);
+    
+            validateUser();
+        }, []);
+    }
 
     if (loading) {
         const loadingString = 'Authenticating, please sit tight...'
