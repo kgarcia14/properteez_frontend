@@ -11,6 +11,7 @@ const PropertyModal = ({ isOpen, onClose, property }) => {
   const [editButton, setEditButton] = useState(true);
   const [confirmDeleteWrapper, setConfirmDeleteWrapper] = useState(false);
   const [deleteButton, setDeleteButton] = useState(true);
+  const [scrollBehavior, setScrollBehavior] = useState('inside');
 
   const handleEdit = () => {
     setEditButton(false);
@@ -54,7 +55,7 @@ const PropertyModal = ({ isOpen, onClose, property }) => {
   } 
 
   return (
-    <Modal className={styles.modalContent} isOpen={isOpen} onOpenChange={() => {onClose(); cancelEditDelete();}}>
+    <Modal className={styles.modalContent} isOpen={isOpen} onOpenChange={() => {onClose(); cancelEditDelete();}} scrollBehavior={scrollBehavior}>
       <ModalContent>
           {(onClose) => (
           <>
@@ -99,7 +100,7 @@ const PropertyModal = ({ isOpen, onClose, property }) => {
                       </div>
                       <div className={styles.rentMortgageProfitWrapper}>
                         <div>
-                          <p className={styles.mortgage}>
+                          <p className={styles.detailsTitle}>
                             Mortgage
                           </p>
                           <p className={styles.mortgageAmount}>
@@ -107,7 +108,7 @@ const PropertyModal = ({ isOpen, onClose, property }) => {
                           </p>
                         </div>
                         <div>
-                          <p className={styles.rent}>
+                          <p className={styles.detailsTitle}>
                             Rent
                           </p>
                           <p className={styles.rentAmount}>
@@ -115,7 +116,7 @@ const PropertyModal = ({ isOpen, onClose, property }) => {
                           </p>
                         </div>
                         <div>
-                          <p className={styles.profit}>
+                          <p className={styles.detailsTitle}>
                             Profit
                           </p>
                           <p className={styles.profitAmount}>
@@ -124,13 +125,44 @@ const PropertyModal = ({ isOpen, onClose, property }) => {
                         </div>
                       </div>
                       <div className={styles.leaseTermWrapper}>
-                          <p className={styles.leaseTerm}>
+                          <p className={styles.detailsTitle}>
                             Lease Term
                           </p>
                           <p className={styles.homeType}>
                             {property.lease_start} - {property.lease_end}
                           </p>
-                        </div>
+                      </div>
+                      {property.renter_name !== '' ? 
+                        <div className={styles.renterDetailsContainer}>
+                          <h3 className={styles.renterDetailsTitle}>Renter Details</h3>
+                          <div className={styles.renterDetails}>
+                              <p className={styles.detailsTitle}>
+                                Name
+                              </p>
+                              <p className={styles.homeType}>
+                                {property.renter_name}
+                              </p>
+                          </div>
+                          <div className={styles.renterDetails}>
+                              <p className={styles.detailsTitle}>
+                                Phone
+                              </p>
+                              <p className={styles.homeType}>
+                                {property.renter_number}
+                              </p>
+                          </div>
+                          <div className={styles.renterDetails}>
+                              <p className={styles.detailsTitle}>
+                                Email
+                              </p>
+                              <p className={styles.homeType}>
+                                {property.renter_email}
+                              </p>
+                          </div>
+                        </div>  
+                        : 
+                        ''
+                      }
                     </div>
                   </div>
                 </div>

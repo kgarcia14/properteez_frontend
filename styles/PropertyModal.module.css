@@ -2,9 +2,9 @@
     display: none;
 }
 
-.modalContent {
-    
-}
+/* .modalContent {
+    height: 75vh
+} */
 
 
 .modalHeader {
@@ -93,7 +93,7 @@
 }
 
 .modalImageContainer {
-    height: 175px
+    height: 175px;
 }
 
 .modalImage {
@@ -101,6 +101,10 @@
     height: 100%;
     border-radius: 15px;
     object-fit: cover;
+    /* box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.25);
+    -webkit-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.25);
+    margin-bottom: 25px; */
 }
 
 .propertyDetails {
@@ -113,7 +117,7 @@
 }
 
 .address {
-    font-size: .8rem;
+    font-size: .9rem;
 }
 
 .homeType, .rentAmount, .mortgageAmount, .profitAmount {
@@ -121,10 +125,28 @@
     font-size: .8rem;
 }
 
+.detailsTitle {
+    font-size: .9rem;
+}
+
 .rentMortgageProfitWrapper {
     display: flex;
     justify-content: space-between;
-    padding: 15px 0;
+    margin: 15px 0;
+}
+
+.renterDetailsContainer {
+    margin-top: 15px;
+}
+
+.renterDetailsTitle {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.renterDetails {
+    margin-bottom: 15px;
 }
 
 .neutralRentStatus {
