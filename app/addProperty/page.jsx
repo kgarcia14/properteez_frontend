@@ -131,10 +131,9 @@ const AddProperty = () => {
                             credentials: 'include'
                         })
 
-                        console.log(logoutRes)
+                        console.log(logoutRes);
 
-                        Cookies.remove('email')
-                        location.assign('/')
+                        location.assign('/');
                     } else {
                         const refreshResults = await refreshTokenRes.json();
                         console.log(refreshResults);

@@ -27,12 +27,18 @@ const EditProperty = ({params}) => {
     const [rentStatus, setRentStatus] = useState('');
     const [propertyImage, setPropertyImage] = useState('');
 
-     //format date input
+     //format date input for submitting form (MM/DD/YYYY)
      const formatDate = (date) => {
         const [year, month, day] = date.split('-');
         const formattedDate = `${month}/${day}/${year}`;
         return formattedDate;
     }
+
+    //this coverts to a format the input with type="date" will accept (YYYY-MM-DD)
+    const convertDateFormat = (dateString) => {
+        const [month, day, year] = dateString.split('/');
+        return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+    };
 
     const states = ['AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY'];
 
@@ -52,8 +58,11 @@ const EditProperty = ({params}) => {
                 
                 console.log(res)
     
-                if (res.status === 200 || res.status === 403) {
+                if (res.status === 200) {
                     setUserExists(true);
+                    setLoading(false)
+                } else if (res.status === 403) {
+                    location.assign('/dashboard');
                 } else {
                     location.assign('/');
                 }
@@ -95,8 +104,8 @@ const EditProperty = ({params}) => {
             setRenterName(property.renter_name);
             setRenterNumber(property.renter_number);
             setRenterEmail(property.renter_email);
-            setLeaseStart(property.lease_start);
-            setLeaseEnd(property.lease_end);
+            setLeaseStart(leaseStart !== '' ? convertDateFormat(property.lease_start) : leaseStart);
+            setLeaseEnd(leaseEnd !== '' ? convertDateFormat(property.lease_end) : leaseEnd);
             setRentAmount(property.rent_amount);
             setRentStatus(property.rent_status);
     
@@ -320,7 +329,7 @@ const EditProperty = ({params}) => {
                                 <label className={styles.label}>
                                     Renter Number
                                     <input className={styles.input} 
-                                    type="number"
+                                    type="text"
                                     name="renterNumber"
                                     value= {renterNumber}
                                     onChange= {(e) => setRenterNumber(e.target.value)} />

@@ -65,9 +65,6 @@ const PropertyModal = ({ isOpen, onClose, property }) => {
                       <ModalHeader className={styles.modalHeader}>{property.street}</ModalHeader>
                     </div>
                     <div className={styles.editDeleteContainer}>
-                      {/* <a href={`/editProperty/${property.id}`}>
-                      <FaRegEdit className={editButton ? styles.editButton : styles.hidden} onClick={onClose} />
-                      </a> */}
                       <FaRegEdit className={editButton ? styles.editButton : styles.hidden} onClick={handleEdit} />
                       <div className={confirmEditWrapper ? styles.confirmEditWrapper : styles.hidden}>
                         <a className={styles.confirmEditButton} href={`/editProperty/${property.id}`}>
@@ -86,12 +83,19 @@ const PropertyModal = ({ isOpen, onClose, property }) => {
                       <img className={styles.modalImage} src={property.property_image} alt="" />
                     </div>
                     <div className={styles.propertyDetails}>
-                      <div>
-                        <p className={styles.address}>
-                          {property.street}<br/>
-                          {property.city}, {property.state} {property.zip}
-                        </p>
-                        <p className={styles.homeType}>{property.home_type}</p>
+                      <div className={styles.addressAndStatusWrapper}>
+                        <div>
+                          <p className={styles.address}>
+                            {property.street}<br/>
+                            {property.city}, {property.state} {property.zip}
+                          </p>
+                          <p className={styles.homeType}>{property.home_type}</p>
+                        </div>
+                        <div>
+                          <p className={property.rent_status === 'Past Due' ? `${styles.pastDueRentStatus}` : property.rent_status === 'Current' ? `${styles.currentRentStatus}` : `${styles.neutralRentStatus}`}>
+                            {property.rent_status !== '' ? property.rent_status : 'Vacant'}
+                          </p>
+                        </div>
                       </div>
                       <div className={styles.rentMortgageProfitWrapper}>
                         <div>

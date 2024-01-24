@@ -107,6 +107,11 @@
     padding: 15px;
 }
 
+.addressAndStatusWrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
 .address {
     font-size: .8rem;
 }
@@ -120,4 +125,31 @@
     display: flex;
     justify-content: space-between;
     padding: 15px 0;
+}
+
+.neutralRentStatus {
+    font-size: .8rem;
+    background-color: #e9e9e9;
+    color: #aaaaaa;
+    width: 70px;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.pastDueRentStatus {
+    font-size: .8rem;
+    background-color: #FED5D5;
+    color: #FF0000;
+    width: 70px;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.currentRentStatus {
+    font-size: .8rem;
+    background-color: #E9FFDB;
+    color: #51B613;
+    width: 70px;
+    text-align: center;
+    border-radius: 3px;
 }
