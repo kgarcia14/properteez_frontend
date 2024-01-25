@@ -16,6 +16,10 @@
     border-radius: 0 0 10px 10px;
 }
 
+.navbarMenu {
+    padding-top: 20px;
+}
+
 .logo {
     margin: 0;
 }
