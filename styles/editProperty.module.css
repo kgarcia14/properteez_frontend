@@ -41,6 +41,11 @@
     color: #333;
 }
 
+.inputDate {
+    width: 100%;
+    background-color: #fff;
+}
+
 .select {
     height: 35px;
     font-size: 1rem;
