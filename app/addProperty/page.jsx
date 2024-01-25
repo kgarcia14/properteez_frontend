@@ -292,7 +292,7 @@ const AddProperty = () => {
                             </label>
                             <label className={styles.label}>
                                 Lease Start Date
-                                <input className={styles.input} 
+                                <input className={`${styles.input} ${styles.inputDate}`} 
                                 type="date"
                                 name="leaseStart"
                                 value= {leaseStart}
@@ -300,7 +300,7 @@ const AddProperty = () => {
                             </label>
                             <label className={styles.label}>
                                 Lease End Date
-                                <input className={styles.input} 
+                                <input className={`${styles.input} ${styles.inputDate}`} 
                                 type="date"
                                 name="leaseEnd"
                                 value= {leaseEnd}

@@ -104,8 +104,8 @@ const EditProperty = ({params}) => {
             setRenterName(property.renter_name);
             setRenterNumber(property.renter_number);
             setRenterEmail(property.renter_email);
-            setLeaseStart(leaseStart !== '' ? convertDateFormat(property.lease_start) : leaseStart);
-            setLeaseEnd(leaseEnd !== '' ? convertDateFormat(property.lease_end) : leaseEnd);
+            setLeaseStart(property.lease_start !== '' ? convertDateFormat(property.lease_start) : property.lease_start);
+            setLeaseEnd(property.lease_end !== '' ? convertDateFormat(property.lease_end) : property.lease_end);
             setRentAmount(property.rent_amount);
             setRentStatus(property.rent_status);
     
@@ -344,7 +344,7 @@ const EditProperty = ({params}) => {
                                 </label>
                                 <label className={styles.label}>
                                     Lease Start Date
-                                    <input className={styles.input} 
+                                    <input className={`${styles.input} ${styles.inputDate}`} 
                                     type="date"
                                     name="leaseStart"
                                     value= {leaseStart}
@@ -352,7 +352,7 @@ const EditProperty = ({params}) => {
                                 </label>
                                 <label className={styles.label}>
                                     Lease End Date
-                                    <input className={styles.input} 
+                                    <input className={`${styles.input} ${styles.inputDate}`} 
                                     type="date"
                                     name="leaseEnd"
                                     value= {leaseEnd}
