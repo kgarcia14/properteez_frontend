@@ -8,8 +8,8 @@ import Loading from './components/Loading';
 
 
 const Login = () => {
-    const [email, setEmail] = useState('demo123@properteez.dev');
-    const [password, setPassword] = useState('demo123');
+    const [email, setEmail] = useState('demo@properteez.dev');
+    const [password, setPassword] = useState('properteez123');
     const [loading, setLoading] = useState(false);
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('')
