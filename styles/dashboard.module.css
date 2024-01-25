@@ -55,14 +55,37 @@
     justify-content: flex-start;
 }
 
+.propertiesAndAddPropertyWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin: 25px 0 15px 0;
+}
+
 .properties {
     font-size: 1.2rem;
-    margin: 25px 0 15px 0;
 }
 
 .propertiesAmount {
     color: #aaa;
     font-size: .7rem;
+}
+
+.addPropertyIcon {
+    color:#6C67F1;
+    font-size: 25px;
+}
+
+.addPropertyButton {
+    background-color: #6C67F1;
+    color: #fff;
+    border-radius: 15px;
+    font-size: .7rem;
+    padding: 3px 10px;
+}
+
+.plus{
+    color: #FF7A00;
 }
 
 .propertyContainer {

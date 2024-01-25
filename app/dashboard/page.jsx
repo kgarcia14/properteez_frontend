@@ -8,6 +8,8 @@ import { BsHouses, BsCurrencyDollar } from "react-icons/bs";
 import Loading from '../components/Loading';
 import {useDisclosure} from "@nextui-org/react";
 import PropertyModal from '../components/PropertyModal';
+import Link from 'next/link';
+import { MdOutlineAddHome } from "react-icons/md";
 
 
 const Dashboard = () => {
@@ -195,7 +197,11 @@ const Dashboard = () => {
                             </div>
                         </div>
 
-                        <h2 className={styles.properties}>Properties <span className={styles.propertiesAmount}>({newestProperties.length} Newest)</span></h2>
+                        <div className={styles.propertiesAndAddPropertyWrapper}>
+                            <h2 className={styles.properties}>Properties <span className={styles.propertiesAmount}>({newestProperties.length} Newest)</span></h2>
+                            <Link href='/addProperty'><MdOutlineAddHome className={styles.addPropertyIcon} /></Link>
+                            {/* <Link className={styles.addPropertyButton} href='/addProperty'><span className={styles.plus}>+</span> Add Property</Link> */}
+                        </div>
                         <ul className={styles.ul}>
                             {newestProperties.map(property => (
                                 <li key={property.id} onClick={() => handlePropertyClick(property)}>

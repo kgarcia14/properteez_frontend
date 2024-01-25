@@ -13,7 +13,7 @@
     -webkit-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.20);
     -moz-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.20);
     margin-bottom: 25px;
-    border-radius: 0 0 10px 10px
+    border-radius: 0 0 10px 10px;
 }
 
 .logo {
@@ -42,6 +42,10 @@
     color: #6C67F1;
     font-size: 1rem;
     margin: 5px 0;
+}
+
+.navLinkIcon {
+    margin-right: 5px;
 }
 
 .logoutBtn {
