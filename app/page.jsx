@@ -8,8 +8,8 @@ import Loading from './components/Loading';
 
 
 const Login = () => {
-    const [email, setEmail] = useState('demo123@properteez.dev');
-    const [password, setPassword] = useState('demo123');
+    const [email, setEmail] = useState('demo@properteez.dev');
+    const [password, setPassword] = useState('properteez123');
     const [loading, setLoading] = useState(false);
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('')
@@ -89,7 +89,8 @@ const Login = () => {
                 <div className='login-signup-wrapper'>
                     <Logo />
                     <h2 className='login-signup-header'>Log In</h2>
-                    <p className='login-signup-subheader'>Enter your email and password to access your account.</p>
+                    {/* <p className='login-signup-subheader'>Sign in with your email and password.<br/> Alternatively, explore the demo account provided.</p> */}
+                    <p className='login-signup-subheader'>Log in using your email and password, or explore the demo account provided.</p>
                     <form className='login-signup-form' onSubmit={handleLoginUser} >
                         <label>
                             Email
