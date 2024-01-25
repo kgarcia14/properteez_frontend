@@ -6,6 +6,10 @@ import {Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle,NavbarM
 import {Link} from "@nextui-org/link";
 import {Button} from "@nextui-org/button";
 import { FaPlus } from "react-icons/fa6";
+import { MdOutlineSpaceDashboard } from "react-icons/md";
+import { PiHouse } from "react-icons/pi";
+import { BsHouses } from "react-icons/bs";
+import { GrTask } from "react-icons/gr";
 import Logo from './Logo';
 import { useState } from "react";
 
@@ -55,9 +59,9 @@ const Nav = () => {
 
                 <NavbarMenu className={styles.navbarMenu}>
                     <Link className={styles.addPropertyBtn} href="/addProperty"><FaPlus className={styles.plusIcon} />Add Property</Link>
-                    <Link className={styles.mobileNavLink} href="/dashboard">Dashboard</Link>
-                    <Link className={styles.mobileNavLink} href="/properties">Properties</Link>
-                    <Link className={styles.mobileNavLink} href="/tasks">Tasks</Link>
+                    <Link className={styles.mobileNavLink} href="/dashboard"><MdOutlineSpaceDashboard className={styles.navLinkIcon} />Dashboard</Link>
+                    <Link className={styles.mobileNavLink} href="/properties"><BsHouses className={styles.navLinkIcon} />Properties</Link>
+                    <Link className={styles.mobileNavLink} href="/tasks"><GrTask className={styles.navLinkIcon} />Tasks</Link>
                     <Button className={logoutBtn ? styles.logoutBtn : styles.hidden} onClick={handleLogout}><img className={styles.logoutIcon} src="/logout_icon.svg" alt="" />Log out</Button>
                     <Button className={confirmLogoutBtn ? styles.confirmLogoutBtn : styles.hidden} onClick={handleConfirmLogout}>Confirm Logout</Button>
                 </NavbarMenu>
@@ -68,9 +72,9 @@ const Nav = () => {
                     <div className={styles.addPropertyBtnLinks}>
                         <Link className={styles.addPropertyBtn} href="/addProperty"><FaPlus className={styles.plusIcon} />Add Property</Link>
                         <div className={styles.navLinks}>
-                            <Link className={styles.desktopNavLink} href="/dashboard">Dashboard</Link>
-                            <Link className={styles.desktopNavLink} href="/properties">Properties</Link>
-                            <Link className={styles.desktopNavLink} href="/tasks">Tasks</Link>
+                            <Link className={styles.desktopNavLink} href="/dashboard"><MdOutlineSpaceDashboard className={styles.navLinkIcon} />Dashboard</Link>
+                            <Link className={styles.desktopNavLink} href="/properties"><BsHouses className={styles.navLinkIcon} />Properties</Link>
+                            <Link className={styles.desktopNavLink} href="/tasks"><GrTask className={styles.navLinkIcon} />Tasks</Link>
                         </div>
                     </div>
                     <div className={styles.logoutBtnWrapper}>
