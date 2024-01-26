@@ -90,7 +90,6 @@
 
     .desktopNavbar {
         display: initial;
-        width: 25%;
         height: 85vh;
         position: sticky;
         top: 15px;
@@ -110,10 +109,7 @@
     }
 
     .addPropertyBtn {
-        width: 85%;
-        margin: 20px 0 15px 0;
-        background-color: #fff;
-        color:#6C67F1;
+        display: none;
     }
 
     .addPropertyBtnLinks {
@@ -130,24 +126,27 @@
         margin-bottom: 20px;
     }
 
-    .logoutBtn {
-        background-color: #fff;
-        width: 85%;
-    }
-
+    
     .confirmLogoutBtn {
         width: 85%;
     }
-
+    
     .navLinks {
         width: 90%;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
     }
+    
+    .logoutBtn {
+        font-size: .8rem;
+        background-color: #fff;
+        width: 85%;
+    }
 
     .desktopNavLink {
         color: #fff;
+        font-size: .8rem;
     }
 }
 
