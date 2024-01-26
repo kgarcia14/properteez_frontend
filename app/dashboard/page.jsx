@@ -163,7 +163,7 @@ const Dashboard = () => {
     return ( 
         <main className={styles.container}>
             <div className={styles.wrapper}>
-                <Nav />
+                <Nav className={styles.nav} />
                 <div className={styles.contentContainer}>
                     <div className={styles.content}>
                         <h2 className={styles.overview}>Overview</h2>

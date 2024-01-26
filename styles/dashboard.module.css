@@ -163,20 +163,35 @@
     }
     
     .wrapper {
-        width: 100%;
-        max-width: 1200px;
+        width: 95%;
+        max-width: 1000px;
         display: flex;
     }
 
+    .nav {
+        width: 30%;
+    }
+
     .contentContainer {
-        justify-content: flex-end;
+        padding-left: 15px;
     }
 
     .content {
-        width: 98%;
+        width: 100%;
     }
 
     .overview {
         margin: 35px 0 25px 0;
+    }
+
+    .overviewCardContent {
+        justify-content: center;
+    }
+
+    .propertyContainer {
+        display: flex;
+    }
+    .imageContainer {
+        height: 100px
     }
 }
