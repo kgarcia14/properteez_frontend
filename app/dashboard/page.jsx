@@ -199,7 +199,7 @@ const Dashboard = () => {
 
                         <div className={styles.propertiesAndAddPropertyWrapper}>
                             <h2 className={styles.properties}>Properties <span className={styles.propertiesAmount}>({newestProperties.length} Newest)</span></h2>
-                            {/* <Link href='/addProperty'><MdOutlineAddHome className={styles.addPropertyIcon} /></Link> */}
+                            <Link className={styles.addPropertyIcon} href='/addProperty'><MdOutlineAddHome /></Link>
                             <Link className={styles.addPropertyButton} href='/addProperty'><span className={styles.plus}>+</span> Add Property</Link>
                         </div>
                         <ul className={styles.ul}>
