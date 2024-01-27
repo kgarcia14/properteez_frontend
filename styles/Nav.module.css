@@ -90,7 +90,7 @@
 
     .desktopNavbar {
         display: initial;
-        height: 85vh;
+        height: 75vh;
         position: sticky;
         top: 15px;
         width: 30%;
@@ -107,6 +107,10 @@
         background-color: #6C67F1;
         border-radius: 15px;
         margin-top: 20px;
+    }
+
+    .desktopNavLink {
+        margin-bottom: 8px;
     }
 
     .addPropertyBtn {
