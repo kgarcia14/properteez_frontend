@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import { useState, useEffect } from "react";
 import Nav from '../components/Nav';
 import { BsHouses, BsCurrencyDollar } from "react-icons/bs";
+import { FiDollarSign } from "react-icons/fi";
 import Loading from '../components/Loading';
 import {useDisclosure} from "@nextui-org/react";
 import PropertyModal from '../components/PropertyModal';
@@ -179,7 +180,7 @@ const Dashboard = () => {
                             </div>
                             <div className={styles.overviewCard}>
                                 <div className={styles.overviewCardContent}>
-                                    <BsCurrencyDollar className={styles.overviewCardIcon} />
+                                    <img className={styles.overviewIcon} src="/profit_icon.svg" alt=""/>
                                     <div>
                                         <h3 className={styles.overviewCardTitle}>Monthly Profit</h3>
                                         <p className={styles.overviewCardP}>{profitSum < 0 ? `- $ ${Math.abs(parseInt(profitSum, 10))}` : `$ ${profitSum}`}</p>
