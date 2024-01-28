@@ -37,11 +37,13 @@
 .overviewCardIcon {
     font-size: 1.5rem;
     margin-right: 8px;
+    width: 25px;
 }
 
 .overviewIcon {
     height: 24px;
     margin-right: 8px;
+    width: 25px;
 }
 
 .overviewCardP {
@@ -49,10 +51,9 @@
 }
 
 .overviewCardContent {
-    width: 50%;
+    width: 160px;
     display: flex;
-    align-items: top;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .propertiesAndAddPropertyWrapper {
