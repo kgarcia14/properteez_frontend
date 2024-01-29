@@ -11,6 +11,11 @@
 body {
     color: #333;
     line-height: 20px;
+    /* background-image: url('../public/backgroundImage1.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed; */
 }
 
 /* removes arrows for inputs with type "number" */
