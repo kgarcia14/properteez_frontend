@@ -84,7 +84,7 @@ const Dashboard = () => {
                         console.log(results)
                         const properties = results.data.properties;
 
-                        const numberOfPropertiesToRetrieve = 5;
+                        const numberOfPropertiesToRetrieve = 10;
                         const newestProperties = [];
 
                         for (let i = properties.length - 1; i >= Math.max(properties.length - numberOfPropertiesToRetrieve, 0); i--) {
@@ -102,7 +102,7 @@ const Dashboard = () => {
                     console.log(results)
                     const properties = results.data.properties;
 
-                    const numberOfPropertiesToRetrieve = 5;
+                    const numberOfPropertiesToRetrieve = 10;
                     const newestProperties = [];
 
                     for (let i = properties.length - 1; i >= Math.max(properties.length - numberOfPropertiesToRetrieve, 0); i--) {
@@ -177,7 +177,7 @@ const Dashboard = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className={styles.overviewCard}>
+                            <div className={`${styles.overviewCard} ${styles.profitOverviewCard}`}>
                                 <div className={styles.overviewCardContent}>
                                     <img className={styles.overviewIcon} src="/profit_icon.svg" alt=""/>
                                     <div>
