@@ -175,6 +175,7 @@
 
 @media screen and (min-width: 640px) {
     .container {
+        height: 100vh;
         display: flex;
         justify-content: center;
     }
@@ -201,6 +202,36 @@
         margin: 35px 0 25px 0;
     }
 
+    .overviewContainer {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .overviewCard {
+        flex: 1;
+        max-width: 150px; /* Optional: Set a maximum width for each card */
+        height: 100px;
+        margin: 0;
+        padding: 10px;
+    }
+    
+    .overviewCardContent {
+        flex-direction: column;
+    }
+
+    .overviewCardTitle {
+        margin: 5px 0 0 0;
+        font-size: .9rem;
+    }
+
+    .overviewCardP {
+        font-size: .8rem;
+    }
+
+    .profitOverviewCard {
+        /* margin: 0 15px; */
+    }
+
     .addPropertyIcon {
         display: none;
     }
@@ -214,16 +245,16 @@
     }
 
     .imageContainer {
-        height: 100px;
-        width: 250px;
+        width: 35%;
+        height: 120px;
     }
 
     .propertyContent {
-        width: 100%;
-        justify-content: space-between;
+        width: 65%;
     }
 }
 
 @media screen and (min-width: 1000px) {
+
 }
 
