@@ -4,7 +4,6 @@
 
 .overview {
     font-size: 1.2rem;
-    margin: 15px 0 15px 0;
 }
 
 .overview-container {
@@ -115,6 +114,7 @@
 }
 
 .ul {
+    padding-bottom: 10px;
 }
 
 .li {
@@ -175,18 +175,24 @@
 
 @media screen and (min-width: 640px) {
     .container {
+        height: 100vh;
         display: flex;
         justify-content: center;
+        align-items: center;
     }
     
     .wrapper {
+        height: 100%;
+        max-height: 760px; 
+        overflow-y: auto;
         width: 95%;
         max-width: 1000px;
         display: flex;
+        border-radius: 15px;
     }
 
     .nav {
-
+        height: 100%;
     }
 
     .contentContainer {
@@ -199,6 +205,7 @@
 
     .overview {
         margin: 35px 0 25px 0;
+        
     }
 
     .overviewContainer {
@@ -208,8 +215,8 @@
 
     .overviewCard {
         flex: 1;
-        max-width: 150px; /* Optional: Set a maximum width for each card */
-        height: 100px;
+        /* max-width: 150px; */
+        height: 125px;
         margin: 0;
         padding: 10px;
     }
@@ -228,7 +235,7 @@
     }
 
     .profitOverviewCard {
-        /* margin: 0 15px; */
+        margin: 0 15px;
     }
 
     .addPropertyIcon {

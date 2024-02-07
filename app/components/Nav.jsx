@@ -67,7 +67,9 @@ const Nav = () => {
                 </NavbarMenu>
             </Navbar>
             <div className={styles.desktopNavbar}>
-                <Logo className={styles.logo} />
+                <div className="logoWrapper">
+                    <Logo className={styles.logo} />
+                </div>
                 <div className={styles.navbarMenu}>
                     <div className={styles.addPropertyBtnLinks}>
                         <Link className={styles.addPropertyBtn} href="/addProperty"><FaPlus className={styles.plusIcon} />Add Property</Link>
