@@ -2,8 +2,10 @@
     display: none;
 }
 
-.main {
-
+.container {
+    background-image: url('../public/backgroundImage2.png');
+    background-size: cover;
+    background-position: center;
 }
 
 .formContainer {
@@ -16,7 +18,7 @@
 }
 
 .form {
-    max-width: 400px;
+    width: 100%;
 }
 
 .heading {
@@ -107,4 +109,52 @@
     color: #fff;
     border: none;
     border-radius: 5px;
+}
+
+@media screen and (min-width: 640px) {
+    .container {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .wrapper {
+        height: 100%;
+        max-height: 760px; 
+        overflow-y: auto;
+        width: 95%;
+        max-width: 1000px;
+        display: flex;
+        border-radius: 15px;
+    }
+
+    .nav {
+        height: 100%;
+    }
+
+    .formContainer {
+        width: 100%;
+    }
+    .formWrapper {
+        width: 90%;
+    }
+
+    .form {
+        width: 100%;
+    }
+
+    .propertyAndRenterDetailsWrapper {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .propertyDetailsWrapper, .renterDetailsWrapper {
+        width: 48%;
+    }
+
+    .button {
+        max-width: 48%;
+    }
 }
