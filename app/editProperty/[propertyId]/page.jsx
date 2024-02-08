@@ -223,174 +223,181 @@ const EditProperty = ({params}) => {
     }
 
     return (
-        <>
-            <Nav />
-            <div className={styles.formContainer}>
-                <div className={styles.formWrapper}>
-                    <form className={styles.form} onSubmit={handleEditProperty}>
-                        <h2 className={styles.heading}>Property Details</h2>
-                        <label className={styles.label}>
-                            Street
-                            <input className={styles.input} 
-                            type="text"
-                            name="street"
-                            value= {street}
-                            onChange= {(e) => setStreet(e.target.value)}
-                            required />
-                        </label>
-                        <label className={styles.label}>
-                            City
-                            <input className={styles.input} 
-                            type="text"
-                            name="city"
-                            value= {city}
-                            onChange= {(e) => setCity(e.target.value)}
-                            required />
-                        </label>
-                        <label className={styles.label}>
-                            State
-                            <select
-                            className={styles.select} 
-                            type="text"
-                            name="state"
-                            value= {state}
-                            onChange= {(e) => setState(e.target.value)}
-                            required>
-                                <option value=""></option>
-                                {states.map(state => (
-                                    <option key={state} value={state}>{state}</option>
-                                ))}
-                            </select>
-                        </label>
-                        <label className={styles.label}>
-                            Zip
-                            <input className={styles.input} 
-                            type="text"
-                            name="zip"
-                            value= {zip}
-                            onChange= {(e) => setZip(e.target.value)}
-                            required />
-                        </label>
-                        <label className={styles.label}>
-                            Type of Home
-                            <select
-                            className={styles.select} 
-                            type="text"
-                            name="homeType"
-                            value= {homeType}
-                            onChange= {(e) => setHomeType(e.target.value)}
-                            required>
-                                <option value=""></option>
-                                <option value="Single Family">Single Family</option>
-                                <option value="Townhome">Townhome</option>
-                                <option value="Multi-Family">Multi-Family</option>
-                            </select>
-                        </label>
-                        <label className={styles.label}>
-                            Mortage Amount
-                            <input className={styles.input} 
-                            type="number"
-                            name="mortgageAmount"
-                            value= {mortgageAmount}
-                            onChange= {(e) => setMortgageAmount(e.target.value)} />
-                        </label>
-                        <label className={styles.label}>
-                            Vacancy
-                            <select
-                            className={styles.select} 
-                            type="text"
-                            name="vacancy"
-                            value= {vacancy}
-                            onChange= {(e) => setVacancy(e.target.value)} >
-                                <option value=""></option>
-                                <option value="Vacant">Vacant</option>
-                                <option value="Occupied">Occupied</option>
-                            </select>
-                        </label>
-                        <label className={styles.fileLabel}>
-                            Upload Image
-                            <input className={styles.fileInput} 
-                            type="file"
-                            name="propertyImage"
-                            onChange= {(e) => setPropertyImage(e.target.files[0] ? e.target.files[0] : '')} 
-                            hidden/>
-                        </label>
-                        <span className={propertyImage === '' ? styles.span : styles.hidden}>No file selected</span>
-                        <span className={propertyImage !== '' ? styles.span : styles.hidden}>{propertyImage.name}</span>
-                        
-                        {vacancy === 'Occupied' ? 
-                        <>
-                            <h2 className={styles.heading}>Renter Details</h2>
-                            <label className={styles.label}>
-                                Renter Name
-                                <input className={styles.input} 
-                                type="text"
-                                name="renterName"
-                                value= {renterName}
-                                onChange= {(e) => setRenterName(e.target.value)} />
-                            </label>
-                            <label className={styles.label}>
-                                Renter Number
-                                <input className={styles.input} 
-                                type="text"
-                                name="renterNumber"
-                                value= {renterNumber}
-                                onChange= {(e) => setRenterNumber(e.target.value)} />
-                            </label>
-                            <label className={styles.label}>
-                                Renter Email
-                                <input className={styles.input} 
-                                type="email"
-                                name="renterEmail"
-                                value= {renterEmail}
-                                onChange= {(e) => setRenterEmail(e.target.value)} />
-                            </label>
-                            <label className={styles.label}>
-                                Lease Start Date
-                                <input className={`${styles.input} ${styles.inputDate}`} 
-                                type="date"
-                                name="leaseStart"
-                                value= {leaseStart}
-                                onChange= {(e) => setLeaseStart(e.target.value)} />
-                            </label>
-                            <label className={styles.label}>
-                                Lease End Date
-                                <input className={`${styles.input} ${styles.inputDate}`} 
-                                type="date"
-                                name="leaseEnd"
-                                value= {leaseEnd}
-                                onChange= {(e) => setLeaseEnd(e.target.value)} />
-                            </label>
-                            <label className={styles.label}>
-                                Rent Amount
-                                <input className={styles.input} 
-                                type="number"
-                                name="rentAmount"
-                                value= {rentAmount}
-                                onChange= {(e) => setRentAmount(e.target.value)} />
-                            </label>
-                            <label className={styles.label}>
-                                Rent Status
-                                <select
-                                className={styles.select} 
-                                type="text"
-                                name="rentStatus"
-                                value= {rentStatus}
-                                onChange= {(e) => setRentStatus(e.target.value)}>
-                                    <option value=""></option>
-                                    <option value="Current">Current</option>
-                                    <option value="Past Due">Past Due</option>
-                                </select>
-                            </label>
-                        </>
-                            :
-                            ''
-                        }
-                        <button className={styles.button}>Confirm Edit</button>
-                    </form>
+        <main className={styles.container}>
+            <div className={styles.wrapper}>
+                <Nav />
+                <div className={styles.formContainer}>
+                    <div className={styles.formWrapper}>
+                        <form className={styles.form} onSubmit={handleEditProperty}>
+                            <div className={styles.propertyAndRenterDetailsWrapper}>
+                                <div className={styles.propertyDetailsWrapper}>
+                                    <h2 className={styles.heading}>Property Details</h2>
+                                    <label className={styles.label}>
+                                        Street
+                                        <input className={styles.input} 
+                                        type="text"
+                                        name="street"
+                                        value= {street}
+                                        onChange= {(e) => setStreet(e.target.value)}
+                                        required />
+                                    </label>
+                                    <label className={styles.label}>
+                                        City
+                                        <input className={styles.input} 
+                                        type="text"
+                                        name="city"
+                                        value= {city}
+                                        onChange= {(e) => setCity(e.target.value)}
+                                        required />
+                                    </label>
+                                    <label className={styles.label}>
+                                        State
+                                        <select
+                                        className={styles.select} 
+                                        type="text"
+                                        name="state"
+                                        value= {state}
+                                        onChange= {(e) => setState(e.target.value)}
+                                        required>
+                                            <option value=""></option>
+                                            {states.map(state => (
+                                                <option key={state} value={state}>{state}</option>
+                                            ))}
+                                        </select>
+                                    </label>
+                                    <label className={styles.label}>
+                                        Zip
+                                        <input className={styles.input} 
+                                        type="text"
+                                        name="zip"
+                                        value= {zip}
+                                        onChange= {(e) => setZip(e.target.value)}
+                                        required />
+                                    </label>
+                                    <label className={styles.label}>
+                                        Type of Home
+                                        <select
+                                        className={styles.select} 
+                                        type="text"
+                                        name="homeType"
+                                        value= {homeType}
+                                        onChange= {(e) => setHomeType(e.target.value)}
+                                        required>
+                                            <option value=""></option>
+                                            <option value="Single Family">Single Family</option>
+                                            <option value="Townhome">Townhome</option>
+                                            <option value="Multi-Family">Multi-Family</option>
+                                        </select>
+                                    </label>
+                                    <label className={styles.label}>
+                                        Mortage Amount
+                                        <input className={styles.input} 
+                                        type="number"
+                                        name="mortgageAmount"
+                                        value= {mortgageAmount}
+                                        onChange= {(e) => setMortgageAmount(e.target.value)} />
+                                    </label>
+                                    <label className={styles.label}>
+                                        Vacancy
+                                        <select
+                                        className={styles.select} 
+                                        type="text"
+                                        name="vacancy"
+                                        value= {vacancy}
+                                        onChange= {(e) => setVacancy(e.target.value)} >
+                                            <option value=""></option>
+                                            <option value="Vacant">Vacant</option>
+                                            <option value="Occupied">Occupied</option>
+                                        </select>
+                                    </label>
+                                    <label className={styles.fileLabel}>
+                                        Upload Image
+                                        <input className={styles.fileInput} 
+                                        type="file"
+                                        name="propertyImage"
+                                        onChange= {(e) => setPropertyImage(e.target.files[0] ? e.target.files[0] : '')} 
+                                        hidden/>
+                                    </label>
+                                    <span className={propertyImage === '' ? styles.span : styles.hidden}>No file selected</span>
+                                    <span className={propertyImage !== '' ? styles.span : styles.hidden}>{propertyImage.name}</span>
+                                </div>
+                                <div className={styles.renterDetailsWrapper}>
+                                    {vacancy === 'Occupied' ? 
+                                    <>
+                                        <h2 className={styles.heading}>Renter Details</h2>
+                                        <label className={styles.label}>
+                                            Renter Name
+                                            <input className={styles.input} 
+                                            type="text"
+                                            name="renterName"
+                                            value= {renterName}
+                                            onChange= {(e) => setRenterName(e.target.value)} />
+                                        </label>
+                                        <label className={styles.label}>
+                                            Renter Number
+                                            <input className={styles.input} 
+                                            type="text"
+                                            name="renterNumber"
+                                            value= {renterNumber}
+                                            onChange= {(e) => setRenterNumber(e.target.value)} />
+                                        </label>
+                                        <label className={styles.label}>
+                                            Renter Email
+                                            <input className={styles.input} 
+                                            type="email"
+                                            name="renterEmail"
+                                            value= {renterEmail}
+                                            onChange= {(e) => setRenterEmail(e.target.value)} />
+                                        </label>
+                                        <label className={styles.label}>
+                                            Lease Start Date
+                                            <input className={`${styles.input} ${styles.inputDate}`} 
+                                            type="date"
+                                            name="leaseStart"
+                                            value= {leaseStart}
+                                            onChange= {(e) => setLeaseStart(e.target.value)} />
+                                        </label>
+                                        <label className={styles.label}>
+                                            Lease End Date
+                                            <input className={`${styles.input} ${styles.inputDate}`} 
+                                            type="date"
+                                            name="leaseEnd"
+                                            value= {leaseEnd}
+                                            onChange= {(e) => setLeaseEnd(e.target.value)} />
+                                        </label>
+                                        <label className={styles.label}>
+                                            Rent Amount
+                                            <input className={styles.input} 
+                                            type="number"
+                                            name="rentAmount"
+                                            value= {rentAmount}
+                                            onChange= {(e) => setRentAmount(e.target.value)} />
+                                        </label>
+                                        <label className={styles.label}>
+                                            Rent Status
+                                            <select
+                                            className={styles.select} 
+                                            type="text"
+                                            name="rentStatus"
+                                            value= {rentStatus}
+                                            onChange= {(e) => setRentStatus(e.target.value)}>
+                                                <option value=""></option>
+                                                <option value="Current">Current</option>
+                                                <option value="Past Due">Past Due</option>
+                                            </select>
+                                        </label>
+                                    </>
+                                        :
+                                        ''
+                                    }
+                                </div>
+                            </div>
+                            <button className={styles.button}>Confirm Edit</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </>
+        </main>
     )
 }
 

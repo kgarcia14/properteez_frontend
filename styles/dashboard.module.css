@@ -1,3 +1,9 @@
+.container {
+    background-image: url('../public/backgroundImage2.png');
+    background-size: cover;
+    background-position: center;
+}
+
 .content {
     width: 90%;
 }
@@ -189,7 +195,6 @@
         max-width: 1000px;
         display: flex;
         border-radius: 15px;
-        padding-right: 20px;
     }
 
     .nav {
@@ -197,7 +202,7 @@
     }
 
     .contentContainer {
-        padding-left: 15px;
+        padding: 0 15px;
     }
 
     .content {
@@ -216,7 +221,7 @@
 
     .overviewCard {
         flex: 1;
-        /* max-width: 150px; */
+        max-width: 150px;
         height: 125px;
         margin: 0;
         padding: 10px;
@@ -261,7 +266,29 @@
     }
 }
 
+@media screen and (min-width: 700px) {
+    .overviewCard {
+        max-width: 160px;
+    }
+}
+@media screen and (min-width: 740px) {
+    .overviewCard {
+        max-width: 175px;
+    }
+}
+@media screen and (min-width: 750px) {
+    .overviewCard {
+        max-width: 200px;
+    }
+}
+@media screen and (min-width: 850px) {
+    .overviewCard {
+        max-width: 225px;
+    }
+}
 @media screen and (min-width: 1000px) {
-
+    .overviewCard {
+        max-width: 250px;
+    }
 }
 

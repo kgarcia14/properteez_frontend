@@ -7,6 +7,8 @@ import styles from '../../styles/properties.module.css'
 import Loading from '../components/Loading';
 import {useDisclosure} from "@nextui-org/react";
 import PropertyModal from '../components/PropertyModal';
+import Link from 'next/link';
+import { MdOutlineAddHome } from "react-icons/md";
 
 const Properties = () => {
     const [userExists, setUserExists] = useState(false);
@@ -110,7 +112,11 @@ const Properties = () => {
                 <Nav />
                 <div className={styles.contentContainer}>
                     <div className={styles.content}>
+                    <div className={styles.propertiesAndAddPropertyWrapper}> 
                         <h2 className={styles.properties}>Properties <span className={styles.propertiesAmount}>({properties.length} Units)</span></h2>
+                        <Link className={styles.addPropertyIcon} href='/addProperty'><MdOutlineAddHome /></Link>
+                        <Link className={styles.addPropertyButton} href='/addProperty'><span className={styles.plus}>+</span> Add Property</Link>
+                    </div>
                         <ul className={styles.ul}>
                             {properties.map(property => (
                                 <li key={property.id} onClick={() => handlePropertyClick(property)}>
