@@ -3,9 +3,9 @@
 }
 
 .container {
-    background-image: url('../public/backgroundImage2.png');
+    /* background-image: url('../public/backgroundImage2.png');
     background-size: cover;
-    background-position: center;
+    background-position: center; */
 }
 
 .formContainer {
