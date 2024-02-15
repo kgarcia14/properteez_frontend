@@ -4,7 +4,7 @@ const Tasks = () => {
     return ( 
         <main>
             <Nav />
-            <div>Tasks Page</div>
+            <div>Tasks feature in progress...</div>
         </main>
      );
 }
