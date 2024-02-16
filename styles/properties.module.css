@@ -59,6 +59,29 @@
     padding: 3px 10px;
 }
 
+.propertyStatusFilterContainer {
+    margin-bottom: 15px;
+}
+
+.propertyStatusFilterWrapper {
+    display: flex;
+    
+}
+
+.propertyStatusFilterItem {
+    color: #aaa;
+    font-size: .8rem;
+    margin-right: 15px;
+}
+
+.propertyStatusFilterItem:hover {
+    cursor: pointer;
+} 
+
+.active {
+    color: #6C67F1;
+}
+
 .plus{
     color: #FF7A00;
 }

@@ -14,8 +14,15 @@ const Properties = () => {
     const [userExists, setUserExists] = useState(false);
     const [loading, setLoading] = useState(true);
     const [properties, setProperties] = useState([]);
+    const [currentProperties, setCurrentProperties] = useState([]);
+    const [pastDueProperties, setPastDueProperties] = useState([]);
+    const [vacantProperties, setVacantProperties] = useState([]);
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const [selectedProperty, setSelectedProperty] = useState(null);
+    const [statusAll, setStatusAll] = useState(true);
+    const [statusCurrent, setStatusCurrent] = useState(false);
+    const [statusPastDue, setStatusPastDue] = useState(false);
+    const [statusVacant, setStatusVacant] = useState(false);
     
     useEffect(() => {
         if (!Cookies.get('isLoggedIn')) {
@@ -101,6 +108,55 @@ const Properties = () => {
         return <Loading loadingString={loadingString} />
     }
 
+    // Property status filter functions
+    let currentPropertiesArr = [];
+    let pastDuePropertiesArr = [];
+    let vacantPropertiesArr = [];
+    const getAllProperties = () => {
+        setStatusAll(true);
+        setStatusCurrent(false);
+        setStatusPastDue(false);
+        setStatusVacant(false);
+    }
+    const getCurrentProperties = () => {
+         for (let i = 0; i <= properties.length - 1; i++) {
+            if (properties[i].rent_status === 'Current') {
+                currentPropertiesArr.push(properties[i]);
+                console.log(currentPropertiesArr);
+                setCurrentProperties(currentPropertiesArr);
+                console.log(currentProperties)
+            }
+         }
+         setStatusCurrent(true);
+         setStatusAll(false);
+         setStatusPastDue(false);
+         setStatusVacant(false);
+    }
+    const getPastDueProperties = () => {
+        for (let i = 0; i <= properties.length - 1; i++) {
+            if (properties[i].rent_status === 'Past Due') {
+                pastDuePropertiesArr.push(properties[i]);
+                setPastDueProperties(pastDuePropertiesArr);
+            }
+        }
+        setStatusPastDue(true);
+        setStatusCurrent(false);
+        setStatusAll(false);
+        setStatusVacant(false);
+    }
+    const getVacantProperties = () => {
+        for (let i = 0; i <= properties.length - 1; i++) {
+            if (properties[i].rent_status === '') {
+                vacantPropertiesArr.push(properties[i]);
+                setVacantProperties(vacantPropertiesArr);
+            }
+        }
+        setStatusVacant(true);
+        setStatusAll(false);
+        setStatusCurrent(false);
+        setStatusPastDue(false);
+    }
+
     const handlePropertyClick = (property) => {
         onOpen();  // Call onOpen function
         setSelectedProperty(property);
@@ -112,13 +168,21 @@ const Properties = () => {
                 <Nav />
                 <div className={styles.contentContainer}>
                     <div className={styles.content}>
-                    <div className={styles.propertiesAndAddPropertyWrapper}> 
-                        <h2 className={styles.properties}>Properties <span className={styles.propertiesAmount}>({properties.length} Units)</span></h2>
-                        <Link className={styles.addPropertyIcon} href='/addProperty'><MdOutlineAddHome /></Link>
-                        <Link className={styles.addPropertyButton} href='/addProperty'><span className={styles.plus}>+</span> Add Property</Link>
-                    </div>
+                        <div className={styles.propertiesAndAddPropertyWrapper}> 
+                            <h2 className={styles.properties}>Properties <span className={styles.propertiesAmount}>({(statusCurrent ? currentProperties : statusPastDue ? pastDueProperties : statusVacant ? vacantProperties : properties).length} Units)</span></h2>
+                            <Link className={styles.addPropertyIcon} href='/addProperty'><MdOutlineAddHome /></Link>
+                            <Link className={styles.addPropertyButton} href='/addProperty'><span className={styles.plus}>+</span> Add Property</Link>
+                        </div>
+                        <div className={styles.propertyStatusFilterContainer}> 
+                            <ul className={styles.propertyStatusFilterWrapper}>
+                                <li className={`${styles.propertyStatusFilterItem} ${statusAll ? styles.active : ''}`} onClick={getAllProperties}>All</li>
+                                <li className={`${styles.propertyStatusFilterItem} ${statusCurrent ? styles.active : ''}`} onClick={getCurrentProperties}>Current</li>
+                                <li className={`${styles.propertyStatusFilterItem} ${statusPastDue ? styles.active : ''}`} onClick={getPastDueProperties}>PastDue</li>
+                                <li className={`${styles.propertyStatusFilterItem} ${statusVacant ? styles.active : ''}`} onClick={getVacantProperties}>Vacant</li>
+                            </ul>
+                        </div>
                         <ul className={styles.ul}>
-                            {properties.map(property => (
+                            {(statusCurrent ? currentProperties : statusPastDue ? pastDueProperties : statusVacant ? vacantProperties : properties).map(property => (
                                 <li key={property.id} onClick={() => handlePropertyClick(property)}>
                                     <div className={styles.propertyContainer}>
                                         <div className={styles.imageContainer}>
