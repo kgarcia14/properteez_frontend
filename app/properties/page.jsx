@@ -170,8 +170,6 @@ const Properties = () => {
                     <div className={styles.content}>
                         <div className={styles.propertiesAndAddPropertyWrapper}> 
                             <h2 className={styles.properties}>Properties <span className={styles.propertiesAmount}>({(statusCurrent ? currentProperties : statusPastDue ? pastDueProperties : statusVacant ? vacantProperties : properties).length} Units)</span></h2>
-                            <Link className={styles.addPropertyIcon} href='/addProperty'><MdOutlineAddHome /></Link>
-                            <Link className={styles.addPropertyButton} href='/addProperty'><span className={styles.plus}>+</span> Add Property</Link>
                         </div>
                         <div className={styles.propertyStatusFilterContainer}> 
                             <ul className={styles.propertyStatusFilterWrapper}>
@@ -180,6 +178,8 @@ const Properties = () => {
                                 <li className={`${styles.propertyStatusFilterItem} ${statusPastDue ? styles.active : ''}`} onClick={getPastDueProperties}>PastDue</li>
                                 <li className={`${styles.propertyStatusFilterItem} ${statusVacant ? styles.active : ''}`} onClick={getVacantProperties}>Vacant</li>
                             </ul>
+                            <Link className={styles.addPropertyIcon} href='/addProperty'><MdOutlineAddHome /></Link>
+                            <Link className={styles.addPropertyButton} href='/addProperty'><span className={styles.plus}>+</span> Add Property</Link>
                         </div>
                         <ul className={styles.ul}>
                             {(statusCurrent ? currentProperties : statusPastDue ? pastDueProperties : statusVacant ? vacantProperties : properties).map(property => (
