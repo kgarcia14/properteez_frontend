@@ -23,7 +23,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin: 15px 0 15px 0;
+    margin: 10px 0 10px 0;
 }
 
 .properties {
@@ -60,6 +60,9 @@
 }
 
 .propertyStatusFilterContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
     margin-bottom: 15px;
 }
 
