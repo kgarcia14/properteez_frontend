@@ -171,8 +171,10 @@ const Dashboard = () => {
                             <div className={styles.overviewCard}>
                                 <div className={styles.overviewCardContent}>
                                     <BsHouses className={styles.overviewCardIcon} />
-                                    <div onClick={seeAllProperties}>
-                                        <h3 className={styles.overviewCardTitle}>Total Properties</h3>
+                                    <div>
+                                        <h3 className={`${styles.overviewCardTitle} ${styles.totalPropertiesTitle}`} onClick={seeAllProperties}>
+                                            Total Properties
+                                        </h3>
                                         <p className={styles.overviewCardP}>{properties.length} {properties.length === 1 ? 'Unit' : 'Units'}</p>
                                     </div>
                                 </div>
