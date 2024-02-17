@@ -61,6 +61,10 @@
     justify-content: flex-start;
 }
 
+.totalPropertiesTitle:hover {
+    cursor: pointer;
+}
+
 .propertiesAndAddPropertyWrapper {
     display: flex;
     justify-content: space-between;
