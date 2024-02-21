@@ -1,0 +1,46 @@
+.hidden {
+    display: none;
+}
+
+.taskContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.taskInfo {
+    
+}
+
+.checkboxWrapper {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background-color: #DEDDF8;
+    border-radius: 5px;
+}
+
+.checkIcon {
+    color: #6C67F1;
+    font-size: 25px;
+}
+
+@media screen and (min-width: 640px) {
+    .container {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .wrapper {
+        height: 100%;
+        max-height: 760px; 
+        overflow-y: auto;
+        width: 95%;
+        max-width: 1000px;
+        display: flex;
+        border-radius: 15px;
+    }
+}

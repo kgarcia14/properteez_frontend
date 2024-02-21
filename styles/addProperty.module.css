@@ -2,12 +2,6 @@
     display: none;
 }
 
-.container {
-    /* background-image: url('../public/backgroundImage2.png');
-    background-size: cover;
-    background-position: center; */
-}
-
 .formContainer {
     display: flex;
     justify-content: center;
