@@ -93,6 +93,11 @@
     margin-bottom: 25px;
 }
 
+.ul {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
 .taskContent {
     width: 100%;
     display: flex;
@@ -100,8 +105,9 @@
 }
 
 .checkboxWrapper {
-    width: 20px;
-    height: 20px;
+    position: relative;
+    width: 18px;
+    height: 18px;
     display: flex;
     justify-content: center;
     align-items: center;
