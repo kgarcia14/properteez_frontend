@@ -17,6 +17,8 @@ const Tasks = () => {
     const [pendingTasks, setPendingTasks] = useState([]);
     const [urgentTasks, setUrgentTasks] = useState([]);
     const [completeTasks, setCompleteTasks] = useState([]);
+    const [movedToCompleted, setMovedToCompleted] = useState(false);
+    const [movedFromCompleted, setMovedFromCompleted] = useState(false);
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const [selectedTask, setSelectedTask] = useState(null);
     const [statusAll, setStatusAll] = useState(true);
@@ -154,6 +156,8 @@ const Tasks = () => {
     }
 
     const markTaskComplete = async (task) => {
+        setMovedToCompleted(true);
+        setMovedFromCompleted(false);
         console.log(task);
 
         const res = await fetch(process.env.NODE_ENV === 'development' ? `http://localhost:4444/markTaskComplete/${task.id}` : `https://properteezapi.kurtisgarcia.dev/markTaskComplete/${task.id}`, {
@@ -175,9 +179,15 @@ const Tasks = () => {
         setUrgentTasks(updatedUrgentTasks);
         setCompleteTasks(updatedCompleteTasks);
         setSelectedTask(task)
+
+        setTimeout(() => {
+            setMovedToCompleted(false);
+        }, 1000)
     }
 
     const markTaskIncomplete = async (task) => {
+        setMovedFromCompleted(true);
+        setMovedToCompleted(false);
         console.log(task);
 
         const res = await fetch(process.env.NODE_ENV === 'development' ? `http://localhost:4444/markTaskIncomplete/${task.id}` : `https://properteezapi.kurtisgarcia.dev/markTaskIncomplete/${task.id}`, {
@@ -199,6 +209,10 @@ const Tasks = () => {
         setUrgentTasks(updatedUrgentTasks);
         setCompleteTasks(updatedCompleteTasks);
         setSelectedTask(task)
+
+        setTimeout(() => {
+            setMovedFromCompleted(false);
+        }, 1000)
     }
 
 
@@ -226,6 +240,8 @@ const Tasks = () => {
                             <Link className={styles.addTaskIcon} href='/addTask'><MdOutlineAddTask /></Link>
                             <Link className={styles.addTaskButton} href='/addTask'><span className={styles.plus}>+</span> Add Task</Link>
                         </div>
+                        <div className={movedToCompleted ? styles.movedTask : styles.hidden}>Moved To Completed!!!</div>
+                        <div className={movedFromCompleted ? styles.movedTask : styles.hidden}>Moved From Completed...</div>
                         <ul className={styles.ul}>
                             {(statusPending ? pendingTasks : statusUrgent ? urgentTasks : statusComplete ? completeTasks : tasks).map(task => (
                                 <li key={task.id}>
