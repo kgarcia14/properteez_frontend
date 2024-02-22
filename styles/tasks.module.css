@@ -83,6 +83,12 @@
     color: #FF7A00;
 }
 
+.movedTask {
+    color: #DEDDF8;
+    font-size: .8rem;
+    padding-bottom: 15px;
+}
+
 .taskContainer {
     display: flex;
     background-color: #FAFAFA;
