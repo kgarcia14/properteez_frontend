@@ -5,6 +5,7 @@
 .taskContainer {
     display: flex;
     justify-content: space-between;
+    margin-top: 25px;
 }
 
 .taskInfo {
@@ -16,14 +17,15 @@
     height: 25px;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     background-color: #DEDDF8;
     border-radius: 5px;
 }
 
 .checkIcon {
     color: #6C67F1;
-    font-size: 25px;
+    font-size: 35px;
+    position: absolute;
 }
 
 @media screen and (min-width: 640px) {
