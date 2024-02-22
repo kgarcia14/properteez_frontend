@@ -2,19 +2,106 @@
     display: none;
 }
 
-.taskContainer {
+.contentContainer {
+    width: 100%;
     display: flex;
-    justify-content: space-between;
-    margin-top: 25px;
+    justify-content: center;
 }
 
-.taskInfo {
+.content {
+    width: 90%;
+}
+
+.tasksAndAddTaskWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin: 10px 0 10px 0;
+}
+
+.tasks {
+    font-size: 1.2rem;
+}
+
+.tasksAmount {
+    color: #aaa;
+    font-size: .7rem;
+}
+
+.addTaskIcon {
+    color:#6C67F1;
+    font-size: 25px;
+    margin-right: 15px;
+}
+
+.addTaskIcon:hover {
+    cursor: pointer;
+    color:#6b67f1d0;
+}
+
+.addTaskButton {
+    display: none;
+    background-color: #6C67F1;
+    color: #fff;
+    border-radius: 15px;
+    font-size: .7rem;
+    padding: 3px 15px;
+}
+
+.addTaskButton:hover {
+    cursor: pointer;
+    background-color: #6b67f1e1;
+}
+
+.taskStatusFilterContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 15px;
+}
+
+.taskStatusFilterWrapper {
+    display: flex;
     
 }
 
+.taskStatusFilterItem {
+    color: #aaa;
+    font-size: .8rem;
+    margin-right: 15px;
+}
+
+.taskStatusFilterItem:hover {
+    cursor: pointer;
+} 
+
+.active {
+    color: #6C67F1;
+}
+
+.plus{
+    color: #FF7A00;
+}
+
+.taskContainer {
+    display: flex;
+    background-color: #FAFAFA;
+    border-radius: 15px;
+    box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.25);
+    -webkit-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.25);
+    margin-bottom: 25px;
+}
+
+.taskContent {
+    width: 100%;
+    display: flex;
+    padding: 15px;
+}
+
 .checkboxWrapper {
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,10 +109,66 @@
     border-radius: 5px;
 }
 
+.checkboxWrapper:hover {
+    cursor: pointer;
+}
+
 .checkIcon {
     color: #6C67F1;
-    font-size: 35px;
+    font-size: 25px;
     position: absolute;
+}
+
+.taskDetailsWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 15px;
+}
+
+.titleStreetDescriptionWrapper {
+    padding-right: 15px;
+}
+
+.title {
+    font-size: .8rem;
+    font-weight: 500;
+}
+
+.street {
+    color: #aaa;
+    font-size: .8rem;
+}
+
+.description {
+    font-size: .8rem;
+}
+
+.pendingStatus {
+    font-size: .8rem;
+    background-color: #fbeed3;
+    color: #f7c96e;
+    width: 70px;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.urgentStatus {
+    font-size: .8rem;
+    background-color: #FED5D5;
+    color: #FF0000;
+    width: 70px;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.completeStatus {
+    font-size: .8rem;
+    background-color: #E9FFDB;
+    color: #51B613;
+    width: 70px;
+    text-align: center;
+    border-radius: 3px;
 }
 
 @media screen and (min-width: 640px) {
@@ -44,5 +187,33 @@
         max-width: 1000px;
         display: flex;
         border-radius: 15px;
+    }
+
+    .nav {
+        height: 100%;
+    }
+
+    .contentContainer {
+        padding: 0 15px;
+    }
+
+    .content {
+        width: 100%;
+    }
+
+    .tasks {
+        margin-top: 27px;
+    }
+
+    .addTaskIcon {
+        display: none;
+    }
+
+    .addTaskButton {
+        display: initial;
+    }
+
+    .addTaskButton {
+        display: initial;
     }
 }
