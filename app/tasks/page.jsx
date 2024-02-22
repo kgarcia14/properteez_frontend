@@ -166,8 +166,14 @@ const Tasks = () => {
 
         // filtering the tasks to update tasks on frontend with updated tasks
         const updatedTasks = tasks.map(task => (task.id === updatedTask.id ? updatedTask : task));
+        const updatedPendingTasks = pendingTasks.filter(task => task.id !== updatedTask.id);
+        const updatedUrgentTasks = urgentTasks.filter(task => task.id !== updatedTask.id);
+        const updatedCompleteTasks = completeTasks.filter(task => task.id !== updatedTask.id)
 
         setTasks(updatedTasks);
+        setPendingTasks(updatedPendingTasks);
+        setUrgentTasks(updatedUrgentTasks);
+        setCompleteTasks(updatedCompleteTasks);
         setSelectedTask(task)
     }
 
@@ -182,9 +188,16 @@ const Tasks = () => {
         const results = await res.json();
         const updatedTask = results.data.task[0]
 
+        // filtering the tasks to update tasks on frontend with updated tasks
         const updatedTasks = tasks.map(task => (task.id === updatedTask.id ? updatedTask : task));
+        const updatedPendingTasks = pendingTasks.filter(task => task.id !== updatedTask.id);
+        const updatedUrgentTasks = urgentTasks.filter(task => task.id !== updatedTask.id);
+        const updatedCompleteTasks = completeTasks.filter(task => task.id !== updatedTask.id)
 
         setTasks(updatedTasks);
+        setPendingTasks(updatedPendingTasks);
+        setUrgentTasks(updatedUrgentTasks);
+        setCompleteTasks(updatedCompleteTasks);
         setSelectedTask(task)
     }
 
