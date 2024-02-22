@@ -1,22 +1,16 @@
-.container {
-    /* background-image: url('../public/backgroundImage2.png');
-    background-size: cover;
-    background-position: center; */
-}
-
 .propertiesAmount {
     color: #aaa;
     font-size: .7rem;
-}
-
-.content {
-    width: 90%;
 }
 
 .contentContainer {
     width: 100%;
     display: flex;
     justify-content: center;
+}
+
+.content {
+    width: 90%;
 }
 
 .propertiesAndAddPropertyWrapper {
