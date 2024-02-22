@@ -18,6 +18,7 @@ const Tasks = () => {
     const [urgentTasks, setUrgentTasks] = useState([]);
     const [completeTasks, setCompleteTasks] = useState([]);
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
+    const [selectedTask, setSelectedTask] = useState(null);
     const [statusAll, setStatusAll] = useState(true);
     const [statusPending, setStatusPending] = useState(false);
     const [statusUrgent, setStatusUrgent] = useState(false);
@@ -152,6 +153,41 @@ const Tasks = () => {
         setStatusUrgent(false);
     }
 
+    const markTaskComplete = async (task) => {
+        console.log(task);
+
+        const res = await fetch(process.env.NODE_ENV === 'development' ? `http://localhost:4444/markTaskComplete/${task.id}` : `https://properteezapi.kurtisgarcia.dev/markTaskComplete/${task.id}`, {
+            method: 'PUT',
+            credentials: 'include',
+        });
+
+        const results = await res.json();
+        const updatedTask = results.data.task[0]
+
+        // filtering the tasks to update tasks on frontend with updated tasks
+        const updatedTasks = tasks.map(task => (task.id === updatedTask.id ? updatedTask : task));
+
+        setTasks(updatedTasks);
+        setSelectedTask(task)
+    }
+
+    const markTaskIncomplete = async (task) => {
+        console.log(task);
+
+        const res = await fetch(process.env.NODE_ENV === 'development' ? `http://localhost:4444/markTaskIncomplete/${task.id}` : `https://properteezapi.kurtisgarcia.dev/markTaskIncomplete/${task.id}`, {
+            method: 'PUT',
+            credentials: 'include',
+        });
+
+        const results = await res.json();
+        const updatedTask = results.data.task[0]
+
+        const updatedTasks = tasks.map(task => (task.id === updatedTask.id ? updatedTask : task));
+
+        setTasks(updatedTasks);
+        setSelectedTask(task)
+    }
+
 
     if (loading) {
         const loadingString = 'Loading Content...'
@@ -182,7 +218,7 @@ const Tasks = () => {
                                 <li key={task.id}>
                                     <div className={styles.taskContainer}>
                                         <div className={styles.taskContent}>
-                                            <div className={styles.checkboxWrapper}>
+                                            <div className={styles.checkboxWrapper} onClick={() => task.complete ? markTaskIncomplete(task) : markTaskComplete(task)}>
                                                 <FaCheck className={task.complete ? styles.checkIcon : styles.hidden}/>
                                             </div>
                                             <div className={styles.taskDetailsWrapper}>
