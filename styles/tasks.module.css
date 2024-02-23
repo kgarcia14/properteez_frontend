@@ -83,10 +83,16 @@
     color: #FF7A00;
 }
 
-.movedTask {
-    color: #DEDDF8;
+.movedToComplete {
+    color: #6C67F1;
     font-size: .8rem;
-    padding-bottom: 15px;
+    margin-left: 5px;
+}
+
+.movedFromComplete {
+    color: #ff0000;
+    font-size: .8rem;
+    margin-left: 5px;
 }
 
 .taskContainer {

@@ -235,13 +235,15 @@ const Tasks = () => {
                                 <li className={`${styles.taskStatusFilterItem} ${statusAll ? styles.active : ''}`} onClick={getAlltasks}>All</li>
                                 <li className={`${styles.taskStatusFilterItem} ${statusPending ? styles.active : ''}`} onClick={getPendingTasks}>Pending</li>
                                 <li className={`${styles.taskStatusFilterItem} ${statusUrgent ? styles.active : ''}`} onClick={getUrgentTasks}>Urgent</li>
-                                <li className={`${styles.taskStatusFilterItem} ${statusComplete ? styles.active : ''}`} onClick={getCompleteTasks}>Complete</li>
+                                <li className={`${styles.taskStatusFilterItem} ${statusComplete ? styles.active : ''}`} onClick={getCompleteTasks}>
+                                    Complete
+                                    <sup className={movedToCompleted ? styles.movedToComplete : styles.hidden}>+1</sup>
+                                    <sup className={movedFromCompleted ? styles.movedFromComplete : styles.hidden}>-1</sup>
+                                </li>
                             </ul>
                             <Link className={styles.addTaskIcon} href='/addTask'><MdOutlineAddTask /></Link>
                             <Link className={styles.addTaskButton} href='/addTask'><span className={styles.plus}>+</span> Add Task</Link>
                         </div>
-                        <div className={movedToCompleted ? styles.movedTask : styles.hidden}>Moved To Completed!!!</div>
-                        <div className={movedFromCompleted ? styles.movedTask : styles.hidden}>Moved From Completed...</div>
                         <ul className={styles.ul}>
                             {(statusPending ? pendingTasks : statusUrgent ? urgentTasks : statusComplete ? completeTasks : tasks).map(task => (
                                 <li key={task.id}>
