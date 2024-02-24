@@ -7,7 +7,7 @@ import Nav from '../components/Nav';
 import { BsHouses, BsCurrencyDollar } from "react-icons/bs";
 import Loading from '../components/Loading';
 import {useDisclosure} from "@nextui-org/react";
-import PropertyModal from '../components/PropertyModal';
+import DetailsModal from '../components/DetailsModal';
 import Link from 'next/link';
 import { MdOutlineAddHome } from "react-icons/md";
 
@@ -232,7 +232,7 @@ const Dashboard = () => {
                             ))}
                         </ul>
                         {/* Passing down props to display property details in separate modal component */}
-                        <PropertyModal isOpen={isOpen} onClose={onOpenChange} property={selectedProperty} />
+                        <DetailsModal isOpen={isOpen} onClose={onOpenChange} data={selectedProperty} />
                     </div>
                 </div>
             </div>
