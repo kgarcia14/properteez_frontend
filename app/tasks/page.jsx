@@ -9,6 +9,7 @@ import Link from 'next/link';
 import styles from '../../styles/tasks.module.css';
 import { FaCheck } from "react-icons/fa6";
 import { MdOutlineAddTask } from "react-icons/md";
+import DetailsModal from '../components/DetailsModal';
 
 const Tasks = () => {
     const [userExists, setUserExists] = useState(false);
@@ -155,6 +156,12 @@ const Tasks = () => {
         setStatusUrgent(false);
     }
 
+    const handleTaskClick = (task) => {
+        onOpen();  // Call onOpen function
+        setSelectedTask(task);
+        console.log(task)
+    };
+
     const markTaskComplete = async (task) => {
         setMovedToCompleted(true);
         setMovedFromCompleted(false);
@@ -252,7 +259,7 @@ const Tasks = () => {
                                             <div className={styles.checkboxWrapper} onClick={() => task.complete ? markTaskIncomplete(task) : markTaskComplete(task)}>
                                                 <FaCheck className={task.complete ? styles.checkIcon : styles.hidden}/>
                                             </div>
-                                            <div className={styles.taskDetailsWrapper}>
+                                            <div className={styles.taskDetailsWrapper} onClick={() => handleTaskClick(task)}>
                                                 <div className={styles.titleStreetDescriptionWrapper}>
                                                     <p className={styles.title}>{task.title}</p>
                                                     <p className={styles.street}>{task.street}</p>
@@ -271,6 +278,8 @@ const Tasks = () => {
                                 </li>
                             ))}
                         </ul>
+                        {/* Passing down props to display property details in separate modal component */}
+                        <DetailsModal isOpen={isOpen} onClose={onOpenChange} data={selectedTask} />
                     </div>
                 </div>
             </div>

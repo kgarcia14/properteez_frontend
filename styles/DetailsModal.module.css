@@ -107,7 +107,7 @@
     margin-bottom: 25px; */
 }
 
-.propertyDetails {
+.dataDetails {
     padding: 15px;
 }
 
@@ -158,7 +158,7 @@
     border-radius: 3px;
 }
 
-.pastDueRentStatus {
+.pastDueRentStatus, .urgentStatus {
     font-size: .8rem;
     background-color: #FED5D5;
     color: #FF0000;
@@ -167,10 +167,19 @@
     border-radius: 3px;
 }
 
-.currentRentStatus {
+.currentRentStatus, .completeStatus {
     font-size: .8rem;
     background-color: #E9FFDB;
     color: #51B613;
+    width: 70px;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.pendingStatus {
+    font-size: .8rem;
+    background-color: #fbeed3;
+    color: #f7c96e;
     width: 70px;
     text-align: center;
     border-radius: 3px;
