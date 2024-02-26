@@ -216,7 +216,7 @@ const EditTask = ({params}) => {
                                 </label>
                                 <label className={styles.label}>
                                     Description
-                                    <input className={styles.input} 
+                                    <textarea className={`${styles.input} ${styles.textarea}`} 
                                     type="text"
                                     name="taskDescription"
                                     value={taskDescription}

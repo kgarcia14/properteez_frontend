@@ -69,7 +69,7 @@ const DetailsModal = ({ isOpen, onClose, data }) => {
                     <FaRegEdit className={editButton ? styles.editButton : styles.hidden} onClick={handleEdit} />
                     <div className={confirmEditWrapper ? styles.confirmEditWrapper : styles.hidden}>
                       <a className={styles.confirmEditButton} href={`/${data.home_type ? 'editProperty' : 'editTask'}/${data.id}`}>
-                        Edit property
+                        {data.home_type ? 'Edit property' : 'Edit Task'}
                       </a>
                     </div>
                     <FaRegTrashCan className={deleteButton ? styles.deleteButton : styles.hidden} onClick={handleDelete} />
