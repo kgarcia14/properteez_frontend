@@ -41,7 +41,7 @@ const DetailsModal = ({ isOpen, onClose, data }) => {
       });
   
       if (res.status === 204) {
-        location.assign('/tasks')
+        location.assign(data.home_type ? '/dashboard' : '/tasks')
       }
 
     } catch (err) {
