@@ -171,7 +171,7 @@ const DetailsModal = ({ isOpen, onClose, data }) => {
                       <>
                         <p>{data.title}</p>
                         <p className={data.status === 'Urgent' && !data.complete ? `${styles.urgentStatus}` : data.status === 'Pending' && !data.complete ? `${styles.pendingStatus}` : `${styles.completeStatus}`}>{data.complete ? 'Complete' : data.status}</p>
-                        <p>{data.street}</p>
+                        <p>{data.location}</p>
                         <p>{data.description}</p>
                       </>
                     }
