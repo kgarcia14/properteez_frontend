@@ -1,0 +1,119 @@
+.formContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.formWrapper {
+    width: 90%;
+}
+
+.form {
+    width: 100%;
+}
+
+.heading {
+    font-size: 1.2rem;
+    margin: 25px 0 10px 0;
+}
+
+.label {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+}
+
+.input, .fileInput {
+    height: 35px;
+    font-size: 1rem;
+    margin-top: 10px;
+    padding-left: 15px;
+    outline-color: #6C67F1;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    color: #333;
+}
+
+.inputDate {
+    width: 100%;
+    background-color: #fff;
+}
+
+.select {
+    height: 35px;
+    font-size: 1rem;
+    margin-top: 10px;
+    padding-left: 15px;
+    outline-color: #6C67F1;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    color: #333;
+    background-color: #fff;
+}
+
+.textarea {
+    padding-top: 5px;
+}
+
+.span {
+    display: inline-block;
+    font-size: .8rem;
+    color: #adadad;
+    margin-left: 5px;
+}
+
+.optionPlaceholder {
+    color: #aeaeae;
+}
+
+.button {
+    width: 100%;
+    height: 35px;
+    margin: 20px 0;
+    background-color: #6C67F1;
+    font-size: 1rem;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+@media screen and (min-width: 640px) {
+    .container {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .wrapper {
+        height: 100%;
+        max-height: 760px; 
+        overflow-y: auto;
+        width: 95%;
+        max-width: 1000px;
+        display: flex;
+        border-radius: 15px;
+    }
+
+    .nav {
+        height: 100%;
+    }
+
+    .formContainer {
+        width: 100%;
+    }
+    .formWrapper {
+        width: 90%;
+    }
+
+    .form {
+        width: 100%;
+    }
+
+    .taskDetailsWrapper {
+        width: 100%;
+    }
+
+    .button {
+        max-width: 100%;
+    }
+}

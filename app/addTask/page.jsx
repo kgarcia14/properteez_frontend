@@ -74,7 +74,7 @@ const AddTask = () => {
                         'task_title': taskTitle,
                         'task_description': taskDescription,
                         'task_status': taskStatus
-                    })
+                    }),
                 });
                 console.log(res)
     
@@ -105,7 +105,15 @@ const AddTask = () => {
                         const retryRes = await fetch(process.env.NODE_ENV === 'development' ? 'http://localhost:4444/tasks' : 'https://properteezapi.kurtisgarcia.dev/tasks', {
                             method: 'POST',
                             credentials: 'include',
-                            body: formData,
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                'task_location': taskLocation,
+                                'task_title': taskTitle,
+                                'task_description': taskDescription,
+                                'task_status': taskStatus
+                            }),
                         });
                         console.log(retryRes);
                         const results = await retryRes.json();
@@ -139,7 +147,7 @@ const AddTask = () => {
                     <div className={styles.formWrapper}>
                         <form className={styles.form} onSubmit={handleAddTask}>
                             <div className={styles.taskDetailsWrapper}>
-                                <h2 className={styles.heading}>Property Details</h2>
+                                <h2 className={styles.heading}>Task Details</h2>
                                 <label className={styles.label}>
                                     Location
                                     <select
