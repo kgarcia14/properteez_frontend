@@ -1,6 +1,6 @@
 'use client'
 
-import styles from '../../styles/AddTask.module.css'
+import styles from '../../styles/addTask.module.css'
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import Nav from '../components/Nav';
