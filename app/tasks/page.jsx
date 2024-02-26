@@ -262,7 +262,7 @@ const Tasks = () => {
                                             <div className={styles.taskDetailsWrapper} onClick={() => handleTaskClick(task)}>
                                                 <div className={styles.titleStreetDescriptionWrapper}>
                                                     <p className={styles.title}>{task.title}</p>
-                                                    <p className={styles.street}>{task.street}</p>
+                                                    <p className={styles.street}>{task.location}</p>
                                                     <p className={styles.description}>{task.description}</p>
                                                 </div>
                                                 <div>
