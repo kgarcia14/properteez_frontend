@@ -10,7 +10,6 @@ const EditProperty = ({params}) => {
     const [loading, setLoading] = useState(true)
     const [userExists, setUserExists] = useState(false)
     const [property, setProperty] = useState(null);
-    const [userId, setUserId] = useState('');
     const [street, setStreet] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
@@ -60,7 +59,6 @@ const EditProperty = ({params}) => {
     
                 if (res.status === 200) {
                     setUserExists(true);
-                    setLoading(false)
                 } else if (res.status === 403) {
                     location.assign('/dashboard');
                 } else {
@@ -82,12 +80,12 @@ const EditProperty = ({params}) => {
         
                 const results = await res.json();
                 console.log(results.data.property);
-                const property = results.data.property;
+                const propertyInfo = results.data.property;
 
                 if (property === undefined) {
                     location.assign('/dashboard')
                 } else {
-                    setProperty(results.data.property);
+                    setProperty(propertyInfo);
                 }
             }
     
