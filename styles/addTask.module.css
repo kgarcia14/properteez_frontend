@@ -1,7 +1,3 @@
-.hidden {
-    display: none;
-}
-
 .formContainer {
     display: flex;
     justify-content: center;
@@ -54,20 +50,8 @@
     background-color: #fff;
 }
 
-.fileLabel {
-    display: inline-block;
-    border: 1px solid #6C67F1;
-    color: #6C67F1;
-    font-size: .8rem;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin: 20px 0 10px 0;
-}
-
-.fileLabel:hover {
-    cursor: pointer;
-    background-color: #6C67F1;
-    color: #fff;
+.textarea {
+    padding-top: 5px;
 }
 
 .span {
@@ -77,35 +61,11 @@
     margin-left: 5px;
 }
 
-.fileInput::file-selector-button {
-    height: 25px;
-    font-size: .8rem;
-    border: none;
-    border-radius: 5px;
-    background-color: #6C67F1;
-    color: #fff;
-}
-
-.select, .fileInput::file-selector-button:hover {
-    cursor: pointer;
-}
-
 .optionPlaceholder {
     color: #aeaeae;
 }
 
 .button {
-    width: 100%;
-    height: 35px;
-    margin: 20px 0;
-    background-color: #6C67F1;
-    font-size: 1rem;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-}
-
-.button100 {
     width: 100%;
     height: 35px;
     margin: 20px 0;
@@ -149,39 +109,11 @@
         width: 100%;
     }
 
-    .propertyAndRenterDetailsWrapper {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-    }
-    
-    .propertyDetailsWrapper, .renterDetailsWrapper {
-        width: 48%;
-    }
-
-    .propertyDetailsWrapper100 {
+    .taskDetailsWrapper {
         width: 100%;
     }
 
     .button {
-        max-width: 48%;
-        height: 35px;
-        margin: 20px 0;
-        background-color: #6C67F1;
-        font-size: 1rem;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-    }
-
-    .button100 {
-        width: 100%;
-        height: 35px;
-        margin: 20px 0;
-        background-color: #6C67F1;
-        font-size: 1rem;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
+        max-width: 100%;
     }
 }

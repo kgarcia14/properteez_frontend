@@ -104,9 +104,8 @@ const AddProperty = () => {
                     formData.append('rent_amount', 0);
                     formData.append('rent_status', '');
                 }
-    
-    
-                const res = await fetch(process.env.NODE_ENV === 'development' ? 'http://localhost:4444/properties/' : 'https://properteezapi.kurtisgarcia.dev/properties/', {
+
+                const res = await fetch(process.env.NODE_ENV === 'development' ? 'http://localhost:4444/properties' : 'https://properteezapi.kurtisgarcia.dev/properties', {
                     method: 'POST',
                     credentials: 'include',
                     body: formData,
@@ -115,7 +114,7 @@ const AddProperty = () => {
                 console.log(propertyImage.name)
     
                 if (res.status === 201) {
-                    location.assign('/dashboard')
+                    // location.assign('/dashboard');
                 }
 
                 if (res.status === 403) {
@@ -138,7 +137,7 @@ const AddProperty = () => {
                         const refreshResults = await refreshTokenRes.json();
                         console.log(refreshResults);
 
-                        const retryRes = await fetch(process.env.NODE_ENV === 'development' ? 'http://localhost:4444/properties/' : 'https://properteezapi.kurtisgarcia.dev/properties/', {
+                        const retryRes = await fetch(process.env.NODE_ENV === 'development' ? 'http://localhost:4444/properties' : 'https://properteezapi.kurtisgarcia.dev/properties', {
                             method: 'POST',
                             credentials: 'include',
                             body: formData,
@@ -175,14 +174,14 @@ const AddProperty = () => {
                     <div className={styles.formWrapper}>
                         <form className={styles.form} onSubmit={handleAddProperty}>
                             <div className={styles.propertyAndRenterDetailsWrapper}> 
-                                <div className={styles.propertyDetailsWrapper}>
+                                <div className={vacancy !== 'Occupied' ? styles.propertyDetailsWrapper100 :styles.propertyDetailsWrapper}>
                                     <h2 className={styles.heading}>Property Details</h2>
                                     <label className={styles.label}>
                                         Street
                                         <input className={styles.input} 
                                         type="text"
                                         name="street"
-                                        value= {street}
+                                        value={street}
                                         onChange= {(e) => setStreet(e.target.value)}
                                         required />
                                     </label>
@@ -191,7 +190,7 @@ const AddProperty = () => {
                                         <input className={styles.input} 
                                         type="text"
                                         name="city"
-                                        value= {city}
+                                        value={city}
                                         onChange= {(e) => setCity(e.target.value)}
                                         required />
                                     </label>
@@ -201,7 +200,7 @@ const AddProperty = () => {
                                         className={styles.select} 
                                         type="text"
                                         name="state"
-                                        value= {state}
+                                        value={state}
                                         onChange= {(e) => setState(e.target.value)}
                                         required>
                                             <option value=""></option>
@@ -215,7 +214,7 @@ const AddProperty = () => {
                                         <input className={styles.input} 
                                         type="text"
                                         name="zip"
-                                        value= {zip}
+                                        value={zip}
                                         onChange= {(e) => setZip(e.target.value)}
                                         required />
                                     </label>
@@ -225,7 +224,7 @@ const AddProperty = () => {
                                         className={styles.select} 
                                         type="text"
                                         name="homeType"
-                                        value= {homeType}
+                                        value={homeType}
                                         onChange= {(e) => setHomeType(e.target.value)}
                                         required>
                                             <option value=""></option>
@@ -239,7 +238,7 @@ const AddProperty = () => {
                                         <input className={styles.input} 
                                         type="number"
                                         name="mortgageAmount"
-                                        value= {mortgageAmount}
+                                        value={mortgageAmount}
                                         onChange= {(e) => setMortgageAmount(e.target.value)} />
                                     </label>
                                     <label className={styles.label}>
@@ -248,7 +247,7 @@ const AddProperty = () => {
                                         className={styles.select} 
                                         type="text"
                                         name="vacancy"
-                                        value= {vacancy}
+                                        value={vacancy}
                                         onChange= {(e) => setVacancy(e.target.value)} >
                                             <option value=""></option>
                                             <option value="Vacant">Vacant</option>
@@ -266,7 +265,7 @@ const AddProperty = () => {
                                     <span className={propertyImage === '' ? styles.span : styles.hidden}>No file selected</span>
                                     <span className={propertyImage !== '' ? styles.span : styles.hidden}>{propertyImage.name}</span>
                                 </div>
-                                <div className={styles.renterDetailsWrapper}>
+                                <div className={vacancy === 'Occupied' ? styles.renterDetailsWrapper : ''}>
                                     {vacancy === 'Occupied' ? 
                                     <>
                                         <h2 className={styles.heading}>Renter Details</h2>
@@ -275,7 +274,7 @@ const AddProperty = () => {
                                             <input className={styles.input} 
                                             type="text"
                                             name="renterName"
-                                            value= {renterName}
+                                            value={renterName}
                                             onChange= {(e) => setRenterName(e.target.value)} />
                                         </label>
                                         <label className={styles.label}>
@@ -283,7 +282,7 @@ const AddProperty = () => {
                                             <input className={styles.input} 
                                             type="number"
                                             name="renterNumber"
-                                            value= {renterNumber}
+                                            value={renterNumber}
                                             onChange= {(e) => setRenterNumber(e.target.value)} />
                                         </label>
                                         <label className={styles.label}>
@@ -291,7 +290,7 @@ const AddProperty = () => {
                                             <input className={styles.input} 
                                             type="email"
                                             name="renterEmail"
-                                            value= {renterEmail}
+                                            value={renterEmail}
                                             onChange= {(e) => setRenterEmail(e.target.value)} />
                                         </label>
                                         <label className={styles.label}>
@@ -299,7 +298,7 @@ const AddProperty = () => {
                                             <input className={`${styles.input} ${styles.inputDate}`} 
                                             type="date"
                                             name="leaseStart"
-                                            value= {leaseStart}
+                                            value={leaseStart}
                                             onChange= {(e) => setLeaseStart(e.target.value)} />
                                         </label>
                                         <label className={styles.label}>
@@ -307,7 +306,7 @@ const AddProperty = () => {
                                             <input className={`${styles.input} ${styles.inputDate}`} 
                                             type="date"
                                             name="leaseEnd"
-                                            value= {leaseEnd}
+                                            value={leaseEnd}
                                             onChange= {(e) => setLeaseEnd(e.target.value)} />
                                         </label>
                                         <label className={styles.label}>
@@ -315,7 +314,7 @@ const AddProperty = () => {
                                             <input className={styles.input} 
                                             type="number"
                                             name="rentAmount"
-                                            value= {rentAmount}
+                                            value={rentAmount}
                                             onChange= {(e) => setRentAmount(e.target.value)} />
                                         </label>
                                         <label className={styles.label}>
@@ -324,7 +323,7 @@ const AddProperty = () => {
                                             className={styles.select} 
                                             type="text"
                                             name="rentStatus"
-                                            value= {rentStatus}
+                                            value={rentStatus}
                                             onChange= {(e) => setRentStatus(e.target.value)}>
                                                 <option value=""></option>
                                                 <option value="Current">Current</option>
@@ -337,7 +336,7 @@ const AddProperty = () => {
                                     }
                                 </div>
                             </div>
-                            <button className={styles.button}>Add Property</button>
+                            <button className={vacancy !== 'Occupied' ? styles.button100 : styles.button}>Add Property</button>
                         </form>
                     </div>
                 </div>
