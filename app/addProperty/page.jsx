@@ -114,7 +114,7 @@ const AddProperty = () => {
                 console.log(propertyImage.name)
     
                 if (res.status === 201) {
-                    // location.assign('/dashboard');
+                    location.assign('/dashboard');
                 }
 
                 if (res.status === 403) {
