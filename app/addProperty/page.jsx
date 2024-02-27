@@ -280,7 +280,9 @@ const AddProperty = () => {
                                         <label className={styles.label}>
                                             Renter Number
                                             <input className={styles.input} 
-                                            type="number"
+                                            type="tel"
+                                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                                            placeholder="123-456-7890"
                                             name="renterNumber"
                                             value={renterNumber}
                                             onChange= {(e) => setRenterNumber(e.target.value)} />
@@ -289,6 +291,7 @@ const AddProperty = () => {
                                             Renter Email
                                             <input className={styles.input} 
                                             type="email"
+                                            placeholder="example@example.com"
                                             name="renterEmail"
                                             value={renterEmail}
                                             onChange= {(e) => setRenterEmail(e.target.value)} />
