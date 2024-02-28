@@ -223,7 +223,7 @@ const Dashboard = () => {
                                                 <p className={property.rent_status === 'Past Due' ? `${styles.pastDueRentStatus}`
                                                     : property.rent_status === 'Current' ? `${styles.currentRentStatus}` 
                                                     : `${styles.neutralRentStatus}`}>
-                                                    {property.rent_status !== '' ? property.rent_status : 'Vacant'}
+                                                    {property.rent_status !== '' ? property.rent_status : property.vacancy === 'Occupied' ? 'Occupied' : 'Vacant'}
                                                 </p>
                                             </div>
                                         </div>
