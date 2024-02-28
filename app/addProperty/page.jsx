@@ -291,7 +291,6 @@ const AddProperty = () => {
                                             Renter Email
                                             <input className={styles.input} 
                                             type="email"
-                                            placeholder="example@example.com"
                                             name="renterEmail"
                                             value={renterEmail}
                                             onChange= {(e) => setRenterEmail(e.target.value)} />
