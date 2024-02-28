@@ -96,7 +96,7 @@ const DetailsModal = ({ isOpen, onClose, data }) => {
                           </div>
                           <div>
                             <p className={data.rent_status === 'Past Due' ? `${styles.pastDueRentStatus}` : data.rent_status === 'Current' ? `${styles.currentRentStatus}` : `${styles.neutralRentStatus}`}>
-                              {data.rent_status !== '' ? data.rent_status : 'Vacant'}
+                              {data.rent_status !== '' ? data.rent_status : data.vacancy === 'Occupied' ? 'Occupied' : 'Vacant'}
                             </p>
                           </div>
                         </div>
