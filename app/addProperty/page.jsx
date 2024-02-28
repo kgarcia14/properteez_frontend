@@ -282,7 +282,7 @@ const AddProperty = () => {
                                             <input className={styles.input} 
                                             type="tel"
                                             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                                            placeholder="123-456-7890"
+                                            placeholder="e.g. 123-456-7890"
                                             name="renterNumber"
                                             value={renterNumber}
                                             onChange= {(e) => setRenterNumber(e.target.value)} />
