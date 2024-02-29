@@ -176,18 +176,21 @@ const Tasks = () => {
         const updatedTask = results.data.task[0]
 
         // filtering the tasks to update tasks on frontend with updated tasks
-        const updatedTasks = tasks.map(task => (task.id === updatedTask.id ? updatedTask : task));
+        const updatedTasks = tasks.map(task => task.id === updatedTask.id ? updatedTask : task);
         const updatedPendingTasks = pendingTasks.filter(task => task.id !== updatedTask.id);
         const updatedUrgentTasks = urgentTasks.filter(task => task.id !== updatedTask.id);
         const updatedCompleteTasks = completeTasks.filter(task => task.id !== updatedTask.id)
 
         setTasks(updatedTasks);
-        setPendingTasks(updatedPendingTasks);
-        setUrgentTasks(updatedUrgentTasks);
-        setCompleteTasks(updatedCompleteTasks);
+        setPendingTasks(pendingTasks.map(task => task.id === updatedTask.id ? updatedTask: task));
+        setUrgentTasks(urgentTasks.map(task => task.id === updatedTask.id ? updatedTask: task));
+        setCompleteTasks(completeTasks.map(task => task.id === updatedTask.id ? updatedTask: task));
         setSelectedTask(task)
 
         setTimeout(() => {
+            setPendingTasks(updatedPendingTasks);
+            setUrgentTasks(updatedUrgentTasks);
+            setCompleteTasks(updatedCompleteTasks);
             setMovedToCompleted(false);
         }, 1000)
     }
@@ -212,12 +215,15 @@ const Tasks = () => {
         const updatedCompleteTasks = completeTasks.filter(task => task.id !== updatedTask.id)
 
         setTasks(updatedTasks);
-        setPendingTasks(updatedPendingTasks);
-        setUrgentTasks(updatedUrgentTasks);
-        setCompleteTasks(updatedCompleteTasks);
+        setPendingTasks(pendingTasks.map(task => task.id === updatedTask.id ? updatedTask: task));
+        setUrgentTasks(urgentTasks.map(task => task.id === updatedTask.id ? updatedTask: task));
+        setCompleteTasks(completeTasks.map(task => task.id === updatedTask.id ? updatedTask: task));
         setSelectedTask(task)
 
         setTimeout(() => {
+            setPendingTasks(updatedPendingTasks);
+            setUrgentTasks(updatedUrgentTasks);
+            setCompleteTasks(updatedCompleteTasks);
             setMovedFromCompleted(false);
         }, 1000)
     }
