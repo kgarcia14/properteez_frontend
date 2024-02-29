@@ -192,7 +192,7 @@ const Tasks = () => {
             setUrgentTasks(updatedUrgentTasks);
             setCompleteTasks(updatedCompleteTasks);
             setMovedToCompleted(false);
-        }, 1000)
+        }, 500)
     }
 
     const markTaskIncomplete = async (task) => {
@@ -225,7 +225,7 @@ const Tasks = () => {
             setUrgentTasks(updatedUrgentTasks);
             setCompleteTasks(updatedCompleteTasks);
             setMovedFromCompleted(false);
-        }, 1000)
+        }, 500)
     }
 
 
